@@ -1,0 +1,18 @@
+{
+  "tea": {
+    "width": 1280,
+    "height": 720,
+    "duration": 32.8,
+    "source": "D:\\元启程\\样片 - 副本\\商业内容\\产品广告\\食品饮品\\霸王茶姬.mp4"
+  },
+  "awakening": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 30.1,
+    "source": "work\\media-originals\\55.mp4"
+  },
+  "enterpriseTraining": {
+    "type": "illustration",
+    "source": "work/training-v10/enterprise-training.png"
+  }
+}

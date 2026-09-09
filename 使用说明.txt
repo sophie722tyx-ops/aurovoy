@@ -1,0 +1,9 @@
+AUROVOY 完整网站 · Cloudflare 迁移版
+2026-09-09
+
+完整部署步骤和验证状态请阅读 README.md。
+已完成本地迁移和运行检查，尚未上传 GitHub 或公开部署。
+后台登录改为 Cloudflare Access 邮箱验证码，需在账户中配置后生效。
+管理员邮箱：sophie722tyx@gmail.com。
+旧线上数据库和额外上传文件不在原 ZIP 内，如有需补充迁移。
+上传 GitHub 时上传解压后的源码，不要只上传 ZIP。

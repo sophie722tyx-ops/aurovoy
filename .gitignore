@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars*
+.env*
+!.env.example
+worker/pages.generated.json
+*.log
+.DS_Store
+src/**/*.html
+src/assets/global-pt.mp4

@@ -1,0 +1,458 @@
+[
+  {
+    "filmId": 1,
+    "cover": "cover-1.webp",
+    "sourceFile": "exec-0e7a24d6-18ae-41c4-baee-3d2d86d73678.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 2,
+    "cover": "cover-2.webp",
+    "sourceFile": "exec-ff0d463c-0dbf-443a-a21b-ced770efb97d.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 3,
+    "cover": "cover-3.webp",
+    "sourceFile": "exec-7a2b14d5-4b0e-4b6c-9faf-345ec21acbf9.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 4,
+    "cover": "cover-4.webp",
+    "sourceFile": "exec-ca08b9d9-96ea-42bc-b895-7feaa24a2853.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 5,
+    "cover": "cover-5.webp",
+    "sourceFile": "exec-d1e85a5f-938a-49cc-9c34-6037ef5b2eaf.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 6,
+    "cover": "cover-6.webp",
+    "sourceFile": "exec-de1a29b5-b703-4b22-b1ea-c427b1ae4be8.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 7,
+    "cover": "cover-7.webp",
+    "sourceFile": "exec-502544a2-97c0-492f-817f-867fdf4bbc28.png",
+    "method": "supplied-title-and-content-match",
+    "width": 805,
+    "height": 1400
+  },
+  {
+    "filmId": 8,
+    "cover": "cover-8.webp",
+    "sourceFile": "exec-c8890aa3-0814-4562-883d-ab9722ebec85.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 9,
+    "cover": "cover-9.webp",
+    "sourceFile": "exec-1efe42eb-786a-4830-a667-a14adbc2546a.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 10,
+    "cover": "cover-10.webp",
+    "sourceFile": "exec-df758ccd-142f-4103-b8d7-d17ef7de57e5.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 12,
+    "cover": "cover-12.webp",
+    "sourceFile": "exec-4be3d010-caae-43db-8008-cbc0c348aec3.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 794
+  },
+  {
+    "filmId": 13,
+    "cover": "cover-13.webp",
+    "sourceFile": "exec-ce33a6d5-1654-4fe0-a2ce-8c7a6690b6a0.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 14,
+    "cover": "cover-14.webp",
+    "sourceFile": "1.png",
+    "method": "user-specified-2026-09-08",
+    "width": 1280,
+    "height": 720
+  },
+  {
+    "filmId": 15,
+    "cover": "cover-15.webp",
+    "sourceFile": "exec-23e5ed94-7ee6-4e40-ad64-8e11e7acc0d4.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 16,
+    "cover": "cover-16.webp",
+    "sourceFile": "exec-6c3c446b-2d2b-41e0-975e-02ada9d62eb3.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 17,
+    "cover": "cover-17.webp",
+    "sourceFile": "exec-9057d931-95fc-452f-85bb-e4f7e46cbd83.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 18,
+    "cover": "cover-18.webp",
+    "sourceFile": "exec-5c7e9551-4a10-4fd3-958a-e6056b73ee36.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 463
+  },
+  {
+    "filmId": 19,
+    "cover": "cover-19.webp",
+    "sourceFile": "exec-6c75582e-7f17-4629-bd6b-d51c886b3f86.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 455
+  },
+  {
+    "filmId": 20,
+    "cover": "cover-20.webp",
+    "sourceFile": "exec-57201351-1117-4e38-a86a-b1939d05d1d7.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 21,
+    "cover": "cover-21.webp",
+    "sourceFile": "exec-142ff82e-9d39-48c2-87cb-2c21ab339acd.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 22,
+    "cover": "cover-22.webp",
+    "sourceFile": "exec-66013d64-e3ef-4d8e-a119-0533691cf478.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 24,
+    "cover": "cover-24.webp",
+    "sourceFile": "2.png",
+    "method": "user-specified-2026-09-08",
+    "width": 720,
+    "height": 1280
+  },
+  {
+    "filmId": 25,
+    "cover": "cover-25.webp",
+    "sourceFile": "exec-16747de9-ad5c-4367-a671-21179e0fe681.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 26,
+    "cover": "cover-26.webp",
+    "sourceFile": "exec-85690a16-fdc9-4c23-b159-3f0f3b575a0c.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 27,
+    "cover": "cover-27.webp",
+    "sourceFile": "exec-eafd42fa-bdd5-409e-be6f-8e99ac34167d.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 28,
+    "cover": "cover-28.webp",
+    "sourceFile": "9月8日(1).png",
+    "method": "user-specified-2026-09-08",
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "filmId": 29,
+    "cover": "cover-29.webp",
+    "sourceFile": "exec-ee1c09ce-c805-4891-aca8-f835cd3fa625.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 30,
+    "cover": "cover-30.webp",
+    "sourceFile": "廉洁V5 无水印.png",
+    "method": "user-specified-2026-09-08",
+    "width": 1280,
+    "height": 720
+  },
+  {
+    "filmId": 31,
+    "cover": "cover-31.webp",
+    "sourceFile": "exec-22e1cbc8-26ce-40ef-8fba-c833ac264f8e.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 32,
+    "cover": "cover-32.webp",
+    "sourceFile": "exec-be22556a-bd76-428b-9b2f-bf104792a5c6.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 33,
+    "cover": "cover-33.webp",
+    "sourceFile": "exec-c550b229-2fed-4fc5-8455-b1a9ea3d24d4.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 34,
+    "cover": "cover-34.webp",
+    "sourceFile": "exec-337fc7da-42be-4428-9984-f6593376c8ab.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 35,
+    "cover": "cover-35.webp",
+    "sourceFile": "exec-5d7f77e7-abe1-4440-a252-3d429037a044.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 36,
+    "cover": "cover-36.webp",
+    "sourceFile": "film-36.webp",
+    "method": "verified-video-frame",
+    "width": 900,
+    "height": 1602
+  },
+  {
+    "filmId": 37,
+    "cover": "cover-37.webp",
+    "sourceFile": "film-37.webp",
+    "method": "verified-video-frame",
+    "width": 900,
+    "height": 1600
+  },
+  {
+    "filmId": 38,
+    "cover": "cover-38.webp",
+    "sourceFile": "film-38.webp",
+    "method": "verified-video-frame",
+    "width": 900,
+    "height": 1560
+  },
+  {
+    "filmId": 39,
+    "cover": "cover-39.webp",
+    "sourceFile": "exec-e1015dbf-39e2-4821-aafa-43417fe1f38f.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 40,
+    "cover": "cover-40.webp",
+    "sourceFile": "exec-7e309f6d-effd-4878-a218-5ec9665a846b.png",
+    "method": "supplied-title-and-content-match",
+    "width": 804,
+    "height": 1400
+  },
+  {
+    "filmId": 41,
+    "cover": "cover-41.webp",
+    "sourceFile": "exec-973a9bc0-977b-4c5f-9fc9-0203d7aaa4b0.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 42,
+    "cover": "cover-42.webp",
+    "sourceFile": "exec-f4be3b0f-e1a7-4867-8bfe-c6c69800416a.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 43,
+    "cover": "cover-43.webp",
+    "sourceFile": "exec-e65b2ed7-b209-4528-8b96-93d964f9ec05.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 44,
+    "cover": "cover-44.webp",
+    "sourceFile": "exec-c16f03b3-4397-42c4-a6b9-804fd9e628c5.png",
+    "method": "supplied-title-and-content-match",
+    "width": 793,
+    "height": 1400
+  },
+  {
+    "filmId": 45,
+    "cover": "cover-45.webp",
+    "sourceFile": "9月8日.png",
+    "method": "user-specified-2026-09-08",
+    "width": 968,
+    "height": 544
+  },
+  {
+    "filmId": 46,
+    "cover": "cover-46.webp",
+    "sourceFile": "exec-e5f9b583-26b4-4270-8580-5a620f8fac07.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 47,
+    "cover": "cover-47.webp",
+    "sourceFile": "exec-899c9159-5210-4976-b93f-e78dfcc19bdb.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 48,
+    "cover": "cover-48.webp",
+    "sourceFile": "exec-6d2b3f20-5807-446f-864b-925de0bc6ad2.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 49,
+    "cover": "cover-49.webp",
+    "sourceFile": "exec-34ecb1bf-0350-4c4d-b082-d01e860aeb3c.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 50,
+    "cover": "cover-50.webp",
+    "sourceFile": "3.png",
+    "method": "user-specified-2026-09-08",
+    "width": 1600,
+    "height": 900
+  },
+  {
+    "filmId": 51,
+    "cover": "cover-51.webp",
+    "sourceFile": "exec-49baf3e7-c465-48d6-a7c2-ae107f44abf6.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 52,
+    "cover": "cover-52.webp",
+    "sourceFile": "exec-8728d98f-0480-4443-b223-d32adf681d0d.png",
+    "method": "supplied-title-and-content-match",
+    "width": 788,
+    "height": 1400
+  },
+  {
+    "filmId": 53,
+    "cover": "cover-53.webp",
+    "sourceFile": "exec-912232c1-2634-4457-b66f-fc98a5e4afd7.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 54,
+    "cover": "cover-54.webp",
+    "sourceFile": "exec-0aa1b8dc-b6f5-44a1-979b-75f9ed7ee185.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 55,
+    "cover": "cover-55.webp",
+    "sourceFile": "exec-2566d8de-d218-4c62-bf87-410cc95a1e66.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 56,
+    "cover": "cover-56.webp",
+    "sourceFile": "exec-b9bfedd7-cdad-4a4e-83be-cc5576ff4e92.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 57,
+    "cover": "cover-57.webp",
+    "sourceFile": "exec-e5b8b2d4-22f2-46af-a28b-f27ca3ce5c6c.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 788
+  },
+  {
+    "filmId": 58,
+    "cover": "cover-58.webp",
+    "sourceFile": "exec-bb88f5cb-d651-405f-81dd-9ce6b6faf9f1.png",
+    "method": "supplied-title-and-content-match",
+    "width": 1400,
+    "height": 781
+  },
+  {
+    "filmId": 59,
+    "cover": "cover-59.webp",
+    "sourceFile": "C:\\Users\\tangy\\OneDrive\\xwechat_files\\wxid_3yyxlsdk21ok22_b3df\\temp\\RWTemp\\2026-09\\8bdd21c91233bd1e0a2be88a5cda4b3a\\206971d66f3b925285db644b87ce292d.png",
+    "method": "user-specified-cover",
+    "width": 941,
+    "height": 1672
+  }
+]

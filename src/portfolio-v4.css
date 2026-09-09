@@ -1,0 +1,38 @@
+/* Media collections follow each film's native orientation. */
+.format-group+.format-group{margin-top:64px;padding-top:37px;border-top:1px solid var(--line)}
+.format-heading{font-size:20px;font-weight:550;letter-spacing:.02em;margin-bottom:28px;line-height:1.5}
+.landscape-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.portrait-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 28px;align-items:start}
+.film-link.portrait .card-image{aspect-ratio:9/16;background:#eee9df}
+.film-link.portrait .card-image img{object-fit:contain}
+.player-shell.player-portrait{width:min(100%,430px,calc(72svh * 9 / 16));margin:0 auto;background:#091321}
+.player-shell.player-portrait video{width:100%;height:auto;max-height:none;aspect-ratio:var(--video-ratio);object-fit:contain}
+.player-shell.player-landscape video{aspect-ratio:var(--video-ratio);object-fit:contain}
+.avatar-triptych{height:100%;display:flex;justify-content:center;gap:5px;padding:0 10px;background:#e5ded2}
+.avatar-triptych img{width:auto!important;min-width:0;max-width:33%;height:100%;object-fit:contain!important}
+.category-card:hover .avatar-triptych img{transform:none}
+.mentor-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:45px 30px}
+.mentor-link{padding:0;border:0;border-radius:0;overflow:hidden}
+.mentor-photo{aspect-ratio:3/4;overflow:hidden;background:var(--sand)}
+.mentor-photo img{display:block;width:100%;height:100%;object-fit:contain}
+.mentor-card-copy{display:flex;flex-direction:column;flex:1;padding:23px 0 0}
+.mentor-card-copy h3{font-size:26px;font-weight:550;margin-bottom:12px}
+.mentor-card-copy p{font-size:14px;line-height:1.8;margin-bottom:22px;max-width:360px}
+.mentor-card-copy .gateway-link{border-top:1px solid var(--line);padding-top:15px}
+.mentor-link:hover .gateway-link{color:#946019}
+.mentor-profile{padding-top:26px}
+.mentor-profile-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:8%;align-items:start}
+.mentor-profile-photo{background:var(--sand);overflow:hidden}
+.mentor-profile-photo img{display:block;width:100%;height:auto}
+.mentor-profile-copy h1{font-size:clamp(2.8rem,4.5vw,4.5rem);font-weight:650;line-height:1.2;margin:18px 0 22px;letter-spacing:-.035em}
+.mentor-role{font-size:18px;line-height:1.75;max-width:640px}
+.mentor-profile-copy .tags{margin-top:22px}
+.mentor-biography{margin-top:37px;padding-top:28px;border-top:1px solid var(--line)}
+.mentor-biography h2,.mentor-profile-bottom h2{font-size:23px;font-weight:550;line-height:1.5;margin-bottom:22px}
+.mentor-biography p{font-size:16px;line-height:1.95;margin-bottom:22px}
+.mentor-profile-bottom{display:grid;grid-template-columns:1fr 1fr;gap:8%;margin:55px 0 35px;padding-top:35px;border-top:1px solid var(--line)}
+.mentor-profile-bottom ul{list-style:none;margin:0;padding:0}
+.mentor-profile-bottom li{padding:13px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.85}
+@media(max-width:1050px){.portrait-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 23px}.mentor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mentor-profile-grid{gap:5%;grid-template-columns:.8fr 1.2fr}.mentor-biography p{font-size:15px}.mentor-role{font-size:16px}}
+@media(max-width:800px){.landscape-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.portrait-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 18px}.format-group+.format-group{margin-top:43px;padding-top:29px}.format-heading{font-size:19px;margin-bottom:23px}.mentor-grid{gap:32px 22px}.mentor-card-copy h3{font-size:23px}.mentor-profile-grid{grid-template-columns:1fr;gap:32px}.mentor-profile-photo{max-width:380px;width:100%}.mentor-profile-copy h1{font-size:3rem}.mentor-biography{margin-top:28px}.mentor-biography p{font-size:16px}.mentor-profile-bottom{margin-top:32px;gap:30px}.mentor-profile{padding-top:22px}}
+@media(max-width:480px){.landscape-grid{grid-template-columns:1fr}.portrait-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 17px}.portrait-grid .film-title h3{font-size:15px}.portrait-grid .film-title{gap:7px;margin-top:14px}.portrait-grid .play{width:40px;height:40px;font-size:15px}.mentor-grid{grid-template-columns:1fr;gap:36px}.mentor-photo{max-height:520px}.mentor-card-copy{padding-top:19px}.mentor-card-copy p{font-size:15px;max-width:none}.mentor-profile-bottom{grid-template-columns:1fr;gap:35px}.mentor-biography h2,.mentor-profile-bottom h2{font-size:22px}.mentor-role{font-size:16px}}
