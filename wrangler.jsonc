@@ -8,13 +8,23 @@
   ],
   "workers_dev": true,
   "routes": [
-    {"pattern": "aurovoy.cn", "custom_domain": true},
-    {"pattern": "www.aurovoy.cn", "custom_domain": true}
+    {
+      "pattern": "aurovoy.cn",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.aurovoy.cn",
+      "custom_domain": true
+    }
   ],
   "preview_urls": false,
   "keep_vars": true,
   "secrets": {
-    "required": ["ADMIN_EMAIL", "ACCESS_TEAM_DOMAIN", "ACCESS_AUD"]
+    "required": [
+      "ADMIN_EMAIL",
+      "ACCESS_TEAM_DOMAIN",
+      "ACCESS_AUD"
+    ]
   },
   "build": {
     "command": "node build-worker.mjs"
@@ -43,5 +53,8 @@
   "observability": {
     "enabled": true,
     "head_sampling_rate": 0.1
+  },
+  "ai": {
+    "binding": "AI"
   }
 }

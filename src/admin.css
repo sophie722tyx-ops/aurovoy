@@ -3,3 +3,5 @@
 .admin-sections{display:flex;gap:28px;padding:0 5vw;border-bottom:1px solid #153c6e22;background:#fffaf0}.admin-sections a{padding:18px 0;text-decoration:none;font-size:15px;border-bottom:3px solid transparent}.admin-sections a[aria-current=page]{border-color:#f5a63b;font-weight:700}@media(max-width:600px){.admin-sections{gap:24px;padding:0 16px}.admin-sections a{font-size:14px}}
 
 #publication-dialog{width:min(520px,94vw)}#publication-form{padding:32px}#publication-work{line-height:1.7;margin:20px 0}.publication-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:25px}.library-tools{flex-wrap:wrap}#publication-zone:disabled{opacity:1;background:#f1eadc}
+
+.auto-translate{display:flex!important;align-items:center;gap:8px;font-size:14px;margin:14px 0}.auto-translate input{width:auto!important}button[data-zone]{display:block;margin-top:6px;font-size:12px}#zone-dialog{max-width:520px;width:calc(100% - 32px)}#zone-dialog form{padding:24px}

@@ -1,5 +1,6 @@
 import {entries,entry,writeEntry,validateEntry,failure} from './content-store.mjs';
 import {db} from './repository.mjs';
+import {localize} from './localize.mjs';
 import {identity,isAdmin,assertWrite} from './auth.mjs';
 const json=(v,s=200)=>new Response(JSON.stringify(v),{status:s,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
 async function input(r){const len=Number(r.headers.get('content-length'));if(len>200000)failure('内容过长',413);const text=await r.text();if(text.length>200000)failure('内容过长',413);try{return JSON.parse(text);}catch{failure('表单格式无效');}}
@@ -23,7 +24,7 @@ export async function contentApi(request,env){
  if(request.method==='PUT'||request.method==='PATCH'||request.method==='DELETE'){
   const data=await input(request);if(data.revision!==current.revision)failure('内容已更新 请重新打开后编辑',409);
   if(request.method==='DELETE'){if(kind!=='mentors')failure('课程可隐藏 不能移除');return json(await writeEntry(env,{...current,status:'deleted'},user,current.revision));}
-  const item=validateEntry(action==='status'?{...current,status:data.status}:data,current);return json(await writeEntry(env,item,user,current.revision));
+  let item=validateEntry(action==='status'?{...current,status:data.status}:data,current);if(!action&&data.autoTranslate===true)item=validateEntry(await localize(item,current,env),current);return json(await writeEntry(env,item,user,current.revision));
  }
  return json({error:'请求不存在'},404);
 }

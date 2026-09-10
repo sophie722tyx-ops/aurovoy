@@ -1,0 +1,420 @@
+[
+  {
+    "id": "release-20260910-new-1",
+    "titles": [
+      "葬猫之后",
+      "After the Cat’s Burial",
+      "Après l’enterrement du chat"
+    ],
+    "descriptions": [
+      "以水墨古风呈现人物、竹林与灯火，将葬猫之后的相逢放入幽静而带有悬念的叙事空间。黑白层次与局部暖光形成对照，人物动作与环境细节逐步牵引情绪。作品探索东方美学与 AI 动态影像的结合，让留白、光影和角色关系共同构成具有余韵的短篇故事。",
+      "Presented in a traditional ink-wash style, this work features characters, bamboo groves, and lanterns, placing the reunion after the burial of a cat in a quiet and suspenseful narrative space. The contrast between black-and-white tones and localized warm light gradually guides the emotions through character movements and environmental details. The work explores the integration of Eastern aesthetics with AI dynamic imagery, allowing the use of negative space, light and shadow, and character relationships to create a short story with lingering resonance.",
+      "Présenté dans un style classique à l'encre de Chine, ce travail met en scène des personnages, des bosquets de bambous et des lanternes, plaçant la réunion après l'enterrement d'un chat dans un espace narratif calme et chargé de suspense. Le contraste entre les tons noir et blanc et la lumière chaude locale guide progressivement les émotions à travers les mouvements des personnages et les détails de l'environnement. L'œuvre explore l'intégration de l'esthétique orientale avec les images dynamiques générées par l'IA, permettant à l'utilisation de l'espace négatif, de la lumière et de l'ombre, et des relations entre les personnages de créer un court récit à résonance durable."
+    ],
+    "category": "animation",
+    "orientation": "landscape",
+    "video": "/media/import-20260910-new-1-video",
+    "poster": "/assets/update-new-1.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -100,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 93.91
+  },
+  {
+    "id": "release-20260910-new-2",
+    "titles": [
+      "炎阳健康科技 · 品牌合作宣传片",
+      "Yanyang Health Technology — Brand Partnership Film",
+      "Yanyang Health Technology — Film de partenariat"
+    ],
+    "descriptions": [
+      "围绕炎阳健康科技的品牌与产品展开，串联鞋品展示、技术视觉示意、团队交流与物流场景。短片以清晰的信息层次组织品牌合作内容，让产品、制造和服务环节形成连续观看体验。作品通过生活化人物与专业场景的结合，呈现健康科技企业的品牌传播方式。",
+      "This film revolves around the brand and products of Yanyang Health Technology, connecting shoe displays, technical visual explanations, team interactions, and logistics scenarios. The short film organizes brand collaboration content with clear information hierarchy, allowing the product, manufacturing, and service processes to form a continuous viewing experience. The work combines everyday characters with professional settings to present the brand communication approach of a health technology company.",
+      "Ce film tourne autour de la marque et des produits de Yanyang Health Technology, reliant les présentations de chaussures, les explications visuelles techniques, les interactions d'équipe et les scénarios logistiques. Le court métrage organise le contenu de collaboration de marque avec une hiérarchie d'informations claire, permettant aux processus de produit, de fabrication et de service de former une expérience de visionnage continue. L'œuvre combine des personnages du quotidien avec des environnements professionnels pour présenter la méthode de communication de marque d'une entreprise de technologie de santé."
+    ],
+    "category": "corporate",
+    "orientation": "landscape",
+    "video": "/media/import-20260910-new-2-video",
+    "poster": "/assets/update-new-2.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -99,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 239.34
+  },
+  {
+    "id": "release-20260910-new-3",
+    "titles": [
+      "万米守护",
+      "Guardians in the Sky",
+      "Gardiens du ciel"
+    ],
+    "descriptions": [
+      "以空乘形象与戴着飞行护目镜的小猫头鹰为视觉主角，从候机空间延伸到客舱场景。亲切的人物互动与可爱的角色动作共同传递旅途中的陪伴感。作品用短小而温暖的叙事组织航空主题影像，探索角色 IP 与服务场景结合的表达，让守护成为可感知的画面。",
+      "This film features a flight attendant and a small owl wearing flying goggles as visual protagonists, extending from the waiting area to the cabin. Friendly interactions and cute character actions convey a sense of companionship during travel. The work uses short and warm storytelling to organize aviation-themed imagery, exploring the expression of combining a character IP with a service environment, making the concept of protection tangible through visuals.",
+      "Ce film met en vedette un hôte de l'air et un petit hibou portant des lunettes de vol comme personnages visuels, s'étendant de la zone d'attente au compartiment. Les interactions amicales et les actions mignonnes des personnages transmettent un sentiment de compagnie pendant le voyage. L'œuvre utilise un récit court et chaleureux pour organiser l'imaginaire aérien, explorant l'expression de l'intégration d'un personnage IP avec un environnement de service, rendant le concept de protection perceptible à travers des images."
+    ],
+    "category": "animation",
+    "orientation": "landscape",
+    "video": "/media/import-20260910-new-3-video",
+    "poster": "/assets/update-new-3.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -98,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 20.18
+  },
+  {
+    "id": "release-20260910-new-4",
+    "titles": [
+      "深圳概念片",
+      "Shenzhen — A City in Motion",
+      "Shenzhen, une ville en mouvement"
+    ],
+    "descriptions": [
+      "从深圳城市天际线出发，将滨海景观、轨道交通与未来建筑想象连接成一段城市影像。镜头在现实感场景和概念视觉之间切换，呈现持续生长的都市气质。作品以开阔构图、流动节奏与明亮色彩表达城市活力，让科技、人居与未来生活形成富有想象的观看体验。",
+      "Starting from the skyline of Shenzhen, this concept film connects coastal landscapes, rail transit, and future architectural visions into a city film. The camera alternates between realistic scenes and conceptual visuals, presenting the ever-growing urban atmosphere. The work expresses urban vitality through wide compositions, fluid rhythms, and bright colors, allowing technology, living environments, and future lifestyles to form an imaginative viewing experience.",
+      "En partant de la silhouette de la ville de Shenzhen, ce film concept relie les paysages côtiers, les transports ferroviaires et les visions architecturales futures en un film urbain. La caméra alterne entre des scènes réalistes et des visuels conceptuels, présentant l'atmosphère urbaine en constante croissance. L'œuvre exprime la vitalité urbaine à travers des compositions larges, des rythmes fluides et des couleurs vives, permettant à la technologie, aux environnements de vie et aux modes de vie futurs de former une expérience de visionnage imaginaire."
+    ],
+    "category": "places",
+    "orientation": "landscape",
+    "video": "/media/import-20260910-new-4-video",
+    "poster": "/assets/update-new-4.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -97,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 49.54
+  },
+  {
+    "id": "release-20260910-new-5",
+    "titles": [
+      "商场宣传片",
+      "Shopping Mall — Promotional Film",
+      "Centre commercial — Film de présentation"
+    ],
+    "descriptions": [
+      "镜头穿行于商场中庭、楼层与通透空间，借助连续运动展示商业场所的尺度和结构。光线、店铺界面与公共区域相互连接，形成清晰的空间体验。作品以场景转换和视角变化呈现商场氛围，展示商业空间宣传如何把建筑特征与日常消费环境组织成连贯影像。",
+      "The camera moves through the mall's atrium, floors, and transparent spaces, using continuous motion to showcase the scale and structure of the commercial space. Light, shop facades, and public areas connect to create a clear spatial experience. The work uses scene transitions and changing perspectives to present the mall's atmosphere, demonstrating how commercial space promotion organizes architectural features and daily consumer environments into a coherent visual narrative.",
+      "La caméra se déplace à travers l'atrium du centre commercial, les étages et les espaces transparents, en utilisant un mouvement continu pour montrer l'échelle et la structure de l'espace commercial. La lumière, les façades des magasins et les zones publiques s'entrelacent pour créer une expérience spatiale claire. L'œuvre utilise des transitions de scènes et des changements de perspective pour présenter l'ambiance du centre commercial, illustrant comment la promotion de l'espace commercial organise les caractéristiques architecturales et l'environnement de consommation quotidien en une narration visuelle cohérente."
+    ],
+    "category": "places",
+    "orientation": "landscape",
+    "video": "/media/import-20260910-new-5-video",
+    "poster": "/assets/update-new-5.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -96,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 48.47
+  },
+  {
+    "id": "release-20260910-new-6",
+    "titles": [
+      "熔盐储能",
+      "Molten Salt Energy Storage",
+      "Le stockage d’énergie par sels fondus"
+    ],
+    "descriptions": [
+      "以动态流程图讲解熔盐储能，用冷暖色彩区分不同温度状态，并通过储罐、管路与换热装置呈现能量流动。画面随运行阶段变化，让抽象技术过程变得直观。作品以可视化叙事组织能源知识，探索科普内容在信息层次、动画节奏与理解路径上的清晰表达。",
+      "This work explains molten salt energy storage through dynamic flowcharts, using warm and cool colors to differentiate temperature states. Tanks, pipelines, and heat exchange devices illustrate energy flow. The visuals change with operational phases, making abstract technical processes intuitive. The piece uses visual storytelling to organize energy knowledge, exploring clear expression in information hierarchy, animation rhythm, and understanding pathways for science communication content.",
+      "Cette œuvre explique le stockage d'énergie par sel fondu à l'aide de schémas dynamiques, en utilisant des couleurs chaudes et froides pour distinguer les états de température. Les réservoirs, les conduites et les dispositifs d'échange thermique illustrent le flux d'énergie. Les images changent selon les phases d'exploitation, rendant les processus techniques abstraits plus intuitifs. L'œuvre utilise un récit visuel pour organiser les connaissances énergétiques, explorant une expression claire dans la hiérarchie de l'information, le rythme de l'animation et les chemins de compréhension pour les contenus de vulgarisation scientifique."
+    ],
+    "category": "science",
+    "orientation": "landscape",
+    "video": "/media/import-20260910-new-6-video",
+    "poster": "/assets/update-new-6.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -95,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 60.54
+  },
+  {
+    "id": "release-20260910-new-7",
+    "titles": [
+      "从实业到 AI 增长",
+      "From Industry to AI-driven Growth",
+      "De l’industrie à la croissance par l’IA"
+    ],
+    "descriptions": [
+      "以人物经历为叙事线索，从桌前的工作片段延伸到团队讨论与 AI 主题场景，将实业积累与新的增长思考连接起来。短片通过时代感细节、人物近景和工作环境承接情绪。作品以个人故事组织商业表达，让技术转变落在具体经历与行动之中，呈现人物品牌的影像温度。",
+      "This short film uses a person's experience as a narrative thread, extending from desk work to team discussions and AI-themed scenes, connecting industrial expertise with new growth thinking. The short film uses period details, close-ups of characters, and work environments to convey emotion. The work organizes business expression through personal stories, placing technological transformation within specific experiences and actions, presenting the emotional warmth of personal branding through film.",
+      "Cette courte vidéo utilise l'expérience d'une personne comme fil narratif, s'étendant du travail au bureau aux discussions d'équipe et aux scènes liées à l'IA, reliant l'expertise industrielle à de nouvelles réflexions sur la croissance. La vidéo utilise des détails de l'époque, des plans rapprochés des personnages et des environnements de travail pour transmettre l'émotion. L'œuvre organise l'expression commerciale à travers des histoires personnelles, plaçant la transformation technologique dans des expériences et actions spécifiques, présentant la chaleur émotionnelle de la marque personnelle à travers le cinéma."
+    ],
+    "category": "corporate",
+    "orientation": "landscape",
+    "video": "/media/import-20260910-new-7-video",
+    "poster": "/assets/update-new-7.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -94,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 61.91
+  },
+  {
+    "id": "release-20260910-avatar-01",
+    "titles": [
+      "数字人口播 01 · AI 管线与制作周期",
+      "Digital Presenter 01 · AI Workflows and Production Timelines",
+      "Présentateur numérique 01 · IA : organisation et délais de production"
+    ],
+    "descriptions": [
+      "围绕 AI 管线与内容生产周期展开竖屏讲述，以办公室场景、醒目标题和重点字幕承接信息。人物坐姿口播保持直接的交流感，画面随内容强调关键观点。作品展示数字人如何参与商业知识内容生产，在统一形象与稳定表达中形成便于持续更新的短视频形式。",
+      "This vertical video presents the AI pipeline and content production cycle, using an office setting, eye-catching titles, and key subtitles to convey information. The person's seated speaking maintains a direct sense of communication, with the visuals emphasizing key points as the content progresses. The work demonstrates how digital humans can participate in commercial knowledge content production, forming a convenient short video format for continuous updates through a unified image and stable expression.",
+      "Cette vidéo verticale présente la chaîne de traitement de l'IA et le cycle de production de contenu, utilisant un cadre de bureau, des titres percutants et des sous-titres clés pour transmettre l'information. La personne assise parle directement, avec des images qui mettent en avant les points clés au fur et à mesure du contenu. L'œuvre montre comment les présentateurs numériques peuvent participer à la production de contenus commerciaux, formant un format de vidéo courte pratique pour des mises à jour continues grâce à une image unifiée et une expression stable."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-01-video",
+    "poster": "/assets/update-avatar-01.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -93,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 47.58
+  },
+  {
+    "id": "release-20260910-avatar-02",
+    "titles": [
+      "数字人口播 02 · 数字人一模多用 · 版本一",
+      "Digital Presenter 02 · One Digital Presenter, Multiple Uses · Version 1",
+      "Présentateur numérique 02 · Un présentateur numérique, plusieurs usages · Version 1"
+    ],
+    "descriptions": [
+      "以“数字人一模多用”为话题，结合明亮室内场景、人物口播与醒目字幕展开讲述。画面突出人物形象和交流感，标题帮助观众快速进入内容。作品展示数字人内容在不同表达任务中的应用思路，并以简洁构图与稳定节奏呈现适合手机端观看的知识分享形式。",
+      "This video discusses the concept of 'multi-purpose digital humans' through a bright indoor setting, person speaking, and eye-catching subtitles. The visuals emphasize the person's image and sense of communication, with the title helping viewers quickly engage with the content. The work showcases the application ideas of digital human content in different expressive tasks, presenting a knowledge-sharing format suitable for mobile viewing through simple composition and steady rhythm.",
+      "Cette vidéo traite du concept de 'présentateurs numériques polyvalents' à travers un cadre intérieur lumineux, un présentateur et des sous-titres percutants. Les images mettent en avant l'image de la personne et le sentiment de communication, avec un titre qui aide les spectateurs à s'engager rapidement avec le contenu. L'œuvre présente les idées d'application du contenu des présentateurs numériques dans différentes tâches d'expression, offrant un format de partage de connaissances adapté aux appareils mobiles grâce à une composition simple et un rythme stable."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-02-video",
+    "poster": "/assets/update-avatar-02.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -92,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 45.58
+  },
+  {
+    "id": "release-20260910-avatar-03",
+    "titles": [
+      "数字人口播 03 · 出海内容的爽感与叙事",
+      "Digital Presenter 03 · What Makes International Stories Compelling",
+      "Présentateur numérique 03 · Ce qui captive les publics internationaux"
+    ],
+    "descriptions": [
+      "围绕海外内容中的爽感与叙事偏好展开讲述，将数字人口播、分屏素材和重点字幕结合。人物场景与补充画面交替出现，使抽象观点更便于理解。作品展示商业知识短视频的信息组织方式，通过标题引入与视觉提示维持观看节奏，呈现数字人出镜的内容表达。",
+      "This video discusses the 'pleasure' and narrative preferences in overseas content, combining digital presenter, split-screen materials, and key subtitles. The person's scene and supporting visuals alternate, making abstract ideas easier to understand. The work demonstrates the information organization method of commercial knowledge short videos, maintaining the viewing rhythm through title introduction and visual cues, and presenting the content expression of digital presenters on camera.",
+      "Cette vidéo discute du 'plaisir' et des préférences narratives dans les contenus à l'étranger, combinant le présentateur numérique, les matériaux en division d'écran et les sous-titres clés. Les scènes de la personne et les images complémentaires alternent, rendant les idées abstraites plus faciles à comprendre. L'œuvre démontre la méthode d'organisation d'informations des vidéos courtes de connaissances commerciales, maintenant le rythme de visionnage grâce à l'introduction du titre et aux indices visuels, et présentant l'expression du contenu du présentateur numérique à l'écran."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-03-video",
+    "poster": "/assets/update-avatar-03.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -91,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 43.89
+  },
+  {
+    "id": "release-20260910-avatar-04",
+    "titles": [
+      "数字人口播 04 · 情绪与爽感内容",
+      "Digital Presenter 04 · Emotion and Audience Engagement",
+      "Présentateur numérique 04 · Émotion et engagement du public"
+    ],
+    "descriptions": [
+      "以情绪与爽感内容为话题，通过竖屏人物讲述、图形开场与双语字幕串联观点。简洁背景突出人物表达，画面中的重点提示帮助观众跟随思路。作品探索数字人知识口播的视觉包装与信息节奏，让相对抽象的内容讨论形成直接、清楚的短视频观看体验。",
+      "Explores the visual packaging and information rhythm of digital presenter content, using vertical screen storytelling, graphic intros, and bilingual subtitles to connect viewpoints. A simple background highlights the presenter's expression, with on-screen cues helping viewers follow the flow. The work transforms abstract discussions into direct, clear short-form video experiences.",
+      "Explore la mise en page visuelle et le rythme de l'information du contenu présenté par un présentateur numérique, en utilisant le récit sur écran vertical, des introductions graphiques et des sous-titres bilingues pour relier les points de vue. Un arrière-plan simple met en valeur l'expression du présentateur, avec des indicateurs visuels aidant le spectateur à suivre le déroulement. Le travail transforme les discussions abstraites en expériences vidéo courtes directes et claires."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-04-video",
+    "poster": "/assets/update-avatar-04.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -90,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 42.12
+  },
+  {
+    "id": "release-20260910-avatar-05",
+    "titles": [
+      "数字人口播 05 · 跨市场内容适配",
+      "Digital Presenter 05 · Adapting Content for Different Markets",
+      "Présentateur numérique 05 · Adapter les contenus à chaque marché"
+    ],
+    "descriptions": [
+      "从不同市场是否需要重复制作切入，以办公室中的人物讲述讨论内容出海话题。醒目开场、双语字幕与自然手势共同组织观看节奏，使观点在简洁画面中展开。作品展示数字人商业口播的场景化表达，让内容制作与市场适配的讨论更贴近面对面交流。",
+      "Discusses the question of whether different markets require repetitive content creation, using an office setting with a person speaking to explore the topic of content going global. A striking intro, bilingual subtitles, and natural gestures organize the viewing rhythm, allowing viewpoints to unfold in a simple visual format. The work showcases the contextual expression of commercial digital presenter content, making discussions about content production and market adaptation more akin to face-to-face communication.",
+      "Aborde la question de savoir si différents marchés nécessitent une création de contenu répétitive, en utilisant un cadre de bureau avec une personne qui parle pour explorer le sujet de la diffusion internationale du contenu. Une intro percutante, des sous-titres bilingues et des gestes naturels organisent le rythme de visionnage, permettant aux points de vue de s'exprimer dans un format visuel simple. Le travail met en évidence l'expression contextuelle du contenu commercial présenté par un présentateur numérique, rendant les discussions sur la production de contenu et l'adaptation aux marchés plus proches d'une communication en face à face."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-05-video",
+    "poster": "/assets/update-avatar-05.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -89,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 43.68
+  },
+  {
+    "id": "release-20260910-avatar-06",
+    "titles": [
+      "数字人口播 06 · 翻译与本土化",
+      "Digital Presenter 06 · Translation and Localization",
+      "Présentateur numérique 06 · Traduction et adaptation culturelle"
+    ],
+    "descriptions": [
+      "围绕翻译与内容本土化的成本思考展开，以数字人出镜、醒目标题和重点字幕引入话题。明亮的办公场景与人物近景保持清晰交流感，画面服务于观点推进。作品呈现跨市场内容传播的知识分享形式，展示数字人形象、视觉包装和信息层次之间的配合。",
+      "Focuses on the cost considerations of translation and content localization, using a digital presenter, eye-catching titles, and key subtitles to introduce the topic. A bright office setting and close-up shots of the person maintain a clear sense of communication, with the visuals serving the progression of ideas. The work presents the format of knowledge sharing in cross-market content dissemination, showcasing the coordination between digital presenter appearance, visual packaging, and information hierarchy.",
+      "Se concentre sur les considérations de coût liées à la traduction et à la localisation du contenu, en utilisant un présentateur numérique, des titres percutants et des sous-titres clés pour introduire le sujet. Un cadre de bureau lumineux et des plans rapprochés de la personne maintiennent un sentiment clair de communication, les visuels servant le déroulement des idées. Le travail présente le format de partage de connaissances dans la diffusion de contenu à travers les marchés, montrant la coordination entre l'apparence du présentateur numérique, le packaging visuel et la hiérarchie de l'information."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-06-video",
+    "poster": "/assets/update-avatar-06.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -88,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 43.89
+  },
+  {
+    "id": "release-20260910-avatar-07",
+    "titles": [
+      "数字人口播 07 · 长期经营与内容投入",
+      "Digital Presenter 07 · A Long-term Approach to Content",
+      "Présentateur numérique 07 · Penser les contenus sur le long terme"
+    ],
+    "descriptions": [
+      "以长期经营与内容投入为话题，在生活化办公场景中展开直接讲述。人物表情、手势与字幕强调共同构成稳定的竖屏节奏，让观点传达更集中。作品展示数字人如何承接商业思考类内容，以统一形象与清晰的讲述结构形成适合持续发布的短视频表达。",
+      "Discusses long-term operations and content investment, presenting direct storytelling in a casual office setting. Facial expressions, gestures, and subtitles work together to create a stable vertical rhythm, making the delivery of viewpoints more focused. The work demonstrates how digital presenters can take on commercial thinking content, forming suitable short-form video expressions through a unified image and clear speaking structure for continuous publishing.",
+      "Aborde les opérations à long terme et l'investissement dans le contenu, présentant un récit direct dans un cadre de bureau informel. Les expressions faciales, les gestes et les sous-titres travaillent ensemble pour créer un rythme vertical stable, rendant la transmission des points de vue plus concentrée. Le travail montre comment les présentateurs numériques peuvent prendre en charge le contenu de réflexion commerciale, formant des expressions adaptées aux vidéos courtes grâce à une image unifiée et une structure de discours claire pour une publication continue."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-07-video",
+    "poster": "/assets/update-avatar-07.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -87,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 41.36
+  },
+  {
+    "id": "release-20260910-avatar-08",
+    "titles": [
+      "数字人口播 08 · 内容出海经验分享",
+      "Digital Presenter 08 · Perspectives on International Content",
+      "Présentateur numérique 08 · Regards sur les contenus internationaux"
+    ],
+    "descriptions": [
+      "以内容出海的经验讨论为线索，采用桌前口播与简洁办公背景建立面对面交流感。醒目开场和阶段性字幕帮助观众跟随重点，人物动作与语气变化承接节奏。作品展示数字人知识分享内容的组织方式，将行业话题转化为更适合手机端观看的短篇讲述。",
+      "Uses the discussion of content export experience as a thread, employing desk-side speaking and a simple office background to create a face-to-face communication feel. Striking intros and phase-based subtitles help viewers follow the key points, while the person's actions and tone changes carry the rhythm. The work showcases the organization of digital presenter knowledge-sharing content, transforming industry topics into shorter, mobile-friendly narratives.",
+      "Utilise la discussion sur l'expérience de la diffusion internationale du contenu comme fil conducteur, en utilisant un discours au bureau et un arrière-plan de bureau simple pour créer un sentiment de communication en face à face. Des intros percutantes et des sous-titres par phase aident les spectateurs à suivre les points clés, tandis que les gestes et le ton de la personne portent le rythme. Le travail met en évidence l'organisation du contenu de partage de connaissances présenté par un présentateur numérique, transformant les sujets sectoriels en récits plus courts et adaptés aux appareils mobiles."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-08-video",
+    "poster": "/assets/update-avatar-08.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -86,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 42.82
+  },
+  {
+    "id": "release-20260910-avatar-09",
+    "titles": [
+      "数字人口播 09 · 内容生产管线",
+      "Digital Presenter 09 · Content Production Workflows",
+      "Présentateur numérique 09 · Organiser la production de contenus"
+    ],
+    "descriptions": [
+      "围绕内容生产管线展开讲述，用人物口播、室内场景与重点字幕组织商业信息。画面保持稳定的人物中心构图，让注意力集中在观点及其展开过程。作品呈现数字人参与知识传播的表达方式，探索标准化视觉形象与清晰内容结构如何共同支持持续更新。",
+      "Tells the story around content production pipelines, using person speaking, indoor scenes, and key subtitles to organize commercial information. The image maintains a stable person-centered composition, keeping attention focused on the viewpoints and their development. The work presents the expression method of digital presenters in knowledge dissemination, exploring how standardized visual images and clear content structures can jointly support continuous updates.",
+      "Raconte l'histoire des chaînes de production de contenu, en utilisant le discours d'une personne, des scènes intérieures et des sous-titres clés pour organiser les informations commerciales. L'image maintient une composition centrée sur la personne, maintenant l'attention sur les points de vue et leur développement. Le travail présente la méthode d'expression des présentateurs numériques dans la diffusion de connaissances, explorant comment les images visuelles standardisées et les structures de contenu claires peuvent soutenir ensemble les mises à jour continues."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-09-video",
+    "poster": "/assets/update-avatar-09.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -85,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 42.38
+  },
+  {
+    "id": "release-20260910-avatar-10",
+    "titles": [
+      "数字人口播 10 · 新结构与内容成本",
+      "Digital Presenter 10 · Rethinking Workflows and Content Costs",
+      "Présentateur numérique 10 · Repenser les méthodes et les coûts de production"
+    ],
+    "descriptions": [
+      "以生产管线、新结构与既有成本的关系为话题，在桌前场景中进行竖屏讲述。人物动作、双语字幕与开场文字共同形成信息层次，便于观众快速进入内容。作品展示数字人商业口播的视觉组织，通过简洁环境和连续表达，让专业讨论保持清晰的观看节奏。",
+      "Discusses the relationship between production pipelines, new structures, and existing costs through a vertical-screen presentation in a desk setting. Character movements, bilingual subtitles, and opening text create an information hierarchy, helping viewers quickly engage with the content. The work showcases the visual organization of digital human commercial voiceovers, maintaining a clear viewing rhythm for professional discussions through a simple environment and continuous delivery.",
+      "Aborde le lien entre les chaînes de production, les nouvelles structures et les coûts existants à travers une présentation en mode portrait dans un environnement de bureau. Les mouvements du personnage, les sous-titres bilingues et le texte d'ouverture créent une hiérarchie d'information, aidant les spectateurs à s'engager rapidement avec le contenu. L'œuvre met en valeur l'organisation visuelle des présentations vocales numériques commerciales, maintenant un rythme de visionnage clair pour des discussions professionnelles grâce à un environnement simple et une narration continue."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-10-video",
+    "poster": "/assets/update-avatar-10.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -84,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 43.68
+  },
+  {
+    "id": "release-20260910-avatar-11",
+    "titles": [
+      "数字人口播 11 · 数字人一模多用 · 版本二",
+      "Digital Presenter 11 · One Digital Presenter, Multiple Uses · Version 2",
+      "Présentateur numérique 11 · Un présentateur numérique, plusieurs usages · Version 2"
+    ],
+    "descriptions": [
+      "延续“数字人一模多用”的主题，以另一条竖屏样片呈现人物讲述、字幕包装与明亮室内场景的配合。镜头保持清晰的人物主体，重点文字帮助观众理解内容。作品作为同主题的另一版本，展示数字人口播在形象延续、内容呈现与短视频输出上的表达方式。",
+      "Continues the theme of 'digital human multi-use,' presenting another vertical-screen sample featuring character narration, subtitle packaging, and a bright indoor setting. The camera maintains a clear focus on the person, with key text helping viewers understand the content. As another version of the same theme, the work demonstrates the expression of digital human voiceovers in terms of image continuity, content presentation, and short video output.",
+      "Poursuit le thème de « l'utilisation multiple du présentateur numérique », présentant un autre exemple en mode portrait avec une narration du personnage, un packaging des sous-titres et un intérieur lumineux. La caméra maintient une attention claire sur la personne, avec des textes clés aidant les spectateurs à comprendre le contenu. En tant que version différente du même thème, l'œuvre démontre l'expression des présentations vocales numériques en termes de continuité d'image, de présentation du contenu et de diffusion en vidéos courtes."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-11-video",
+    "poster": "/assets/update-avatar-11.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -83,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 45.58
+  },
+  {
+    "id": "release-20260910-avatar-12",
+    "titles": [
+      "数字人口播 12 · 入行与学习选择",
+      "Digital Presenter 12 · Getting Started and Choosing How to Learn",
+      "Présentateur numérique 12 · Se lancer et choisir sa formation"
+    ],
+    "descriptions": [
+      "从学习选择与进入行业的话题切入，以桌前人物口播和醒目文字组织内容。背景、服装与构图保持简洁，字幕随讲述强调重点，让信息更便于手机端阅读。作品展示数字人知识分享的表达形式，通过问题引入和连续讲述，形成有交流感的短视频观看体验。",
+      "Takes the topic of learning choices and entering the industry as a starting point, organizing content with a desk-side digital presenter and prominent text. The background, clothing, and composition remain simple, with subtitles emphasizing key points as the speaker talks, making the information more accessible for mobile viewing. The work showcases the expression form of digital human knowledge sharing, creating an engaging short video viewing experience through question introduction and continuous narration.",
+      "Aborde le thème des choix d'apprentissage et de l'entrée dans le métier, organisant le contenu avec un présentateur numérique en position assise et un texte percutant. Le décor, les vêtements et la composition restent simples, les sous-titres mettant en évidence les points clés pendant le discours, rendant l'information plus accessible à la lecture sur téléphone. L'œuvre met en avant la forme d'expression du partage de connaissances par un présentateur numérique, créant une expérience de visionnage de vidéos courtes engageante grâce à l'introduction de questions et à une narration continue."
+    ],
+    "category": "avatar",
+    "orientation": "portrait",
+    "video": "/media/import-20260910-avatar-12-video",
+    "poster": "/assets/update-avatar-12.webp",
+    "status": "published",
+    "hasBeenPublished": true,
+    "order": -82,
+    "updatedAt": "2026-09-10T07:00:00.000Z",
+    "duration": 41.52
+  }
+]

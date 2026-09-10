@@ -9,6 +9,6 @@ export function synchronizeEditorial(html,works){
  return html.replace(/(?:\.\.\/)?assets\/cover-(\d+)\.webp/g,(original,id)=>{
   if(!unavailable.has('legacy-'+id))return original;
   const category=works.find(w=>w.id==='legacy-'+id)?.category;
-  return [...published.values()].find(w=>w.category===category)?.poster||'/assets/mark.png';
+  const choices=[...published.values()].filter(w=>w.category===category);const n=works.filter(w=>w.category===category&&w.status!=='published').findIndex(w=>w.id==='legacy-'+id);return choices.length?choices[Math.max(0,n)%choices.length].poster:'/assets/mark.png';
  });
 }

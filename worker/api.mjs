@@ -1,5 +1,6 @@
 import {allWorks,getWork,saveWork,categories,db} from './repository.mjs';
 import {identity,isAdmin,assertWrite} from './auth.mjs';
+import {localize} from './localize.mjs';
 export const CHUNK=8*1024*1024,MAX_VIDEO=500*1024*1024,MAX_IMAGE=10*1024*1024;
 export const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
 const fail=(message,status=400)=>{throw Object.assign(new Error(message),{status});};
@@ -30,11 +31,19 @@ export async function adminApi(request,env){
   const data=await input(request);if(data.updatedAt!==current.updatedAt)fail('作品状态已改变 请刷新列表后重试',409);
   return json(await saveWork(env,validateWork({...current,status:data.status,category:data.status==='published'?(data.category??current.category):current.category},current),user.id));
  }
+ const categoryMatch=p.match(/^\/api\/admin\/works\/([a-z0-9-]+)\/category$/);
+ if(categoryMatch&&request.method==='PATCH'){
+  const current=await getWork(env,categoryMatch[1]);if(!current)fail('作品不存在',404);
+  const data=await input(request);if(data.updatedAt!==current.updatedAt)fail('作品已更新 请刷新后重试',409);
+  return json(await saveWork(env,validateWork({...current,category:data.category},current),user.id,current.updatedAt));
+ }
  const workMatch=p.match(/^\/api\/admin\/works\/([a-z0-9-]+)$/);
  if(workMatch&&request.method==='PUT'){
   const current=await getWork(env,workMatch[1]);if(!current)fail('作品不存在',404);
   const data=await input(request);if(data.updatedAt!==current.updatedAt)fail('作品已在其他窗口修改 请刷新后再编辑',409);
-  return json(await saveWork(env,validateWork(data,current),user.id));
+  let item=validateWork(data,current);
+  if(data.autoTranslate===true)item=validateWork(await localize(item,current,env),current);
+  return json(await saveWork(env,item,user.id,current.updatedAt));
  }
  if(p==='/api/admin/uploads'&&request.method==='POST'){
   const data=await input(request),w=await getWork(env,data.workId);if(!w)fail('请先保存作品',404);

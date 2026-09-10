@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 const origin=process.env.VERIFY_ORIGIN||'https://aurovoy.cn';
 const request=(p,options={})=>fetch(origin+p,{redirect:'manual',signal:AbortSignal.timeout(30000),...options});
-const pages=Object.keys(JSON.parse(fs.readFileSync('worker/pages.generated.json','utf8')));
+const release=JSON.parse(fs.readFileSync('portfolio-release.json','utf8'));
+const hidden=[36,37,38].flatMap(id=>['','en/','fr/'].map(pre=>pre+'work-'+id+'.html'));
+const pages=Object.keys(JSON.parse(fs.readFileSync('worker/pages.generated.json','utf8'))).filter(p=>!hidden.includes(p));
 let cursor=0;
 await Promise.all(Array.from({length:4},async()=>{
  while(cursor<pages.length){
@@ -33,3 +35,14 @@ const sitemap=await request('/sitemap.xml');assert.equal(sitemap.status,200);ass
 const www=await fetch('https://www.aurovoy.cn/',{redirect:'manual',signal:AbortSignal.timeout(30000)});
 assert.equal(www.status,200,'www custom domain');assert((await www.text()).includes('AUROVOY'));
 console.log(`Live verification passed for ${origin}: ${pages.length} pages, three language homes, admin access protection, video integrity (HTTP ${video.status}), image, sitemap and www domain.`);
+
+for(const path of hidden){const r=await request('/'+path);assert.equal(r.status,404,'retired digital presenter '+path);await r.arrayBuffer();}
+for(const w of release){
+ for(const lang of ['','/en','/fr']){const r=await request(lang+'/work/'+w.id);assert.equal(r.status,200,w.id);const html=await r.text();assert(html.includes(w.video));assert(html.includes(w.poster));assert(html.includes('film-information'));}
+ const v=await request(w.video,{headers:{Range:'bytes=0-1023'}});assert.equal(v.status,206,w.video);const bytes=new Uint8Array(await v.arrayBuffer());assert.equal(bytes.length,1024);assert.equal(String.fromCharCode(...bytes.slice(4,8)),'ftyp');
+ const poster=await request(w.poster);assert.equal(poster.status,200,w.poster);await poster.arrayBuffer();
+}
+const science=await(await request('/works-science.html')).text();assert(science.includes('release-20260910-new-6'));assert(science.includes('科普类'));
+const about=await(await request('/about.html')).text();assert(about.includes('client-10.webp'));assert(about.includes('懂车帝'));
+const avatar=await(await request('/works-avatar.html')).text();assert.equal((avatar.match(/class="film-tile"/g)||[]).length,12);
+console.log('Release verification: 19 complete videos with seek support, 19 covers, all new trilingual pages, 3 retired works, science category and Dongchedi logo.');
