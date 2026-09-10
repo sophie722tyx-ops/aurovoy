@@ -116,3 +116,36 @@ test('course and mentor Chinese edits generate translations including nested mod
  let m=(await(await call('/api/admin/content/mentors')).json()).items[0];m=await(await call('/api/admin/content/mentors/'+m.id,'PUT',{...m,bio:['新的简介','',''],autoTranslate:true})).json();assert.equal(m.bio[1],'English 新的简介');
 });
 
+
+test('category ordering is atomic, owner-only and persists in all public languages',async()=>{
+ const {call,sql,env}=setup(),endpoint='/api/admin/works/reorder';
+ const list=async()=>(await(await call('/api/admin/works')).json()).works;
+ const payload=(group)=>({category:group[0].category,orientation:group[0].orientation,items:group.map(({id,updatedAt})=>({id,updatedAt}))});
+ const original=await list(),group=original.filter(w=>w.category==='brand'&&w.orientation==='landscape').reverse(),body=payload(group);
+ assert(group.length>1);
+ assert.equal((await call(endpoint,'PUT',body,null)).status,401);assert.equal((await call(endpoint,'PUT',body,'outsider')).status,403);
+ assert.equal((await call(endpoint,'PUT',{...body,items:[body.items[0],body.items[0]]})).status,400);
+ assert.equal((await call(endpoint,'PUT',{...body,items:body.items.slice(1)})).status,409);
+ assert.equal(sql.prepare('SELECT COUNT(*) AS n FROM works').get().n,0);
+ const response=await call(endpoint,'PUT',body);assert.equal(response.status,200,await response.clone().text());
+ const changed=(await response.json()).works;
+ for(const [i,w]of group.entries()){const current=changed.find(x=>x.id===w.id);assert.equal(current.order,i+1);for(const key of ['status','titles','descriptions','video','poster','category'])assert.deepEqual(current[key],w[key]);}
+ for(const w of original.filter(w=>!group.some(x=>x.id===w.id)))assert.deepEqual(changed.find(x=>x.id===w.id),w);
+ for(const prefix of ['','/en','/fr']){const html=await(await call(prefix+'/works-brand.html','GET',null,null)).text(),cards=[...html.matchAll(/<article class="film-tile"[\s\S]*?<\/article>/g)].map(m=>m[0]);const published=group.filter(w=>w.status==='published');let index=-1;for(const w of published){const href=w.id.startsWith('legacy-')?'work-'+w.id.slice(7)+'.html':'work/'+w.id;const next=cards.findIndex(c=>c.includes(href));assert(next>index,href);index=next;}}
+ assert.equal((await call(endpoint,'PUT',body)).status,409);
+ // A concurrent edit after reading the snapshot causes zero ordering writes.
+ let fresh=await list(),retry=payload(fresh.filter(w=>w.category==='brand'&&w.orientation==='landscape').reverse());const before=sql.prepare('SELECT id,data FROM works ORDER BY id').all();
+ const prepare=env.DB.prepare.bind(env.DB);let injected=false;
+ env.DB.prepare=q=>{const statement=prepare(q);if(q.startsWith('INSERT INTO works(id,data,status,updated_at,updated_by)\n')){const run=statement.run;statement.run=async()=>{injected=true;sql.prepare("UPDATE works SET updated_at='concurrent-change' WHERE id=?").run(group[0].id);return run.call(statement);};}return statement;};
+ assert.equal((await call(endpoint,'PUT',retry)).status,409);assert(injected);assert.deepEqual(sql.prepare('SELECT id,data FROM works ORDER BY id').all(),before);
+});
+
+test('every category and both formats support sorting, including retained drafts',async()=>{
+ const {call}=setup();const data=await(await call('/api/admin/works')).json();
+ for(const category of data.categories){for(const orientation of ['landscape','portrait']){
+  const all=(await(await call('/api/admin/works')).json()).works,group=all.filter(w=>w.category===category.id&&w.orientation===orientation).reverse();if(!group.length)continue;
+  const r=await call('/api/admin/works/reorder','PUT',{category:category.id,orientation,items:group.map(({id,updatedAt})=>({id,updatedAt}))});assert.equal(r.status,200,category.id+' '+await r.clone().text());
+  const saved=(await r.json()).works.filter(w=>w.category===category.id&&w.orientation===orientation);assert.deepEqual(saved.map(w=>w.id),group.map(w=>w.id));assert.deepEqual(saved.map(w=>w.status),group.map(w=>w.status));
+ }}
+ const admin=await(await call('/admin')).text();assert(admin.includes('id="reorder-dialog"'));assert(admin.includes('id="reorder-open"'));
+});

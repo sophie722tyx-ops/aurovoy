@@ -1,4 +1,4 @@
-import {allWorks,getWork,saveWork,categories,db} from './repository.mjs';
+import {allWorks,getWork,saveWork,reorderWorks,categories,db} from './repository.mjs';
 import {identity,isAdmin,assertWrite} from './auth.mjs';
 import {localize} from './localize.mjs';
 export const CHUNK=8*1024*1024,MAX_VIDEO=500*1024*1024,MAX_IMAGE=10*1024*1024;
@@ -24,6 +24,12 @@ export async function adminApi(request,env){
  if(p==='/api/admin/works'&&request.method==='POST'){
   const w={id:crypto.randomUUID(),titles:['未命名作品','',''],descriptions:['','',''],category:'brand',orientation:'landscape',video:'',poster:'',status:'draft',order:0};
   return json(await saveWork(env,w,user.id),201);
+ }
+ if(p==='/api/admin/works/reorder'&&request.method==='PUT'){
+  const data=await input(request);
+  if(!categories.some(c=>c.id===data.category)||!['landscape','portrait'].includes(data.orientation))fail('请选择有效的分区和画面方向');
+  if(!Array.isArray(data.items)||!data.items.length||data.items.some(x=>!x||typeof x.id!=='string'||typeof x.updatedAt!=='string')||new Set(data.items.map(x=>x.id)).size!==data.items.length)fail('作品顺序无效');
+  return json({works:await reorderWorks(env,data,user.id)});
  }
  const statusMatch=p.match(/^\/api\/admin\/works\/([a-z0-9-]+)\/status$/);
  if(statusMatch&&request.method==='PATCH'){

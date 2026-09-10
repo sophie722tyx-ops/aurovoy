@@ -45,3 +45,12 @@
 .page-global .departure-head{position:relative}.page-global .departure-head:after{content:'';display:block;width:88px;height:3px;background:var(--orange);margin-top:38px}
 @media(max-width:800px){.screening-heading{grid-template-columns:1fr;gap:25px;margin-bottom:30px}.screening-heading h2{font-size:38px}.screening-intro>p{max-width:600px}.screening-films{gap:5%}.screening-film-pt{margin-top:60px}.screening-caption{align-items:start}.screening-caption>span{display:none}.screening-description{font-size:14px}.screening-footer{margin-top:36px}}
 @media(max-width:600px){.screening-films{grid-template-columns:1fr;gap:38px}.screening-film-pt{margin-top:0}.screening-caption>span{display:block}.screening-footer{align-items:start;flex-direction:column;gap:18px}.screening-heading h2{font-size:35px}.screening-caption h3{font-size:29px}}
+
+/* Ten equal logo cells: five per row at every viewport size. */
+.client-composition .signature-field{grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(10px,2vw,28px);align-items:stretch}
+.client-composition .signature-field .brand-signature:nth-child(n){grid-column:auto;transform:none;max-width:none;width:100%;justify-self:stretch;transition:none}
+.client-composition .signature-field .brand-signature figure{position:relative;min-height:0;height:100%;padding:10px 0;display:flex;align-items:center;justify-content:center}
+.client-composition .signature-field .brand-signature img{width:100%;max-width:100%;height:clamp(32px,5vw,76px);max-height:none;object-fit:contain;mix-blend-mode:multiply}
+.client-composition .signature-field .signature-dongchedi img{filter:url(#client-paper-removal)}
+.client-composition .signature-field figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0}
+@media(max-width:480px){.client-composition .signature-field{gap:10px}.client-composition .signature-field .brand-signature img{height:36px}.client-composition .signature-field .brand-signature figure{padding:6px 0}}
