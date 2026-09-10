@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-const origin='https://aurovoy.sophie722tyx.workers.dev';
+const origin=process.env.VERIFY_ORIGIN||'https://aurovoy.cn';
 const request=(p,options={})=>fetch(origin+p,{redirect:'manual',signal:AbortSignal.timeout(30000),...options});
 const pages=Object.keys(JSON.parse(fs.readFileSync('worker/pages.generated.json','utf8')));
 let cursor=0;
@@ -30,5 +30,6 @@ if(video.status===206){assert.equal(videoBytes.byteLength,1024);assert(videoByte
 else assert.equal(createHash('sha256').update(videoBytes).digest('hex'),createHash('sha256').update(sourceVideo).digest('hex'),'complete video integrity');
 const image=await request('/assets/mark.png');assert.equal(image.status,200);assert.match(image.headers.get('content-type'),/^image\//);await image.arrayBuffer();
 const sitemap=await request('/sitemap.xml');assert.equal(sitemap.status,200);assert((await sitemap.text()).includes(origin));
-console.log(`Live verification passed: ${pages.length} pages, three language homes, admin access protection, video integrity (HTTP ${video.status}), image and sitemap.`);
-
+const www=await fetch('https://www.aurovoy.cn/',{redirect:'manual',signal:AbortSignal.timeout(30000)});
+assert.equal(www.status,200,'www custom domain');assert((await www.text()).includes('AUROVOY'));
+console.log(`Live verification passed for ${origin}: ${pages.length} pages, three language homes, admin access protection, video integrity (HTTP ${video.status}), image, sitemap and www domain.`);
