@@ -93,7 +93,7 @@ export const ui={
  workIntro:['从商业传播到原创叙事，让不同内容找到合适的表达。','From commercial communication to original storytelling, explore the many forms our work can take.','De la communication commerciale aux récits originaux, découvrez les différentes formes de nos créations.'],
  samples:['个样片版本','sample versions','versions de démonstration'],viewCat:['浏览品类','Explore category','Explorer la catégorie'],
  works:['样片作品','Sample films','Films de démonstration'],category:['作品品类','Category','Catégorie'],originalTitle:['原始片名','Original title','Titre original'],
- preview:['网页预览片段 · 最长 45 秒，保留样片原有语言。','Web preview · Up to 45 seconds, in the sample’s original language.','Extrait web · 45 secondes maximum, dans la langue d’origine du film.'],
+ preview:['完整样片 · 保留原始分辨率、帧率与原有语言。','Full-length film · Original resolution, frame rate and language.','Film intégral · Résolution, fréquence d’images et langue d’origine.'],
  related:['继续探索同类作品','More in this category','À découvrir dans cette catégorie'],project:['有类似的制作需求？','Have a similar project in mind?','Un projet similaire en tête ?'],
  discuss:['沟通制作需求','Discuss your brief','Échanger sur votre projet'],backCat:['返回品类','Back to category','Retour à la catégorie'],
  production:['内容制作与交付','Content production','Production de contenu'],training:['实战培训与赋能','Training & enablement','Formation & accompagnement'],global:['内容出海启动','Global Start','Lancement à l’international'],

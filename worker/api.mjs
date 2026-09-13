@@ -104,13 +104,17 @@ export async function media(request,env,id){
  const row=await db(env).prepare("SELECT * FROM uploads WHERE id=? AND state='complete'").bind(id).first();if(!row)return new Response('Not found',{status:404});
  const work=await getWork(env,row.work_id),path=`/media/${id}`;
  if(!work||![work.video,work.poster].includes(path)||(work.status!=='published'&&!isAdmin(request,env)))return new Response('Not found',{status:404});
- const head=await env.FILES.head(row.object_key);if(!head)return new Response('Not found',{status:404});
+ return storedMedia(request,env,row.object_key,row.content_type);
+}
+export async function storedMedia(request,env,objectKey,contentType){
+ if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405,headers:{Allow:'GET, HEAD'}});
+ const head=await env.FILES.head(objectKey);if(!head)return new Response('Not found',{status:404});
  let range=null;const raw=request.headers.get('range');
  if(raw){const match=raw.match(/^bytes=(\d*)-(\d*)$/);if(!match||(!match[1]&&!match[2]))return new Response(null,{status:416,headers:{'Content-Range':`bytes */${head.size}`}});
   const start=match[1]?Number(match[1]):Math.max(0,head.size-Number(match[2]));const end=match[1]?(match[2]?Math.min(Number(match[2]),head.size-1):head.size-1):head.size-1;
   if(start>end||start>=head.size)return new Response(null,{status:416,headers:{'Content-Range':`bytes */${head.size}`}});range={offset:start,length:end-start+1};}
- const headers={'Content-Type':row.content_type,'Content-Length':String(range?.length??head.size),'Accept-Ranges':'bytes','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Cross-Origin-Resource-Policy':'same-origin'};
+ const headers={'Content-Type':contentType,'Content-Length':String(range?.length??head.size),'Accept-Ranges':'bytes','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Cross-Origin-Resource-Policy':'same-origin'};
  if(range)headers['Content-Range']=`bytes ${range.offset}-${range.offset+range.length-1}/${head.size}`;
  if(request.method==='HEAD')return new Response(null,{status:range?206:200,headers});
- const object=await env.FILES.get(row.object_key,range?{range}:undefined);return new Response(object.body,{status:range?206:200,headers});
+ const object=await env.FILES.get(objectKey,range?{range}:undefined);return new Response(object.body,{status:range?206:200,headers});
 }

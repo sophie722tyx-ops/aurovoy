@@ -1,6 +1,9 @@
+import quality from '../video-quality.json' with {type:'json'};
 // Generated editorial pages also contain related films and selected work links.
 // Filter those references using the same records used by the public galleries.
 export function synchronizeEditorial(html,works){
+ html=html.replace(/(?:\.\.\/|\/)?assets\/film-(\d+)\.mp4/g,(original,id)=>works.find(w=>w.id==='legacy-'+id)?.video||original);
+ for(const q of Object.values(quality).filter(q=>q.showcase)){const file=q.previousVideo.split('/').pop();html=html.replaceAll('../assets/'+file,q.video).replaceAll('/assets/'+file,q.video).replaceAll('assets/'+file,q.video);}
  const published=new Map(works.filter(w=>w.status==='published').map(w=>[w.id,w]));
  const unavailable=new Set(works.filter(w=>w.status!=='published').map(w=>w.id));
  const isHidden=markup=>{const id=markup.match(/href="(?:\.\.\/)?(?:(?:en|fr)\/)?work-(\d+)\.html"/);return id&&unavailable.has('legacy-'+id[1]);};

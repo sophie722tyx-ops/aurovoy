@@ -149,3 +149,25 @@ test('every category and both formats support sorting, including retained drafts
  }}
  const admin=await(await call('/admin')).text();assert(admin.includes('id="reorder-dialog"'));assert(admin.includes('id="reorder-open"'));
 });
+
+test('full-quality media preserves full dimensions and duration while respecting later admin uploads',async()=>{
+ const {call,env,sql}=setup();const {default:quality}=await import('./video-quality.json',{with:{type:'json'}});const q=quality['legacy-12'];
+ let w=(await(await call('/api/admin/works')).json()).works.find(w=>w.id==='legacy-12');assert.equal(w.video,q.video);assert.equal(w.mediaWidth,1922);assert(w.duration>240);
+ for(const pre of ['','/en','/fr']){const html=await(await call(pre+'/work-12.html','GET',null,null)).text();assert(html.includes(q.video));assert(!html.includes('assets/film-12.mp4'));assert(!/最长 45 秒|Up to 45 seconds|45 secondes maximum/.test(html));const listing=await(await call(pre+'/works.html','GET',null,null)).text();assert(listing.includes(q.video));}
+ const bytes=Buffer.alloc(64,7);await env.FILES.put(q.objectKey,bytes,{httpMetadata:{contentType:'video/mp4'}});
+ sql.prepare('INSERT INTO uploads(id,work_id,kind,object_key,content_type,size,owner,state,created_at) VALUES(?,?,?,?,?,?,?,?,?)').run(q.video.split('/').pop(),w.id,'video',q.objectKey,'video/mp4',64,'owner','complete',new Date().toISOString());
+ let r=await call(q.video,'GET',null,null,{Range:'bytes=48-'});assert.equal(r.status,206);assert.equal((await r.arrayBuffer()).byteLength,16);assert.equal(r.headers.get('content-range'),'bytes 48-63/64');
+ w=await(await call('/api/admin/works/'+w.id+'/status','PATCH',{status:'draft',updatedAt:w.updatedAt})).json();assert.equal((await call(q.video,'GET',null,null)).status,404);assert.equal((await call(q.video)).status,200);
+ const own={...w,video:'/media/new-admin-upload',order:77};sql.prepare('UPDATE works SET data=? WHERE id=?').run(JSON.stringify(own),w.id);
+ const loaded=(await(await call('/api/admin/works')).json()).works.find(x=>x.id===w.id);assert.equal(loaded.video,own.video);assert.equal(loaded.order,77);assert.equal((await call(q.video)).status,404);
+});
+
+test('international showcases use complete R2 videos and support byte ranges',async()=>{
+ const {call,env}=setup();const {default:quality}=await import('./video-quality.json',{with:{type:'json'}});
+ for(const id of ['global-en','global-pt']){const q=quality[id];await env.FILES.put(q.objectKey,Buffer.alloc(200,3),{httpMetadata:{contentType:'video/mp4'}});
+  for(const pre of ['','/en','/fr']){const html=await(await call(pre+'/global.html','GET',null,null)).text();assert(html.includes(q.video));assert(!html.includes(q.previousVideo));}
+  const r=await call(q.video,'GET',null,null,{Range:'bytes=-20'});assert.equal(r.status,206);assert.equal((await r.arrayBuffer()).byteLength,20);assert.equal((await call(q.video,'HEAD',null,null)).headers.get('content-length'),'200');assert.equal((await call(q.video,'GET',null,null,{Range:'bytes=201-'})).status,416);assert.equal((await call(q.video,'POST',{},null)).status,405);
+ }
+ assert.equal((await call('/showcase-video/private.mp4','GET',null,null)).status,404);
+});
+

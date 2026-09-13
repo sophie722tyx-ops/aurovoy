@@ -1,6 +1,7 @@
+import quality from '../video-quality.json' with {type:'json'};
 import {allWorks,getWork,workPath} from './repository.mjs';
 import {isAdmin,identity,authenticate,loginURL} from './auth.mjs';
-import {adminApi,media,json} from './api.mjs';
+import {adminApi,media,storedMedia,json} from './api.mjs';
 import {filmGroups,detailPage,adminPage,ORIGIN,esc} from './views.mjs';
 import pages from './pages.generated.json' with {type:'json'};
 import {synchronizeEditorial} from './publication.mjs';
@@ -14,6 +15,8 @@ const handler={async fetch(request,env){
   const url=new URL(request.url);let p=url.pathname;
   // Accept older clean URLs while retaining the established .html canonical links.
   if(/^\/(?:en\/|fr\/)?(?:works(?:-[a-z]+)?|work-\d+)\/?$/.test(p))p=p.replace(/\/$/,'')+'.html';
+  const showcase=Object.values(quality).find(q=>q.showcase&&p===q.video);
+  if(showcase)return storedMedia(request,env,showcase.objectKey,'video/mp4');
   if(p.startsWith('/api/admin/content/'))return await contentApi(request,env);
   if(p.startsWith('/api/admin/'))return await adminApi(request,env);
   if(/^\/admin(?:\/(?:mentors|training))?\/?$/.test(p)){

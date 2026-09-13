@@ -1,3 +1,4 @@
+import quality from './video-quality.json' with {type:'json'};
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -37,7 +38,7 @@ assert.equal(www.status,200,'www custom domain');assert((await www.text()).inclu
 console.log(`Live verification passed for ${origin}: ${pages.length} pages, three language homes, admin access protection, video integrity (HTTP ${video.status}), image, sitemap and www domain.`);
 
 for(const path of hidden){const r=await request('/'+path);assert.equal(r.status,404,'retired digital presenter '+path);await r.arrayBuffer();}
-for(const w of release){
+for(const original of release){const w={...original,video:quality[original.id]?.video||original.video};
  for(const lang of ['','/en','/fr']){const r=await request(lang+'/work/'+w.id);assert.equal(r.status,200,w.id);const html=await r.text();assert(html.includes(w.video));assert(html.includes(w.poster));assert(html.includes('film-information'));}
  const v=await request(w.video,{headers:{Range:'bytes=0-1023'}});assert.equal(v.status,206,w.video);const bytes=new Uint8Array(await v.arrayBuffer());assert.equal(bytes.length,1024);assert.equal(String.fromCharCode(...bytes.slice(4,8)),'ftyp');
  const poster=await request(w.poster);assert.equal(poster.status,200,w.poster);await poster.arrayBuffer();
@@ -46,3 +47,9 @@ const science=await(await request('/works-science.html')).text();assert(science.
 const about=await(await request('/about.html')).text();assert(about.includes('client-10.webp'));assert(about.includes('懂车帝'));
 const avatar=await(await request('/works-avatar.html')).text();assert.equal((avatar.match(/class="film-tile"/g)||[]).length,12);
 console.log('Release verification: 19 complete videos with seek support, 19 covers, all new trilingual pages, 3 retired works, science category and Dongchedi logo.');
+
+for(const [id,q] of Object.entries(quality)){
+ const r=await request(q.video,{method:'HEAD'});assert.equal(r.status,200,id+' full-quality video');assert.equal(Number(r.headers.get('content-length')),q.size,id+' full file size');
+ const tail=await request(q.video,{headers:{Range:'bytes='+Math.max(0,q.size-1024)+'-'}});assert.equal(tail.status,206,id+' end seek');assert.equal((await tail.arrayBuffer()).byteLength,Math.min(1024,q.size));
+}
+console.log('Full-quality verification: '+Object.keys(quality).length+' videos with full size and end seek support');
