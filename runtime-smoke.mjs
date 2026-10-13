@@ -2,6 +2,7 @@ import {createRequire} from 'node:module';
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {generateKeyPair,exportJWK,SignJWT} from 'jose';
+import {baseline} from './worker/repository.mjs';
 const require=createRequire(import.meta.url);
 const wranglerRequire=createRequire(require.resolve('wrangler/package.json'));
 const {Miniflare}=wranglerRequire('miniflare');
@@ -21,9 +22,15 @@ try{
  for(const f of fs.readdirSync('drizzle').filter(f=>f.endsWith('.sql')))for(const statement of fs.readFileSync('drizzle/'+f,'utf8').split('--> statement-breakpoint').map(s=>s.trim()).filter(Boolean))await db.prepare(statement).run();
  const call=(p,method='GET',body,admin=false,extra={})=>mf.dispatchFetch('https://aurovoy.example'+p,{method,headers:{...(admin?{'cf-access-jwt-assertion':token}:{}),...(body?{origin:'https://aurovoy.example','X-Aurovoy-Admin':'1','Content-Type':body instanceof Uint8Array?'application/octet-stream':'application/json'}:{}),...extra},body:body?(body instanceof Uint8Array?body:JSON.stringify(body)):undefined});
  const pages=Object.keys(JSON.parse(fs.readFileSync('worker/pages.generated.json','utf8')));
- for(const p of pages){const r=await call('/'+p);assert.equal(r.status,200,p);await r.arrayBuffer();}
+ for(const p of pages){const r=await call('/'+p),legacy=p.match(/(?:^|\/)work-(\d+)\.html$/),hidden=legacy&&baseline.find(w=>w.id==='legacy-'+legacy[1])?.status!=='published';assert.equal(r.status,hidden?404:200,p);await r.arrayBuffer();}
  assert.equal((await call('/api/admin/works')).status,401);
  assert.equal((await call('/admin','GET',null,true)).status,200);
+ assert.equal((await call('/admin/creators','GET',null,true)).status,200);
+ assert.equal((await call('/admin/members','GET',null,true)).status,200);
+ assert.equal((await call('/api/admin/members','POST',{email:'editor@example.test'},true)).status,200);
+ assert.equal((await call('/api/admin/members','DELETE',{email:'editor@example.test'},true)).status,200);
+ for(const p of ['/creators.html','/en/creators.html','/fr/creators.html'])assert.equal((await call(p)).status,200);
+ assert.equal((await call('/creator/missing')).status,404);
  let r=await call('/api/admin/works','POST',{},true);assert.equal(r.status,201);let work=await r.json();
  const png=new Uint8Array(32);png.set([137,80,78,71,13,10,26,10]);
  let upload=await(await call('/api/admin/uploads','POST',{workId:work.id,kind:'poster',size:png.length,type:'image/png'},true)).json();

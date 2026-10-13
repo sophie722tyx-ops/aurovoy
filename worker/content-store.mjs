@@ -3,6 +3,7 @@ import {mentorDetails} from '../mentor-details.mjs';
 import {curricula,courseCases} from '../course-details.mjs';
 import {db} from './repository.mjs';
 export const baselineContent={
+ creators:[],
  mentors:mentors.map((m,i)=>({id:m.id,kind:'mentors',name:m.name,role:m.role,bio:m.bio,tags:m.tags.map(a=>a.join('\n')),biography:[0,1,2].map(l=>mentorDetails[m.id].paragraphs.map(p=>p[l]).join('\n\n')),highlights:mentorDetails[m.id].highlights.map(a=>a.join('\n')),teaching:mentorDetails[m.id].teaching.map(a=>a.join('\n')),photo:`/assets/mentor-${m.id}.webp`,status:'published',order:i,revision:'baseline'})),
  courses:courses.map((c,i)=>({...c,kind:'courses',results:c.results.map(a=>a.join('\n')),photo:`/assets/case-${courseCases[c.id].asset}.webp`,modules:curricula[c.id].map(row=>Object.fromEntries(['title','lesson','exercise','outcome'].map((k,n)=>[k,[0,1,2].map(l=>row[l][n])]))),status:'published',order:i,revision:'baseline'}))
 };
@@ -22,7 +23,10 @@ const tri=(v,max,required=false)=>{if(!Array.isArray(v)||v.length!==3||v.some(s=
 export function validateEntry(data,current){
  if(!['draft','published'].includes(data.status))failure('请选择显示状态');if(!Number.isInteger(data.order)||Math.abs(data.order)>999999)failure('排序应为整数');
  const item={...current,name:tri(data.name,180,true),status:data.status,order:data.order};
- if(current.kind==='mentors'){
+ if(current.kind==='creators'){
+  for(const [key,max] of Object.entries({role:300,bio:1500,tags:1000,biography:12000}))item[key]=tri(data[key],max);
+  if(item.status==='published'&&(!item.photo||!item.bio[0]||!item.tags[0]))failure('公开创作者前请补充头像、中文简介和擅长方向');
+ }else if(current.kind==='mentors'){
   for(const [key,max] of Object.entries({role:300,bio:1500,tags:1000,biography:12000,highlights:4000,teaching:4000}))item[key]=tri(data[key],max);
   if(item.status==='published'&&(!item.photo||!item.role[0]||!item.biography[0]))failure('公开导师前请补充照片 职务和中文详细介绍');
  }else{

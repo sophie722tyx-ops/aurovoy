@@ -6,6 +6,7 @@ const prompt='You localize AUROVOY film, instructor and course copy from Chinese
 export function translationJobs(item,current){
  const jobs=[];
  function walk(value,old,path){
+  if(path==='creatorIds')return;
   if(Array.isArray(value)&&value.length===3&&value.every(x=>typeof x==='string')){
    if(!value[0]){if(old?.[0])value[1]=value[2]='';return;}
    if(value[0]!==old?.[0]||!value[1]||!value[2])jobs.push({path,value,changed:value[0]!==old?.[0]});return;

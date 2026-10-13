@@ -1,7 +1,68 @@
 import {tokens,accessEnv} from './test/access-fixture.mjs';
+import {translationJobs} from './worker/localize.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from 'node:sqlite';
 import worker from './worker/index.mjs';import {CHUNK} from './worker/api.mjs';
 const origin='https://aurovoy.invalid';
+test('owner grants content editing, blocks privilege escalation and immediately revokes existing sessions',async()=>{
+ const {call,env,sql}=setup(),route='/api/admin/members';
+ assert.equal((await call(route,'GET',null,null)).status,401);
+ assert.equal((await call(route,'GET',null,'outsider')).status,403);
+ assert.equal((await call(route,'POST',{email:accessEnv.ADMIN_EMAIL})).status,400);
+ assert.equal((await call(route,'DELETE',{email:accessEnv.ADMIN_EMAIL})).status,400);
+ assert.equal((await call(route,'POST',{email:'bad email'})).status,400);
+ assert.equal((await call(route,'POST',{email:' OUTSIDER@example.test '})).status,200);
+ assert.equal((await call(route,'POST',{email:'outsider@example.test'})).status,200);
+ assert.equal((await(await call(route)).json()).members.length,1);
+ assert.equal((await call('/admin','GET',null,'outsider')).status,200);
+ const editorHtml=await(await call('/admin','GET',null,'outsider')).text();assert(!editorHtml.includes('href="/admin/members"'));assert(editorHtml.includes('/admin/creators'));
+ assert.equal((await call('/api/admin/works','POST',{},'outsider')).status,201);
+ assert.equal((await call('/api/admin/content/creators','POST',{},'outsider')).status,201);
+ assert.equal((await call('/admin/members','GET',null,'outsider')).status,403);
+ for(const method of ['GET','POST','DELETE'])assert.equal((await call(route,method,method==='GET'?null:{email:'third@example.test'},'outsider')).status,403);
+ const cross=await worker.fetch(new Request(origin+route,{method:'POST',headers:{'cf-access-jwt-assertion':tokens.owner,origin:'https://evil.example','X-Aurovoy-Admin':'1'},body:JSON.stringify({email:'evil@example.test'})}),env);assert.equal(cross.status,403);
+ assert.equal((await call(route,'DELETE',{email:'outsider@example.test'})).status,200);
+ assert.equal((await call('/api/admin/works','GET',null,'outsider')).status,403);
+ assert.equal((await call('/api/admin/content/creators','POST',{},'outsider')).status,403);
+ assert.equal((await call('/admin')).status,200);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM admin_member_events').get().n,3);
+});
+test('creator profiles, first-party avatars and film associations publish across three languages without leaking drafts',async()=>{
+ const {call}=setup(),base='/api/admin/content/creators';
+ assert.equal((await call(base,'POST',{},null)).status,401);
+ let c=await(await call(base,'POST',{})).json(),url=base+'/'+c.id;
+ assert.equal((await call('/creator/'+c.id,'GET',null,null)).status,404);
+ let w=(await(await call('/api/admin/works')).json()).works.find(w=>w.id==='legacy-3');
+ const workRoute='/api/admin/works/'+w.id;
+ assert.equal((await call(workRoute,'PUT',{...w,creatorIds:['missing']})).status,400);
+ assert.equal((await call(workRoute,'PUT',{...w,creatorIds:[c.id,c.id]})).status,400);
+ w=await(await call(workRoute,'PUT',{...w,creatorIds:[c.id]})).json();
+ assert(!(await(await call('/work-3.html','GET',null,null)).text()).includes('/creator/'+c.id));
+ const data={...c,name:['创作者 <script>','Creator EN','Créateur FR'],role:['导演','Director','Réalisateur'],bio:['中文简介','English bio','Présentation'],tags:['品牌广告\n科普','Brand films\nExplainers','Films de marque\nVulgarisation'],biography:['详细介绍','','']};
+ assert.equal((await call(url,'PUT',{...data,status:'published'})).status,400);
+ c=await(await call(url,'PUT',data)).json();const stale=c;
+ const pic=new Uint8Array(32);pic.set([137,80,78,71,13,10,26,10]);
+ c=await(await call(url+'/photo','PUT',pic,'owner',{'Content-Type':'image/png','X-Content-Revision':c.revision})).json();
+ assert.equal((await call(c.photo,'GET',null,null)).status,404);
+ assert.equal((await call(url,'PUT',stale)).status,409);
+ c=await(await call(url+'/status','PATCH',{revision:c.revision,status:'published'})).json();
+ assert.equal((await call(c.photo,'GET',null,null)).status,200);
+ for(const [i,p] of ['','/en','/fr'].entries()){
+  const detail=await(await call(p+'/creator/'+c.id,'GET',null,null)).text();assert(detail.includes(c.photo));assert(detail.includes('/work-3.html'));assert(!detail.includes('<script>'));assert(detail.includes('href="'+origin+p+'/creator/'+c.id+'"'));assert(detail.includes('href="/en/creator/'+c.id+'" lang="en"'));
+  const film=await(await call(p+'/work-3.html','GET',null,null)).text();assert(film.includes(p+'/creator/'+c.id));
+  const home=await(await call(p+'/','GET',null,null)).text();assert(home.includes(p+'/creator/'+c.id));
+  const list=await(await call(p+'/creators.html','GET',null,null)).text();assert(list.includes(p+'/creator/'+c.id));
+ }
+ assert((await(await call('/sitemap.xml','GET',null,null)).text()).includes('/creator/'+c.id));
+ w=await(await call(workRoute+'/status','PATCH',{status:'draft',updatedAt:w.updatedAt})).json();
+ assert(!(await(await call('/creator/'+c.id,'GET',null,null)).text()).includes('/work-3.html'));
+ c=await(await call(url+'/status','PATCH',{revision:c.revision,status:'draft'})).json();
+ assert.equal((await call('/creator/'+c.id,'GET',null,null)).status,404);
+ assert.equal((await call(c.photo,'GET',null,null)).status,404);
+ assert(!(await(await call('/sitemap.xml','GET',null,null)).text()).includes('/creator/'+c.id));
+ c=await(await call(url,'DELETE',{revision:c.revision})).json();assert.equal(c.status,'deleted');
+ assert.equal((await(await call(base)).json()).items.length,0);
+ const paths=translationJobs({titles:['中文','',''],creatorIds:['one','two','three']},{}).map(j=>j.path);assert.deepEqual(paths,['titles']);
+});
 test('mentor add, multilingual edits, photo upload, visibility and removal persist across public pages',async()=>{
  const {call}=setup();const base='/api/admin/content/mentors';
  assert.equal((await call(base,'GET',null,null)).status,401);assert.equal((await call('/admin/mentors','GET',null,null)).status,302);
@@ -51,7 +112,7 @@ test('one-click removal and relisting synchronize existing works across all publ
  const draft=await(await call('/api/admin/works','POST',{})).json();assert.equal((await call(`/api/admin/works/${draft.id}/status`,'PATCH',{status:'published',updatedAt:draft.updatedAt})).status,400);
 });
 function setup(){const sql=new DatabaseSync(':memory:');for(const f of fs.readdirSync('drizzle').filter(f=>f.endsWith('.sql')))sql.exec(fs.readFileSync('drizzle/'+f,'utf8'));
- const DB={prepare(q){const s=sql.prepare(q);let args=[];return {bind(...a){args=a;return this;},async first(){return s.get(...args)??null;},async all(){return {results:s.all(...args)};},async run(){return s.run(...args);}};}};
+ const DB={async batch(statements){sql.exec('BEGIN');try{const results=[];for(const statement of statements)results.push(await statement.run());sql.exec('COMMIT');return results;}catch(error){sql.exec('ROLLBACK');throw error;}},prepare(q){const s=sql.prepare(q);let args=[];return {bind(...a){args=a;return this;},async first(){return s.get(...args)??null;},async all(){return {results:s.all(...args)};},async run(){return s.run(...args);}};}};
  const blobs=new Map(),multiparts=new Map();const FILES={async put(k,b,o){blobs.set(k,{bytes:Buffer.from(b),type:o?.httpMetadata?.contentType});return this.head(k);},async head(k){const b=blobs.get(k);return b?{size:b.bytes.length}:null;},async get(k,o){const b=blobs.get(k);return b?{body:o?.range?b.bytes.subarray(o.range.offset,o.range.offset+o.range.length):b.bytes}:null;},async delete(k){blobs.delete(k);},async createMultipartUpload(k,o){const id=crypto.randomUUID();multiparts.set(id,{key:k,type:o.httpMetadata.contentType,parts:new Map()});return {uploadId:id};},resumeMultipartUpload(k,id){return {async uploadPart(n,b){multiparts.get(id).parts.set(n,Buffer.from(b));return {partNumber:n,etag:`etag-${n}`};},async complete(parts){const m=multiparts.get(id);blobs.set(k,{bytes:Buffer.concat(parts.map(p=>m.parts.get(p.partNumber))),type:m.type});multiparts.delete(id);},async abort(){multiparts.delete(id);}};}};
  const env={...accessEnv,DB,FILES,ASSETS:{async fetch(r){let p=new URL(r.url).pathname;if(p==='/')p='/index.html';const file=path.resolve('dist/client','.'+p);if(!file.startsWith(path.resolve('dist/client')+path.sep)||!fs.existsSync(file))return new Response('Not found',{status:404});return new Response(fs.readFileSync(file),{headers:{'Content-Type':file.endsWith('.html')?'text/html':'text/plain'}});}}};
  const call=(p,method='GET',body,auth='owner',extra={})=>{const headers={...extra};if(auth){headers['cf-access-jwt-assertion']=tokens[auth];}if(method!=='GET'){headers.Origin=origin;headers['X-Aurovoy-Admin']='1';}let payload=body;if(body&&!(body instanceof Uint8Array)){payload=JSON.stringify(body);headers['Content-Type']='application/json';}if(payload instanceof Uint8Array)headers['Content-Length']=String(payload.byteLength);return worker.fetch(new Request(origin+p,{method,headers,body:payload}),env);};return {call,env,sql};}
