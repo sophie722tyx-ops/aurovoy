@@ -44,8 +44,9 @@ const handler={async fetch(request,env){
   const matched=p.match(/^\/(?:(en|fr)\/)?(work-(\d+)\.html|work\/([a-z0-9-]+))$/);
   if(matched){const lang=matched[1]||'zh',work=await getWork(env,matched[3]?`legacy-${matched[3]}`:matched[4]);if(!work||work.status!=='published')return response('<h1>作品暂未公开</h1><a href="/works.html">返回作品</a>',404,{'X-Robots-Tag':'noindex'});
    const creators=await workCreators(env,work,lang);
-   if(matched[3]&&work.updatedAt==='2026-09-08T00:00:00Z')return response(synchronizeEditorial(pages[p.slice(1)],await allWorks(env,true)).replace('</main>',creators+'</main>'));
-   return response(detailPage(pages[`${lang==='zh'?'':lang+'/'}work-3.html`],work,lang).replace('</main>',creators+'</main>'));
+   const withCredits=html=>html.replace('<div class="player-shell',creators.byline+'<div class="player-shell').replace('</main>',creators.section+'</main>');
+   if(matched[3]&&work.updatedAt==='2026-09-08T00:00:00Z')return response(withCredits(synchronizeEditorial(pages[p.slice(1)],await allWorks(env,true))));
+   return response(withCredits(detailPage(pages[`${lang==='zh'?'':lang+'/'}work-3.html`],work,lang)));
   }
   const gallery=p.match(/^\/(?:(en|fr)\/)?works(?:-([a-z]+))?\.html$/);
   if(gallery){const original=pages[p.slice(1)];if(!original)return response('Not found',404);const works=await allWorks(env);const list=gallery[2]?works.filter(w=>w.category===gallery[2]):works;

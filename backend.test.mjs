@@ -3,6 +3,23 @@ import {translationJobs} from './worker/localize.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from 'node:sqlite';
 import worker from './worker/index.mjs';import {CHUNK} from './worker/api.mjs';
 const origin='https://aurovoy.invalid';
+test('every film has linked credits; built-in team fallback and author film lists stay consistent',async()=>{
+ const {call}=setup(),base='/api/admin/content/creators',team='aurovoy-team';
+ const options=await(await call(base)).json();assert.equal(options.items.length,0);assert.equal(options.builtInCreators[0].id,team);
+ for(const method of ['PUT','DELETE'])assert.equal((await call(base+'/'+team,method,{status:'draft',revision:'builtin'})).status,404);
+ for(const pre of ['','/en','/fr']){const h=await(await call(pre+'/work-3.html','GET',null,null)).text();assert(h.includes(pre+'/creator/'+team));assert(h.indexOf('class="work-author-line"')<h.indexOf('class="player-shell'));const t=await(await call(pre+'/creator/'+team,'GET',null,null)).text();assert(t.includes(pre+'/work-3.html'));assert(!t.includes(pre+'/work-36.html'));assert((await(await call(pre+'/creators.html','GET',null,null)).text()).includes(pre+'/creator/'+team));}
+ let w=(await(await call('/api/admin/works')).json()).works.find(w=>w.id==='legacy-3');const route='/api/admin/works/'+w.id;
+ w=await(await call(route,'PUT',{...w,creatorIds:[]})).json();assert.deepEqual(w.creatorIds,[team]);
+ w=await(await call(route,'PUT',{...w,creatorIds:[team]})).json();assert.deepEqual(w.creatorIds,[team]);
+ let c=await(await call(base,'POST',{})).json();c=await(await call(base+'/'+c.id,'PUT',{...c,name:['作者甲','Author A','Auteur A'],bio:['简介','Bio','Bio'],tags:['影像','Films','Films']})).json();
+ const pic=new Uint8Array(32);pic.set([137,80,78,71,13,10,26,10]);c=await(await call(base+'/'+c.id+'/photo','PUT',pic,'owner',{'Content-Type':'image/png','X-Content-Revision':c.revision})).json();
+ w=await(await call(route,'PUT',{...w,creatorIds:[c.id]})).json();assert((await(await call('/work-3.html','GET',null,null)).text()).includes('/creator/'+team));
+ c=await(await call(base+'/'+c.id+'/status','PATCH',{status:'published',revision:c.revision})).json();
+ for(const pre of ['','/en','/fr']){const h=await(await call(pre+'/work-3.html','GET',null,null)).text();const credits=h.match(/<div class="work-author-line">([\s\S]*?)<\/div>/)[1];assert(credits.includes('/creator/'+c.id));assert(!credits.includes('/creator/'+team));assert((await(await call(pre+'/creator/'+c.id,'GET',null,null)).text()).includes(pre+'/work-3.html'));assert(!(await(await call(pre+'/creator/'+team,'GET',null,null)).text()).includes(pre+'/work-3.html'));}
+ c=await(await call(base+'/'+c.id,'DELETE',{revision:c.revision})).json();assert((await(await call('/work-3.html','GET',null,null)).text()).includes('/creator/'+team));assert((await(await call('/creator/'+team,'GET',null,null)).text()).includes('/work-3.html'));
+ w=await(await call(route+'/status','PATCH',{status:'draft',updatedAt:w.updatedAt})).json();assert(!(await(await call('/creator/'+team,'GET',null,null)).text()).includes('/work-3.html'));
+ const sitemap=await(await call('/sitemap.xml','GET',null,null)).text();assert(sitemap.includes('/en/creator/'+team));
+});
 test('owner grants content editing, blocks privilege escalation and immediately revokes existing sessions',async()=>{
  const {call,env,sql}=setup(),route='/api/admin/members';
  assert.equal((await call(route,'GET',null,null)).status,401);

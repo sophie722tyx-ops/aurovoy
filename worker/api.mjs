@@ -2,6 +2,7 @@ import {allWorks,getWork,saveWork,reorderWorks,categories,db} from './repository
 import {identity,isAdmin,assertWrite} from './auth.mjs';
 import {localize} from './localize.mjs';
 import {entry} from './content-store.mjs';
+import {TEAM_ID} from './creator-team.mjs';
 export const CHUNK=8*1024*1024,MAX_VIDEO=500*1024*1024,MAX_IMAGE=10*1024*1024;
 export const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
 const fail=(message,status=400)=>{throw Object.assign(new Error(message),{status});};
@@ -16,7 +17,7 @@ export function validateWork(data,current){
  if(data.status==='published'&&(!current.video||!current.poster))fail('发布前请上传视频和封面');
  const creatorIds=data.creatorIds??current.creatorIds??[];
  if(!Array.isArray(creatorIds)||creatorIds.length>12||creatorIds.some(id=>typeof id!=='string'||!/^[-a-z0-9]{1,80}$/.test(id))||new Set(creatorIds).size!==creatorIds.length)fail('请选择有效的创作者，最多 12 位');
- return {...current,titles,descriptions,creatorIds,category:data.category,orientation:data.orientation,status:data.status,order:data.order,hasBeenPublished:!!current.hasBeenPublished||current.status==='published'||data.status==='published'};
+ return {...current,titles,descriptions,creatorIds:creatorIds.length?creatorIds:[TEAM_ID],category:data.category,orientation:data.orientation,status:data.status,order:data.order,hasBeenPublished:!!current.hasBeenPublished||current.status==='published'||data.status==='published'};
 }
 function mediaSignature(bytes,type){const a=new Uint8Array(bytes),text=(i,n)=>String.fromCharCode(...a.slice(i,i+n));return type==='video/mp4'?text(4,4)==='ftyp':type==='image/png'?a[0]===137&&text(1,3)==='PNG':type==='image/jpeg'?a[0]===255&&a[1]===216&&a[2]===255:type==='image/webp'?text(0,4)==='RIFF'&&text(8,4)==='WEBP':false;}
 export async function adminApi(request,env){
@@ -51,7 +52,7 @@ export async function adminApi(request,env){
   const current=await getWork(env,workMatch[1]);if(!current)fail('作品不存在',404);
   const data=await input(request);if(data.updatedAt!==current.updatedAt)fail('作品已在其他窗口修改 请刷新后再编辑',409);
   let item=validateWork(data,current);
-  for(const id of item.creatorIds){const creator=await entry(env,'creators',id);if((!creator||creator.status==='deleted')&&!current.creatorIds?.includes(id))fail('关联的创作者已移除，请刷新后重试');}
+  for(const id of item.creatorIds){if(id===TEAM_ID)continue;const creator=await entry(env,'creators',id);if((!creator||creator.status==='deleted')&&!current.creatorIds?.includes(id))fail('关联的创作者已移除，请刷新后重试');}
   if(data.autoTranslate===true)item=validateWork(await localize(item,current,env),current);
   return json(await saveWork(env,item,user.id,current.updatedAt));
  }

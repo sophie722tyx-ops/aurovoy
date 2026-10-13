@@ -2,13 +2,14 @@ import {entries,entry,writeEntry,validateEntry,failure} from './content-store.mj
 import {db} from './repository.mjs';
 import {localize} from './localize.mjs';
 import {identity,isAdmin,assertWrite} from './auth.mjs';
+import {TEAM} from './creator-team.mjs';
 const json=(v,s=200)=>new Response(JSON.stringify(v),{status:s,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
 async function input(r){const len=Number(r.headers.get('content-length'));if(len>200000)failure('内容过长',413);const text=await r.text();if(text.length>200000)failure('内容过长',413);try{return JSON.parse(text);}catch{failure('表单格式无效');}}
 export async function contentApi(request,env){
  if(!isAdmin(request,env))return json({error:'请使用管理员账号登录'},identity(request,env)?403:401);if(request.method!=='GET')assertWrite(request);
  const m=new URL(request.url).pathname.match(/^\/api\/admin\/content\/(mentors|courses|creators)(?:\/([a-z0-9-]+))?(?:\/(photo|status))?$/);if(!m)return json({error:'请求不存在'},404);
  const [,kind,id,action]=m,user=identity(request,env).id;
- if(!id&&request.method==='GET')return json({items:await entries(env,kind,true)});
+ if(!id&&request.method==='GET')return json({items:await entries(env,kind,true),...(kind==='creators'?{builtInCreators:[TEAM]}:{})});
  if(!id&&kind==='creators'&&request.method==='POST'){const blank=()=>['','',''];return json(await writeEntry(env,{id:crypto.randomUUID(),kind,name:['未命名创作者','',''],role:blank(),bio:blank(),tags:blank(),biography:blank(),photo:'',status:'draft',order:0},user),201);}
  if(!id&&kind==='mentors'&&request.method==='POST'){const blank=()=>['','',''];return json(await writeEntry(env,{id:crypto.randomUUID(),kind,name:['新导师','',''],role:blank(),bio:blank(),tags:blank(),biography:blank(),highlights:blank(),teaching:blank(),photo:'',status:'draft',order:0},user),201);}
  const current=id?await entry(env,kind,id):null;if(!current||current.status==='deleted')return json({error:'内容不存在'},404);
