@@ -47,6 +47,7 @@ export async function creatorExtras(html,path,env){
  const lang=path.match(/^\/(en|fr)(?:\/|$)/)?.[1]||'zh',p=prefix(lang);
  html=html.replace('</head>','<link rel="stylesheet" href="/creators.css"></head>').replace('</footer>',`<a class="creators-footer-link" href="${p}/creators.html">${text('title',lang)}</a></footer>`);
  if(/^\/(?:(en|fr)\/)?(?:index\.html)?\/?$/.test(path)){
+  html=html.replace(/<a class="brand-explore" href="[^"]*">[\s\S]*?<\/a>/,link=>`<div class="brand-home-actions">${link}<a class="brand-explore brand-creators" href="${p}/creators.html">${['认识创作者','Meet the creators','Nos créateurs'][index[lang]]}<span aria-hidden="true">↗</span></a></div>`);
   const creators=[...await entries(env,'creators'),TEAM];html=html.replace('</main>',`<section class="section creator-home"><div class="section-head"><div><p class="eyebrow">OUR CREATORS</p><h2>${text('title',lang)}</h2></div><a class="text-link" href="${p}/creators.html">${text('profile',lang)} ↗</a></div>${creatorCards(creators.slice(0,3),lang)}</section></main>`);
  }
  if(/^\/(?:(en|fr)\/)?works(?:-[a-z]+)?\.html$/.test(path))html=html.replace('<main id="main">',`<main id="main"><div class="creators-discovery"><a class="text-link" href="${p}/creators.html">${text('heading',lang)} ↗</a></div>`);
