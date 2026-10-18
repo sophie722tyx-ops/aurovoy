@@ -33,9 +33,10 @@ const handler={async fetch(request,env){
   if(p.startsWith('/media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await media(request,env,p.slice(7));}
   if(p.startsWith('/content-media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await contentImage(request,env,p.slice(15));}
   if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});
+  if(p==='/')return new Response(null,{status:302,headers:{Location:'/en/'+url.search,'Cache-Control':'no-store'}});
   if(p==='/robots.txt')return new Response(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /cdn-cgi/\nSitemap: ${ORIGIN}/sitemap.xml\n`,{headers:{'Content-Type':'text/plain; charset=utf-8'}});
   if(p==='/sitemap.xml'){
-   const xml=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${Object.keys(pages).filter(f=>!/(?:^|\/)(?:work-\d|mentor-|course-)/.test(f)).map(f=>`<url><loc>${ORIGIN}/${f.replace(/index.html$/,'')}</loc></url>`).join('')}${await contentSitemap(env)}</urlset>`;const works=await allWorks(env);
+   const xml=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${Object.keys(pages).filter(f=>!/(?:^|\/)(?:work-\d|mentor-|course-)/.test(f)).map(f=>`<url><loc>${ORIGIN}/${f==='index.html'?f:f.replace(/index.html$/,'')}</loc></url>`).join('')}${await contentSitemap(env)}</urlset>`;const works=await allWorks(env);
    const urls=works.flatMap(w=>['zh','en','fr'].map(l=>`<url><loc>${ORIGIN}${workPath(w,l)}</loc><lastmod>${esc(w.updatedAt.slice(0,10))}</lastmod></url>`)).join('');
    return new Response(xml.replace('</urlset>',urls+await creatorSitemap(env)+'</urlset>'),{headers:{'Content-Type':'application/xml; charset=utf-8','Cache-Control':'no-cache'}});
   }

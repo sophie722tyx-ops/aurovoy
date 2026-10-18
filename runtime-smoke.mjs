@@ -23,6 +23,7 @@ try{
  const call=(p,method='GET',body,admin=false,extra={})=>mf.dispatchFetch('https://aurovoy.example'+p,{method,headers:{...(admin?{'cf-access-jwt-assertion':token}:{}),...(body?{origin:'https://aurovoy.example','X-Aurovoy-Admin':'1','Content-Type':body instanceof Uint8Array?'application/octet-stream':'application/json'}:{}),...extra},body:body?(body instanceof Uint8Array?body:JSON.stringify(body)):undefined});
  const pages=Object.keys(JSON.parse(fs.readFileSync('worker/pages.generated.json','utf8')));
  for(const p of pages){const r=await call('/'+p),legacy=p.match(/(?:^|\/)work-(\d+)\.html$/),hidden=legacy&&baseline.find(w=>w.id==='legacy-'+legacy[1])?.status!=='published';assert.equal(r.status,hidden?404:200,p);await r.arrayBuffer();}
+ const entry=await mf.dispatchFetch('https://aurovoy.example/?utm_source=test',{redirect:'manual'});assert.equal(entry.status,302);assert.equal(entry.headers.get('location'),'/en/?utm_source=test');
  assert.equal((await call('/api/admin/works')).status,401);
  assert.equal((await call('/admin','GET',null,true)).status,200);
  assert.equal((await call('/admin/creators','GET',null,true)).status,200);

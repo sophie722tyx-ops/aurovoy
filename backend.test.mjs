@@ -66,7 +66,7 @@ test('creator profiles, first-party avatars and film associations publish across
  for(const [i,p] of ['','/en','/fr'].entries()){
   const detail=await(await call(p+'/creator/'+c.id,'GET',null,null)).text();assert(detail.includes(c.photo));assert(detail.includes('/work-3.html'));assert(!detail.includes('<script>'));assert(detail.includes('href="'+origin+p+'/creator/'+c.id+'"'));assert(detail.includes('href="/en/creator/'+c.id+'" lang="en"'));
   const film=await(await call(p+'/work-3.html','GET',null,null)).text();assert(film.includes(p+'/creator/'+c.id));
-  const home=await(await call(p+'/','GET',null,null)).text();assert(home.includes(`class="brand-explore brand-creators" href="${p}/creators.html"`));assert(!home.includes('creator-home'));assert(!home.includes(p+'/creator/'+c.id));
+  const home=await(await call(p?p+'/':'/index.html','GET',null,null)).text();assert(home.includes(`class="brand-explore brand-creators" href="${p}/creators.html"`));assert(!home.includes('creator-home'));assert(!home.includes(p+'/creator/'+c.id));
   const list=await(await call(p+'/creators.html','GET',null,null)).text();assert(list.includes(p+'/creator/'+c.id));
  }
  assert((await(await call('/sitemap.xml','GET',null,null)).text()).includes('/creator/'+c.id));
