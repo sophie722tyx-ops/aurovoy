@@ -54,3 +54,27 @@
 .client-composition .signature-field .signature-dongchedi img{filter:url(#client-paper-removal)}
 .client-composition .signature-field figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0}
 @media(max-width:480px){.client-composition .signature-field{gap:10px}.client-composition .signature-field .brand-signature img{height:36px}.client-composition .signature-field .brand-signature figure{padding:6px 0}}
+
+/* Two seamless rows, each containing one accessible group and one visual copy. */
+.client-composition{min-width:0;overflow:hidden}
+.client-intro{min-width:0}
+.client-motion-toggle{display:block;margin-top:20px;border:1px solid #153c6e35;border-radius:24px;padding:6px 13px;min-height:32px;font:inherit;font-size:12px;background:transparent;color:var(--blue);cursor:pointer}
+.client-motion-toggle:before{content:'Ⅱ';margin-right:8px;font-size:11px}
+.client-motion-toggle[aria-pressed=true]:before{content:'▶'}
+.client-motion-toggle:hover{background:#f4b35d20}
+.client-motion-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.client-marquee{--logo-cell:clamp(136px,11vw,220px);--logo-gap:32px;min-width:0;width:100%;max-width:1600px;display:grid;gap:24px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.client-lane{width:100%;overflow:hidden;min-width:0}
+.client-composition .client-track{width:max-content;display:flex;gap:0;padding:0;overflow:visible;scroll-snap-type:none;animation:client-loop 48s linear infinite;will-change:transform}
+.client-lane-2 .client-track{animation-direction:reverse;animation-duration:52s}
+.client-composition .client-track .signature-field{display:flex;align-items:center;gap:var(--logo-gap);padding:0 var(--logo-gap) 0 0;margin:0;flex-shrink:0;width:max-content;list-style:none}
+.client-composition .client-track .brand-signature:nth-child(n){width:var(--logo-cell);flex:0 0 var(--logo-cell);transform:none;transition:none}
+.client-composition .client-track .brand-signature figure{height:80px;min-height:0;padding:6px 10px;display:flex;align-items:center;justify-content:center}
+.client-composition .client-track .brand-signature img{height:64px;width:100%;max-height:64px;max-width:100%;object-fit:contain}
+.client-composition .client-track .signature-lepas img{filter:brightness(0);opacity:.9}
+.client-composition .client-track figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0}
+.client-marquee:hover .client-track,.client-marquee.is-paused .client-track,.motion-off .client-track{animation-play-state:paused}
+@keyframes client-loop{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:800px){.client-marquee{--logo-gap:24px;gap:16px}.client-intro .client-motion-toggle{display:inline-block;margin:0 0 0 16px}.client-composition-full .client-intro .client-motion-toggle{margin:8px 0 0}}
+@media(max-width:480px){.client-marquee{--logo-cell:136px;--logo-gap:20px;gap:12px}.client-composition .client-track .brand-signature figure{height:68px;padding:6px 10px}.client-composition .client-track .brand-signature img{height:52px;max-height:52px}}
+@media(prefers-reduced-motion:reduce){.client-composition .client-track{animation-play-state:paused;will-change:auto}}

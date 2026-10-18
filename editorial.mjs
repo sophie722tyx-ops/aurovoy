@@ -1,4 +1,8 @@
 export const clients=[
+ {id:11,key:'sustech',name:['南方科技大学','SUSTech','SUSTech']},
+ {id:12,key:'tcl',name:['TCL','TCL','TCL']},
+ {id:13,key:'lepas',name:['LEPAS','LEPAS','LEPAS']},
+ {id:14,key:'rollsroyce',name:['劳斯莱斯','Rolls-Royce','Rolls-Royce']},
  {id:10,key:'dongchedi',name:['懂车帝','Dongchedi','Dongchedi']},
  {id:1,key:'huafa',name:['华发集团','Huafa Group','Huafa Group']},
  {id:2,key:'expressway',name:['巴广渝高速','Ba-Guang-Yu Expressway','Autoroute Ba-Guang-Yu']},
