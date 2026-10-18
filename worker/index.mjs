@@ -1,3 +1,4 @@
+import {languageWelcome} from './language-welcome.mjs';
 import quality from '../video-quality.json' with {type:'json'};
 import {allWorks,getWork,workPath} from './repository.mjs';
 import {isAdmin,isOwner,identity,authenticate,loginURL} from './auth.mjs';
@@ -33,7 +34,7 @@ const handler={async fetch(request,env){
   if(p.startsWith('/media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await media(request,env,p.slice(7));}
   if(p.startsWith('/content-media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await contentImage(request,env,p.slice(15));}
   if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});
-  if(p==='/')return new Response(null,{status:302,headers:{Location:'/en/'+url.search,'Cache-Control':'no-store'}});
+  if(p==='/')return response(synchronizeEditorial(pages['en/index.html'].replace('<head>','<head><base href="/en/">'),await allWorks(env,true)));
   if(p==='/robots.txt')return new Response(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /cdn-cgi/\nSitemap: ${ORIGIN}/sitemap.xml\n`,{headers:{'Content-Type':'text/plain; charset=utf-8'}});
   if(p==='/sitemap.xml'){
    const xml=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${Object.keys(pages).filter(f=>!/(?:^|\/)(?:work-\d|mentor-|course-)/.test(f)).map(f=>`<url><loc>${ORIGIN}/${f==='index.html'?f:f.replace(/index.html$/,'')}</loc></url>`).join('')}${await contentSitemap(env)}</urlset>`;const works=await allWorks(env);
@@ -72,7 +73,7 @@ export default {async fetch(request,env){
   let publicOrigin;try{const u=new URL(configured);if(!['https:','http:'].includes(u.protocol)||u.username||u.password||u.search||u.hash)throw Error();publicOrigin=u.origin;}catch{return new Response('Invalid PUBLIC_ORIGIN configuration',{status:503});}
   const headers=new Headers(result.headers);headers.delete('content-length');
   let body=await result.text();
-  if(type.includes('text/html')&&result.status===200&&!new URL(request.url).pathname.startsWith('/admin'))body=await creatorExtras(body,new URL(request.url).pathname,env);
+  if(type.includes('text/html')&&result.status===200&&!new URL(request.url).pathname.startsWith('/admin')){const path=new URL(request.url).pathname;body=languageWelcome(await creatorExtras(body,path==='/'?'/en/':path,env));}
   return new Response(request.method==='HEAD'?null:body.replaceAll(ORIGIN,publicOrigin),{status:result.status,headers});
  }
  return request.method==='HEAD'?new Response(null,{status:result.status,headers:result.headers}):result;

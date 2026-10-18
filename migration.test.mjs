@@ -23,14 +23,14 @@ test('sitemap and public HTML use the deployment origin, with an optional canoni
  }
 });
 
-test('default entry opens English and explicit Chinese and French homepages remain usable',async()=>{
+test('first visit offers language choice and explicit localized pages remain usable',async()=>{
  const DB={prepare(){return {bind(){return this;},async all(){return {results:[]};},async first(){return null;}};}};
  for(const method of ['GET','HEAD']){
   const r=await worker.fetch(new Request('https://aurovoy.example/?utm_source=campaign',{method,headers:{'Accept-Language':'zh-CN'}}),{DB});
-  assert.equal(r.status,302);assert.equal(r.headers.get('location'),'/en/?utm_source=campaign');assert.equal(r.headers.get('cache-control'),'no-store');assert.equal(await r.text(),'');
+  assert.equal(r.status,200);assert.equal(r.headers.get('location'),null);assert.equal(r.headers.get('cache-control'),'no-store');const h=await r.text();if(method==='HEAD')assert.equal(h,'');else{assert(h.includes('id="language-welcome"'));assert(h.includes('<base href="/en/">'));assert(h.includes('html lang="en"'));assert(h.includes('class="brand-explore brand-creators" href="/en/creators.html"'));}
  }
  for(const [p,lang,canonical] of [['/en/','en','/en/'],['/index.html','zh-CN','/index.html'],['/fr/','fr','/fr/']]){
-  const r=await worker.fetch(new Request('https://aurovoy.example'+p),{DB});assert.equal(r.status,200);const h=await r.text();assert(h.includes('html lang="'+lang+'"'));assert(h.includes('rel="canonical" href="https://aurovoy.example'+canonical+'"'));assert(h.includes('hreflang="zh-CN" href="https://aurovoy.example/index.html"'));assert(h.includes('lang="zh" hreflang="zh"'));assert(h.includes('brand-creators'));assert(!h.includes('creator-home'));
+  const r=await worker.fetch(new Request('https://aurovoy.example'+p),{DB});assert.equal(r.status,200);const h=await r.text();assert(h.includes('id="language-welcome"'));assert(h.includes('src="/language-welcome.js"'));assert(h.includes('html lang="'+lang+'"'));assert(h.includes('rel="canonical" href="https://aurovoy.example'+canonical+'"'));assert(h.includes('hreflang="zh-CN" href="https://aurovoy.example/index.html"'));assert(h.includes('lang="zh" hreflang="zh"'));assert(h.includes('brand-creators'));assert(!h.includes('creator-home'));
  }
  const site=await(await worker.fetch(new Request('https://aurovoy.example/sitemap.xml'),{DB})).text();assert(site.includes('<loc>https://aurovoy.example/index.html</loc>'));assert(site.includes('<loc>https://aurovoy.example/en/</loc>'));
 });
