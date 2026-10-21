@@ -3,6 +3,46 @@ import {translationJobs} from './worker/localize.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from 'node:sqlite';
 import worker from './worker/index.mjs';import {CHUNK} from './worker/api.mjs';
 const origin='https://aurovoy.invalid';
+test('creator-side batch assignments share work credits, preserve coauthors and fall back to the team',async()=>{
+ const {call}=setup(),base='/api/admin/content/creators';
+ async function person(name){let c=await(await call(base,'POST',{})).json();const pic=new Uint8Array(32);pic.set([137,80,78,71,13,10,26,10]);c=await(await call(base+'/'+c.id+'/photo','PUT',pic,'owner',{'Content-Type':'image/png','X-Content-Revision':c.revision})).json();return(await call(base+'/'+c.id,'PUT',{...c,name:[name,name,name],bio:['简介','Bio','Bio'],tags:['影像','Films','Films'],status:'published'})).json();}
+ const a=await person('作者甲'),b=await person('作者乙'),route=base+'/'+a.id+'/works';
+ assert.equal((await call(route,'GET',null,null)).status,401);assert.equal((await call(route,'GET',null,'outsider')).status,403);
+ const draft=await(await call('/api/admin/works','POST',{})).json(),list=await(await call(route)).json(),first=list.works.find(w=>w.id==='legacy-3');
+ assert(list.creators.some(c=>c.id==='aurovoy-team'));assert(list.works.some(w=>w.id===draft.id&&w.status==='draft'));
+ let r=await call(route,'PUT',{creatorRevision:a.revision,replaceOthers:false,items:[first,draft].map(w=>({id:w.id,updatedAt:w.updatedAt,selected:true}))});assert.equal(r.status,200);assert.equal((await r.json()).updated,2);
+ const get=async()=>((await(await call('/api/admin/works')).json()).works.find(w=>w.id===first.id));
+ let w=await get();assert.deepEqual(w.creatorIds,[a.id]);const original=structuredClone(w);
+ for(const p of ['','/en','/fr']){const film=await(await call(p+'/work-3.html','GET',null,null)).text();assert(film.match(/class="work-author-line"[\s\S]*?<\/div>/)[0].includes(p+'/creator/'+a.id));const profile=await(await call(p+'/creator/'+a.id,'GET',null,null)).text();assert(profile.includes(p+'/work-3.html'));assert(!profile.includes('/work/'+draft.id));}
+ w=await(await call('/api/admin/works/'+w.id,'PUT',{...w,creatorIds:[a.id,b.id]})).json();
+ r=await call(route,'PUT',{creatorRevision:a.revision,replaceOthers:false,items:[{id:w.id,updatedAt:w.updatedAt,selected:false}]});assert.equal(r.status,200);w=await get();assert.deepEqual(w.creatorIds,[b.id]);
+ assert(!(await(await call('/creator/'+a.id,'GET',null,null)).text()).includes('/work-3.html'));
+ r=await call(route,'PUT',{creatorRevision:a.revision,replaceOthers:false,items:[{id:w.id,updatedAt:w.updatedAt,selected:true}]});assert.equal(r.status,200);w=await get();assert.deepEqual(w.creatorIds,[b.id,a.id]);
+ r=await call(route,'PUT',{creatorRevision:a.revision,replaceOthers:true,items:[{id:w.id,updatedAt:w.updatedAt,selected:true}]});assert.equal(r.status,200);w=await get();assert.deepEqual(w.creatorIds,[a.id]);
+ for(const key of ['titles','descriptions','video','poster','category','orientation','status','order'])assert.deepEqual(w[key],original[key],key);
+ r=await call(route,'PUT',{creatorRevision:a.revision,replaceOthers:false,items:[{id:w.id,updatedAt:w.updatedAt,selected:false}]});assert.equal(r.status,200);w=await get();assert.deepEqual(w.creatorIds,['aurovoy-team']);
+ const team=base+'/aurovoy-team/works';assert.equal((await call(team)).status,200);assert.equal((await call(team,'PUT',{creatorRevision:'builtin',replaceOthers:false,items:[{id:w.id,updatedAt:w.updatedAt,selected:false}]})).status,400);
+ await call('/api/admin/members','POST',{email:'outsider@example.test'});r=await call(route,'PUT',{creatorRevision:a.revision,replaceOthers:false,items:[{id:w.id,updatedAt:w.updatedAt,selected:true}]},'outsider');assert.equal(r.status,200);
+ w=await get();assert.equal((await call(team,'PUT',{creatorRevision:'builtin',replaceOthers:false,items:[{id:w.id,updatedAt:w.updatedAt,selected:true}]})).status,200);assert.deepEqual((await get()).creatorIds,['aurovoy-team']);
+ const admin=await(await call('/admin/creators')).text();assert(admin.includes('id="creator-works-dialog"'));assert(admin.includes('src="/creator-works.js"'));assert(!(await(await call('/admin/mentors')).text()).includes('creator-works-dialog'));
+});
+
+test('creator batch edits reject stale or invalid batches and concurrent changes without partial writes',async()=>{
+ const {call,env,sql}=setup(),base='/api/admin/content/creators';let c=await(await call(base,'POST',{})).json();const route=base+'/'+c.id+'/works';let list=await(await call(route)).json(),a=list.works[0],b=list.works[1];
+ const payload=items=>({creatorRevision:c.revision,replaceOthers:false,items}),item=(w,selected=true)=>({id:w.id,updatedAt:w.updatedAt,selected});
+ assert.equal((await call(route,'PUT',payload([item(a),item(a)]))).status,400);
+ assert.equal((await call(route,'PUT',payload([{...item(a),selected:'yes'}]))).status,400);
+ assert.equal((await call(route,'PUT',payload([item(a),{...item(b),updatedAt:'stale'}]))).status,409);
+ assert.equal((await call(route,'PUT',payload([item(a),{...item(b),id:'missing'}]))).status,404);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM works').get().n,0);
+ let r=await worker.fetch(new Request(origin+route,{method:'PUT',headers:{'cf-access-jwt-assertion':tokens.owner,Origin:'https://evil.test','Content-Type':'application/json','X-Aurovoy-Admin':'1'},body:JSON.stringify(payload([item(a)]))}),env);assert.equal(r.status,403);
+ const oldRevision=c.revision;c=await(await call(base+'/'+c.id,'PUT',{...c,role:['更新','','']})).json();assert.equal((await call(route,'PUT',{...payload([item(a)]),creatorRevision:oldRevision})).status,409);
+ // Simulate another window editing the creator between validation and the guarded commit.
+ const prepare=env.DB.prepare.bind(env.DB);let raced=false;
+ env.DB.prepare=q=>{const statement=prepare(q);if(q.includes('INSERT INTO works')&&q.includes('content_entries')){const run=statement.run.bind(statement);statement.run=async()=>{raced=true;sql.prepare('UPDATE content_entries SET revision=? WHERE key=?').run('concurrent','creators:'+c.id);return run();};}return statement;};
+ r=await call(route,'PUT',payload([item(a),item(b)]));assert.equal(r.status,409);assert(raced);assert.equal(sql.prepare('SELECT COUNT(*) n FROM works').get().n,0);env.DB.prepare=prepare;
+ c=await(await call(base+'/'+c.id,'DELETE',{revision:'concurrent'})).json();assert.equal((await call(route)).status,404);
+});
 test('every film has linked credits; built-in team fallback and author film lists stay consistent',async()=>{
  const {call}=setup(),base='/api/admin/content/creators',team='aurovoy-team';
  const options=await(await call(base)).json();assert.equal(options.items.length,0);assert.equal(options.builtInCreators[0].id,team);

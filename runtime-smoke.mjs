@@ -33,6 +33,11 @@ try{
  for(const p of ['/creators.html','/en/creators.html','/fr/creators.html'])assert.equal((await call(p)).status,200);
  assert.equal((await call('/creator/missing')).status,404);
  let r=await call('/api/admin/works','POST',{},true);assert.equal(r.status,201);let work=await r.json();
+ const author=await(await call('/api/admin/content/creators','POST',{},true)).json();
+ const batchRoute='/api/admin/content/creators/'+author.id+'/works';
+ assert.equal((await call(batchRoute,'GET',null,true)).status,200);
+ r=await call(batchRoute,'PUT',{creatorRevision:author.revision,replaceOthers:false,items:[{id:work.id,updatedAt:work.updatedAt,selected:true}]},true);assert.equal(r.status,200);assert.equal((await r.json()).updated,1);
+ work=(await(await call('/api/admin/works','GET',null,true)).json()).works.find(w=>w.id===work.id);assert.deepEqual(work.creatorIds,[author.id]);
  const png=new Uint8Array(32);png.set([137,80,78,71,13,10,26,10]);
  let upload=await(await call('/api/admin/uploads','POST',{workId:work.id,kind:'poster',size:png.length,type:'image/png'},true)).json();
  assert.equal((await call(`/api/admin/uploads/${upload.id}/1`,'PUT',png,true,{'Content-Length':String(png.length)})).status,200);
