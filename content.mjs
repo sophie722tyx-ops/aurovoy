@@ -76,7 +76,7 @@ export const removedFilmIds=[11,23,55];
 names.push(['宝马 MINI 快剪','MINI Brand Edit','MINI Montage de marque']);
 export const films=names.map((name,i)=>({id:i+1,name,category:categories.find(c=>c.films.includes(i+1))?.id})).filter(f=>!removedFilmIds.includes(f.id));
 export const ui={
- nav:[['首页','作品','出海','培训','关于','联系'],['Home','Work','Global','Training','About','Contact'],['Accueil','Réalisations','International','Formations','À propos','Contact']],
+ nav:[['首页','作品','平台开发','培训','关于','联系'],['Home','Work','Platform','Training','About','Contact'],['Accueil','Réalisations','Plateformes','Formations','À propos','Contact']],
  skip:['跳至正文','Skip to content','Aller au contenu'],menu:['菜单','Menu','Menu'],language:['切换语言','Change language','Changer de langue'],
  slogan:['让内容，<br>走得<span>更远</span>。','Take content<br><span>further.</span>','Donnons de<br>la portée à vos<br><span>contenus.</span>'],
  heroTag:['AI 科技 × 文化创意 × 内容表达','AI technology × Creativity × Storytelling','Technologie IA × Créativité × Narration'],
@@ -96,10 +96,10 @@ export const ui={
  preview:['完整样片 · 保留原始分辨率、帧率与原有语言。','Full-length film · Original resolution, frame rate and language.','Film intégral · Résolution, fréquence d’images et langue d’origine.'],
  related:['继续探索同类作品','More in this category','À découvrir dans cette catégorie'],project:['有类似的制作需求？','Have a similar project in mind?','Un projet similaire en tête ?'],
  discuss:['沟通制作需求','Discuss your brief','Échanger sur votre projet'],backCat:['返回品类','Back to category','Retour à la catégorie'],
- production:['内容制作与交付','Content production','Production de contenu'],training:['实战培训与赋能','Training & enablement','Formation & accompagnement'],global:['内容出海启动','Global Start','Lancement à l’international'],
+ production:['内容制作与交付','Content production','Production de contenu'],training:['实战培训与赋能','Training & enablement','Formation & accompagnement'],global:['AI 工具与平台开发','AI tools & platforms','Outils IA et plateformes'],
  productionDesc:['商业影像、AI 短剧、微电影与本地化制作。从目标梳理到质量验收，协同完成内容交付。','Commercial films, AI drama, bespoke cinema and localisation, coordinated from the initial brief to final review.','Films commerciaux, fictions IA, courts métrages et localisation : une production coordonnée du brief à la validation.'],
  trainingDesc:['公开课、7 天实战营与企业定制内训，用项目方法连接学习与真实作品。','Introductory sessions, seven-day workshops and tailored corporate training, linking learning with real work.','Sessions découverte, ateliers sur sept jours et formations d’entreprise, pour relier l’apprentissage à la création.'],
- globalDesc:['帮助内容团队梳理目标市场、本地化与启动路径，形成预算、排期和专业资源协同方案。','Help content teams plan markets, localisation, budgets, schedules and the expert resources needed to launch.','Aider les équipes à définir marchés, localisation, budgets, calendrier et ressources pour se lancer.'],
+ globalDesc:['AI 工具定制、网站与小程序、平台开发和技术合作，以自有平台实践支持业务应用。','Custom AI tools, websites, mini apps, platform development and technical partnerships.','Outils IA, sites, mini-applications, développement de plateformes et partenariats techniques.'],
  processTitle:['好创意，需要好的交付。','Great ideas deserve great delivery.','Les bonnes idées méritent une réalisation soignée.'],
  process:[[['理解需求','明确目标、受众、预算与周期。'],['设计方案','确认脚本、视觉方向与制作范围。'],['协同制作','按项目匹配伙伴，分阶段推进。'],['验收交付','按约定完成内容与技术检查。']],[['Understand','Define objectives, audience, budget and timeline.'],['Design','Agree on the script, visual direction and scope.'],['Produce','Coordinate specialists and review work in stages.'],['Deliver','Complete the agreed creative and technical checks.']],[['Comprendre','Préciser objectifs, public, budget et calendrier.'],['Concevoir','Valider scénario, direction visuelle et périmètre.'],['Produire','Coordonner les spécialistes et les étapes.'],['Livrer','Effectuer les contrôles créatifs et techniques convenus.']]],
  trainingTitle:['从学会工具，<br>到做出作品。','From learning tools<br>to making films.','De la découverte des outils<br>à la création de films.'],

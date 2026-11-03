@@ -3,6 +3,14 @@ import {translationJobs} from './worker/localize.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from 'node:sqlite';
 import worker from './worker/index.mjs';import {CHUNK} from './worker/api.mjs';
 const origin='https://aurovoy.invalid';
+test('parallel cover and video completion preserve both media fields and publishing requires a cover',async()=>{
+ const {call}=setup(),w=await(await call('/api/admin/works','POST',{})).json(),png=new Uint8Array(32),mp4=new Uint8Array(32);png.set([137,80,78,71,13,10,26,10]);mp4.set([0,0,0,24,102,116,121,112]);
+ const uploads=await Promise.all([['poster','image/png',png],['video','video/mp4',mp4]].map(async([kind,type,bytes])=>{const u=await(await call('/api/admin/uploads','POST',{workId:w.id,kind,type,size:bytes.length})).json();assert.equal((await call('/api/admin/uploads/'+u.id+'/1','PUT',bytes)).status,200);return u;}));
+ const completed=await Promise.all(uploads.map(u=>call('/api/admin/uploads/'+u.id+'/complete','POST',{})));for(const r of completed)assert.equal(r.status,200);
+ const saved=(await(await call('/api/admin/works')).json()).works.find(x=>x.id===w.id);assert.equal(saved.poster,'/media/'+uploads[0].id);assert.equal(saved.video,'/media/'+uploads[1].id);assert.equal(saved.status,'draft');
+ assert.equal((await call('/api/admin/works/'+w.id,'PUT',{...saved,status:'published'})).status,200);
+ for(const pre of ['','/en','/fr']){const platform=await(await call(pre+'/global.html','GET',null,null)).text();assert(platform.includes('03 / PLATFORM'));assert(platform.includes('https://aurovoyai.cn/'));assert(!platform.includes('class="screening-player"'));const production=await(await call(pre+'/production.html','GET',null,null)).text();assert(production.includes('CONTENT / LOCALISATION'));assert(production.includes('class="screening-player"'));}
+});
 test('creator-side batch assignments share work credits, preserve coauthors and fall back to the team',async()=>{
  const {call}=setup(),base='/api/admin/content/creators';
  async function person(name){let c=await(await call(base,'POST',{})).json();const pic=new Uint8Array(32);pic.set([137,80,78,71,13,10,26,10]);c=await(await call(base+'/'+c.id+'/photo','PUT',pic,'owner',{'Content-Type':'image/png','X-Content-Revision':c.revision})).json();return(await call(base+'/'+c.id,'PUT',{...c,name:[name,name,name],bio:['简介','Bio','Bio'],tags:['影像','Films','Films'],status:'published'})).json();}
@@ -283,7 +291,7 @@ test('full-quality media preserves full dimensions and duration while respecting
 test('international showcases use complete R2 videos and support byte ranges',async()=>{
  const {call,env}=setup();const {default:quality}=await import('./video-quality.json',{with:{type:'json'}});
  for(const id of ['global-en','global-pt']){const q=quality[id];await env.FILES.put(q.objectKey,Buffer.alloc(200,3),{httpMetadata:{contentType:'video/mp4'}});
-  for(const pre of ['','/en','/fr']){const html=await(await call(pre+'/global.html','GET',null,null)).text();assert(html.includes(q.video));assert(!html.includes(q.previousVideo));}
+  for(const pre of ['','/en','/fr']){const html=await(await call(pre+'/production.html','GET',null,null)).text();assert(html.includes(q.video));assert(!html.includes(q.previousVideo));}
   const r=await call(q.video,'GET',null,null,{Range:'bytes=-20'});assert.equal(r.status,206);assert.equal((await r.arrayBuffer()).byteLength,20);assert.equal((await call(q.video,'HEAD',null,null)).headers.get('content-length'),'200');assert.equal((await call(q.video,'GET',null,null,{Range:'bytes=201-'})).status,416);assert.equal((await call(q.video,'POST',{},null)).status,405);
  }
  assert.equal((await call('/showcase-video/private.mp4','GET',null,null)).status,404);

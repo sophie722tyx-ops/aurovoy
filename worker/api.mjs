@@ -86,7 +86,7 @@ export async function adminApi(request,env){
     if(!(await env.FILES.head(upload.object_key)))await env.FILES.resumeMultipartUpload(upload.object_key,upload.upload_id).complete(results.map(r=>({partNumber:r.part_number,etag:r.etag})));
    }
    const object=await env.FILES.head(upload.object_key);if(!object||object.size!==upload.size)fail('文件大小不一致 请重新上传');
-   const result=await saveWork(env,{...work,[upload.kind==='video'?'video':'poster']:`/media/${upload.id}`},user.id);
+   let result;for(let attempt=0;attempt<4;attempt++){const fresh=await getWork(env,upload.work_id);if(!fresh||fresh.status!=='draft')fail('请先将作品下架为草稿');try{result=await saveWork(env,{...fresh,[upload.kind==='video'?'video':'poster']: '/media/'+upload.id},user.id,fresh.updatedAt);break;}catch(error){if(error.status!==409||attempt===3)throw error;}}
    await db(env).prepare("UPDATE uploads SET state='complete' WHERE id=?").bind(upload.id).run();return json(result);
   }
   if(request.method==='PUT'&&/^\d+$/.test(m[2]||'')){
