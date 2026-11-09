@@ -93,7 +93,8 @@
   document.addEventListener('click',event=>{
    const trigger=event.target.closest('[data-preview]');if(!trigger)return;
    opener=trigger;heading.textContent=trigger.dataset.title;player.poster=trigger.dataset.poster;player.src=trigger.dataset.src;
-   dialog.classList.toggle('preview-portrait',trigger.dataset.format==='portrait');link.href=trigger.dataset.href;
+   dialog.classList.toggle('preview-portrait',trigger.dataset.format==='portrait');link.closest('.preview-dialog-footer').hidden=!trigger.dataset.href;
+   if(trigger.dataset.href)link.href=trigger.dataset.href;
    dialog.showModal();root.classList.add('preview-open');player.play().catch(()=>{});
   });
   dialog.querySelector('[data-preview-close]').addEventListener('click',()=>dialog.close());

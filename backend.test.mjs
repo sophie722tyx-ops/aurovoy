@@ -148,14 +148,22 @@ test('mentor add, multilingual edits, photo upload, visibility and removal persi
  assert.equal((await call(base+suffix,'DELETE',{revision:m.revision})).status,200);assert(!(await(await call(base)).json()).items.some(x=>x.id===m.id));assert.equal((await call(base+suffix,'PUT',m)).status,404);
  const existing=(await(await call(base)).json()).items.find(x=>x.id==='huohuo');await call(base+'/huohuo','DELETE',{revision:existing.revision});assert(!(await(await call(base)).json()).items.some(x=>x.id==='huohuo'));assert.equal((await call('/mentor-huohuo.html','GET',null,null)).status,404);
 });
-test('course editing preserves examples and synchronizes curriculum, language fallback and visibility',async()=>{
+test('archived course edits stay separate from the current public course catalogue',async()=>{
  const {call}=setup(),base='/api/admin/content/courses';let items=(await(await call(base)).json()).items;assert.equal(items.length,3);let c=items.find(x=>x.id==='intro');assert.equal(c.modules.length,5);
  c={...c,name:['更新公开课','',''],time:['两小时','',''],desc:['新版课程说明','',''],modules:[{title:['全新模块','',''],lesson:['学习 <img src=x onerror=alert(1)>','',''],exercise:['课堂新练习','',''],outcome:['练习成果','','']}]};
  c=await(await call(base+'/intro','PUT',c)).json();assert.equal(c.name[0],'更新公开课');
- for(const pre of ['','/en','/fr']){const page=await(await call(pre+'/course-intro.html','GET',null,null)).text();assert(page.includes('更新公开课'));assert(page.includes('全新模块'));assert(page.includes('课堂新练习'));assert(!page.includes('<img src=x'));assert(page.includes('case-tea.mp4'));assert.equal((page.match(/class="parent-back"/g)||[]).length,1);assert((await(await call(pre+'/training.html','GET',null,null)).text()).includes('更新公开课'));}
- const zh=await(await call('/course-intro.html','GET',null,null)).text();assert(zh.includes('学员练习作品，非商业合作'));
- c=await(await call(base+'/intro/status','PATCH',{revision:c.revision,status:'draft'})).json();assert.equal((await call('/course-intro.html','GET',null,null)).status,404);
- const training=await(await call('/training.html','GET',null,null)).text();assert(!training.includes('course-intro.html'));assert.equal((training.match(/id="learning-path-tab-/g)||[]).length,2);assert.equal((training.match(/class="goal-panel"/g)||[]).length,2);
+ for(const pre of ['','/en','/fr']){
+  const old=await call(pre+'/course-intro.html','GET',null,null);
+  assert.equal(old.status,301);
+  assert.equal(new URL(old.headers.get('location')).pathname,pre+'/training.html');
+  const training=await(await call(pre+'/training.html','GET',null,null)).text();
+  assert(!training.includes('更新公开课'));
+  assert.equal((training.match(/id="course-option-/g)||[]).length,4);
+  assert.equal((training.match(/class="goal-panel"/g)||[]).length,4);
+  assert(training.includes('case-tea.mp4'));
+ }
+ c=await(await call(base+'/intro/status','PATCH',{revision:c.revision,status:'draft'})).json();
+ assert.equal(c.status,'draft');
  assert(!(await(await call('/sitemap.xml','GET',null,null)).text()).includes('course-intro.html'));
 });
 test('one-click removal and relisting synchronize existing works across all public languages',async()=>{
@@ -210,7 +218,7 @@ test('training foregrounds the team link without individual profiles or making s
   const s=await(await call(prefix+'/training.html','GET',null,null)).text();
   const team=s.match(/<section class="section training-team">[\s\S]*?<\/section>/)?.[0];
   assert(team);assert(team.includes('href="mentors.html"'));
-  assert(s.indexOf('class="section training-team"')<s.indexOf('class="section goal-studio"'));
+  assert(s.indexOf('class="section training-team"')>s.indexOf('class="section goal-studio"'));
   assert.equal((s.match(/class="section training-team"/g)||[]).length,1);
   assert(!s.includes('training-person'));assert(!s.includes('making-sequence'));assert(!s.includes('THE MAKING OF A STORY'));assert(!s.includes('class="mentor-teaser section"'));
  }

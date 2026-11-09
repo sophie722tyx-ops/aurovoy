@@ -41,6 +41,12 @@ const handler={async fetch(request,env){
    const urls=works.flatMap(w=>['zh','en','fr'].map(l=>`<url><loc>${ORIGIN}${workPath(w,l)}</loc><lastmod>${esc(w.updatedAt.slice(0,10))}</lastmod></url>`)).join('');
    return new Response(xml.replace('</urlset>',urls+await creatorSitemap(env)+'</urlset>'),{headers:{'Content-Type':'application/xml; charset=utf-8','Cache-Control':'no-cache'}});
   }
+  const retiredTraining=p.match(/^\/(?:(en|fr)\/)?(training-courses|partnership|course-intro|course-bootcamp|course-enterprise)(?:\.html)?\/?$/);
+  if(retiredTraining){
+   const [,lang,page]=retiredTraining;
+   const section={'training-courses':'training-options',partnership:'training-partnership','course-intro':'programme-1','course-bootcamp':'programme-2','course-enterprise':'training-partnership'}[page];
+   return Response.redirect(new URL(`/${lang?lang+'/':''}training.html#${section}`,url),301);
+  }
   const creatorsResponse=await creatorPublic(p,env,pages);if(creatorsResponse)return creatorsResponse;
   const editorialResponse=await contentPublic(p,env,pages);if(editorialResponse)return editorialResponse;
   const matched=p.match(/^\/(?:(en|fr)\/)?(work-(\d+)\.html|work\/([a-z0-9-]+))$/);

@@ -26,3 +26,38 @@
 .offer-note{line-height:1.7;margin:22px 0}
 .page-head>.button{margin-top:24px}
 @media(max-width:700px){.offer-grid{grid-template-columns:1fr}.offer-table th,.offer-table td{font-size:14px}}
+
+.offer-pricing{background:#fffdf8;color:#23395e}
+.offer-pricing-hint{color:#627087;margin:6px 0 0}
+.offer-table{table-layout:fixed}
+.offer-table thead{background:#243961;color:#fff}
+.offer-table th,.offer-table td{padding:clamp(14px,2vw,28px);vertical-align:middle}
+.offer-table th:first-child{width:41%;padding-left:clamp(14px,2vw,28px)}
+.offer-table th:nth-child(2){width:22%}
+.offer-table td{width:auto}
+.offer-price strong{font-size:clamp(18px,2.5vw,30px);line-height:1.15}
+.offer-price small{color:#617089}
+.offer-example{font-size:14px}
+.offer-sample{display:flex;align-items:center;gap:12px;text-align:left;color:inherit;background:none;border:0;padding:0;font:inherit;cursor:pointer;text-decoration:none}
+.offer-sample[hidden],.preview-dialog-footer[hidden]{display:none}
+.offer-thumb{position:relative;display:grid;place-items:center;width:clamp(96px,10vw,160px);aspect-ratio:16/9;flex:none;background:#192538;overflow:hidden;border-radius:4px}
+.offer-thumb img{width:100%;height:100%;object-fit:contain}
+.offer-thumb>span{position:absolute;display:grid;place-items:center;background:#fff;color:#243961;width:35px;height:35px;border-radius:50%;font-size:13px}
+.offer-sample:hover .offer-thumb>span{background:#efca87}
+.offer-sample:focus-visible{outline:2px solid #926023;outline-offset:4px}
+#training-options,#training-partnership,.programme-row[id]{scroll-margin-top:95px}
+.programme-video{min-width:0;background:#192538;color:white;position:relative;display:grid}
+.programme-video .offer-sample{display:grid;width:100%;gap:0}
+.programme-video .offer-thumb{width:100%;height:100%;min-height:200px;aspect-ratio:16/9;border-radius:0}
+.programme-video .offer-sample>span:last-child{position:absolute;bottom:0;left:0;right:0;background:#192538e6;padding:10px 14px}
+#training-partnership>div>div{display:block}
+@media(max-width:680px){
+ .offer-table,.offer-table tbody{display:block}
+ .offer-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .offer-table tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:12px;padding:16px 0;border-bottom:1px solid #153c6e24}
+ .offer-table tbody th,.offer-table td{width:auto;padding:0;border:0}
+ .offer-price{text-align:right!important}
+ .offer-example{grid-column:1/-1}
+ .programme-video .offer-thumb{height:auto}
+}
+@media(max-width:680px){.offer-table tbody th:first-child{width:auto;padding-left:0}}

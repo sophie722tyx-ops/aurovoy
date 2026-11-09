@@ -1,7 +1,7 @@
 import {curricula as defaultCurricula,courseCases} from './course-details.mjs';
 export function refineLearning(body,file,{t,u,asset,courses,curricula=defaultCurricula}){
  const link=(href,label)=>`<a class="text-link" href="${href}">${label} <span aria-hidden="true">↗</span></a>`;
- if(file==='training.html'){
+ if(file==='training.html'&&!body.includes('id="training-options"')){
   const team=`<section class="section training-team"><div class="training-team-heading"><p class="eyebrow">LEARN WITH THE CREATORS</p><h2>${t(['与实战导师一起创作','Create with experienced practitioners','Créer avec des professionnels de terrain'])}</h2><p>${t(['让真实项目经验成为你的学习起点','Make real project experience your starting point','Faire de l’expérience des projets votre point de départ'])}</p></div>${link('mentors.html',t(['认识导师团队','Meet the instructors','Découvrir les intervenants']))}</section>`;
   body=body.replace(/<section class="section (?:making-sequence|practice-story)">[\s\S]*?<\/section>/g,'');
   body=body.replace(/<section class="mentor-teaser section">[\s\S]*?<\/section>/,'').replace(/<section class="section training-team">[\s\S]*?<\/section>/,'');
