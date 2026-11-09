@@ -305,3 +305,70 @@ test('international showcases use complete R2 videos and support byte ranges',as
  assert.equal((await call('/showcase-video/private.mp4','GET',null,null)).status,404);
 });
 
+test('work deletion requires an authorised current version and tombstones legacy works across public surfaces',async()=>{
+ const {call,env,sql}=setup(),route='/api/admin/works/legacy-2';
+ let w=(await(await call('/api/admin/works')).json()).works.find(x=>x.id==='legacy-2');
+ const before=await(await call('/work-1.html','GET',null,null)).text();assert(before.includes('work-2.html'));
+ assert.equal((await call(route,'DELETE',{updatedAt:w.updatedAt},null)).status,401);
+ assert.equal((await call(route,'DELETE',{updatedAt:w.updatedAt},'outsider')).status,403);
+ const cross=await worker.fetch(new Request(origin+route,{method:'DELETE',headers:{'cf-access-jwt-assertion':tokens.owner,Origin:'https://evil.test','Content-Type':'application/json','X-Aurovoy-Admin':'1'},body:JSON.stringify({updatedAt:w.updatedAt})}),env);assert.equal(cross.status,403);
+ assert.equal((await call(route,'DELETE',{})).status,409);
+ assert.equal((await call(route,'DELETE',{updatedAt:'stale'})).status,409);
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM works').get().n,0);
+ await call('/api/admin/members','POST',{email:'outsider@example.test'});
+ const removed=await call(route,'DELETE',{updatedAt:w.updatedAt},'outsider');assert.equal(removed.status,200);assert.deepEqual(await removed.json(),{ok:true,id:w.id});
+ const stored=sql.prepare('SELECT * FROM works WHERE id=?').get(w.id),data=JSON.parse(stored.data);assert.equal(stored.status,'deleted');assert.equal(data.video,w.video);assert.equal(data.poster,w.poster);assert.deepEqual(data.titles,w.titles);
+ assert(!(await(await call('/api/admin/works')).json()).works.some(x=>x.id===w.id));
+ assert(!(await(await call('/api/admin/content/creators/aurovoy-team/works')).json()).works.some(x=>x.id===w.id));
+ for(const pre of ['','/en','/fr']){
+  for(const page of ['/index.html','/works.html','/works-overseas.html','/production.html','/work-1.html','/creator/aurovoy-team']){const html=await(await call(pre+page,'GET',null,null)).text();assert(!html.includes('work-2.html'),pre+page);assert(!html.includes('cover-2.webp'),pre+page);}
+  assert.equal((await call(pre+'/work-2.html','GET',null,null)).status,404);assert.equal((await call(pre+'/work-2','GET',null,null)).status,404);
+ }
+ assert(!(await(await call('/','GET',null,null)).text()).includes('work-2.html'));
+ assert(!(await(await call('/sitemap.xml','GET',null,null)).text()).includes('work-2.html'));
+ for(const [suffix,method,body] of [['','DELETE',{updatedAt:w.updatedAt}],['','PUT',w],['/status','PATCH',{updatedAt:w.updatedAt,status:'published'}],['/category','PATCH',{updatedAt:w.updatedAt,category:'brand'}]])assert.equal((await call(route+suffix,method,body)).status,404);
+ assert.equal((await call('/api/admin/uploads','POST',{workId:w.id,kind:'poster',type:'image/png',size:32})).status,404);
+ const {allWorks,getWork,saveWork}=await import('./worker/repository.mjs');assert.equal(await getWork(env,w.id),undefined);assert(!(await allWorks(env,true)).some(x=>x.id===w.id));assert((await allWorks(env,true,true)).some(x=>x.id===w.id&&x.status==='deleted'));
+ await assert.rejects(saveWork(env,w,'owner'),error=>error.status===409);assert.equal(sql.prepare('SELECT status FROM works WHERE id=?').get(w.id).status,'deleted');
+});
+
+test('deleting uploaded works hides media and credits but retains stored originals',async()=>{
+ const {call,env,sql}=setup();let w=await(await call('/api/admin/works','POST',{})).json();const route='/api/admin/works/'+w.id,uploads=[];
+ for(const [kind,type,signature] of [['poster','image/png',[137,80,78,71,13,10,26,10]],['video','video/mp4',[0,0,0,24,102,116,121,112]]]){
+  const bytes=new Uint8Array(32);bytes.set(signature);const upload=await(await call('/api/admin/uploads','POST',{workId:w.id,kind,type,size:bytes.length})).json();uploads.push(upload);
+  assert.equal((await call('/api/admin/uploads/'+upload.id+'/1','PUT',bytes)).status,200);w=await(await call('/api/admin/uploads/'+upload.id+'/complete','POST',{})).json();
+ }
+ w=await(await call(route,'PUT',{...w,titles:['待删除样片','Deletion sample','Exemple'],status:'published'})).json();
+ assert.equal((await call(w.video,'GET',null,null)).status,200);assert.equal((await call(w.poster,'GET',null,null)).status,200);
+ const stale=w;w=await(await call(route,'PUT',{...w,descriptions:['较新说明','','']})).json();assert.equal((await call(route,'DELETE',{updatedAt:stale.updatedAt})).status,409);assert.equal((await call('/work/'+w.id,'GET',null,null)).status,200);
+ assert.equal((await call(route,'DELETE',{updatedAt:w.updatedAt})).status,200);
+ for(const media of [w.video,w.poster])for(const auth of [null,'owner']){assert.equal((await call(media,'GET',null,auth)).status,404);assert.equal((await call(media,'HEAD',null,auth)).status,404);assert.equal((await call(media,'GET',null,auth,{Range:'bytes=0-7'})).status,404);}
+ for(const pre of ['','/en','/fr']){assert.equal((await call(pre+'/work/'+w.id,'GET',null,null)).status,404);assert(!(await(await call(pre+'/works-brand.html','GET',null,null)).text()).includes('/work/'+w.id));assert(!(await(await call(pre+'/creator/aurovoy-team','GET',null,null)).text()).includes('/work/'+w.id));}
+ assert(!(await(await call('/sitemap.xml','GET',null,null)).text()).includes('/work/'+w.id));
+ for(const upload of uploads){const row=sql.prepare('SELECT * FROM uploads WHERE id=?').get(upload.id);assert.equal(row.state,'complete');assert.equal((await env.FILES.head(row.object_key)).size,32);assert.equal((await call('/api/admin/uploads/'+upload.id+'/complete','POST',{})).status,404);}
+ const draft=await(await call('/api/admin/works','POST',{})).json();assert.equal((await call('/api/admin/works/'+draft.id,'DELETE',{updatedAt:draft.updatedAt})).status,200);assert(!(await(await call('/api/admin/works')).json()).works.some(x=>x.id===draft.id));
+});
+
+test('concurrent deletion cannot be undone by edits, status changes or category changes',async()=>{
+ for(const operation of ['edit','status','category','delete']){
+  const {call,env,sql}=setup(),w=(await(await call('/api/admin/works')).json()).works.find(x=>x.id==='legacy-3'),prepare=env.DB.prepare.bind(env.DB);let raced=false;
+  env.DB.prepare=q=>{const statement=prepare(q);if(q.startsWith('INSERT INTO works(')&&!q.includes('json_each')){const run=statement.run.bind(statement);statement.run=async()=>{if(!raced){raced=true;const competitor={...w,status:operation==='delete'?'published':'deleted',titles:['另一窗口修改',...w.titles.slice(1)],updatedAt:'2099-01-01T00:00:00.000Z'};sql.prepare('INSERT INTO works(id,data,status,updated_at,updated_by) VALUES(?,?,?,?,?)').run(w.id,JSON.stringify(competitor),competitor.status,competitor.updatedAt,'other-admin');}return run();};}return statement;};
+  const route='/api/admin/works/'+w.id,spec={edit:['','PUT',{...w,titles:['过时修改',...w.titles.slice(1)]}],status:['/status','PATCH',{status:'draft',updatedAt:w.updatedAt}],category:['/category','PATCH',{category:'science',updatedAt:w.updatedAt}],delete:['','DELETE',{updatedAt:w.updatedAt}]}[operation];
+  const response=await call(route+spec[0],spec[1],spec[2]);assert.equal(response.status,409,operation);assert(raced,operation);
+  const after=sql.prepare('SELECT data,status FROM works WHERE id=?').get(w.id);assert.equal(after.status,operation==='delete'?'published':'deleted');assert.equal(JSON.parse(after.data).titles[0],'另一窗口修改');
+ }
+});
+
+test('creator assignment and ordering reject concurrent deletion without partially saving or reviving works',async()=>{
+ for(const operation of ['creator','reorder']){
+  const {call,env,sql}=setup(),base='/api/admin/content/creators';const creator=await(await call(base,'POST',{})).json();
+  const list=(await(await call('/api/admin/works')).json()).works,group=list.filter(w=>w.category==='brand'&&w.orientation==='landscape'),w=group[0],prepare=env.DB.prepare.bind(env.DB);let raced=false;
+  env.DB.prepare=q=>{const statement=prepare(q);if(q.startsWith('INSERT INTO works(')&&q.includes('json_each')){const run=statement.run.bind(statement);statement.run=async()=>{if(!raced){raced=true;const deleted={...w,status:'deleted',updatedAt:'2099-01-01T00:00:00.000Z'};sql.prepare('INSERT INTO works(id,data,status,updated_at,updated_by) VALUES(?,?,?,?,?)').run(w.id,JSON.stringify(deleted),'deleted',deleted.updatedAt,'other-admin');}return run();};}return statement;};
+  const route=operation==='creator'?base+'/'+creator.id+'/works':'/api/admin/works/reorder',body=operation==='creator'?{creatorRevision:creator.revision,replaceOthers:false,items:group.slice(0,2).map(x=>({id:x.id,updatedAt:x.updatedAt,selected:true}))}:{category:'brand',orientation:'landscape',items:group.map(x=>({id:x.id,updatedAt:x.updatedAt}))};
+  assert.equal((await call(route,'PUT',body)).status,409,operation);assert(raced);assert.equal(sql.prepare('SELECT COUNT(*) n FROM works').get().n,1);assert.equal(sql.prepare('SELECT status FROM works WHERE id=?').get(w.id).status,'deleted');env.DB.prepare=prepare;
+  assert.equal((await call(route,'PUT',body)).status,operation==='creator'?404:409);
+  const remaining=(await(await call('/api/admin/works')).json()).works.filter(x=>x.category==='brand'&&x.orientation==='landscape');
+  const reordered=await call('/api/admin/works/reorder','PUT',{category:'brand',orientation:'landscape',items:remaining.map(({id,updatedAt})=>({id,updatedAt}))});assert.equal(reordered.status,200);assert(!(await reordered.json()).works.some(x=>x.id===w.id));assert.equal(sql.prepare('SELECT status FROM works WHERE id=?').get(w.id).status,'deleted');
+ }
+});
+

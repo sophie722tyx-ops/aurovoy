@@ -34,7 +34,7 @@ const handler={async fetch(request,env){
   if(p.startsWith('/media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await media(request,env,p.slice(7));}
   if(p.startsWith('/content-media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await contentImage(request,env,p.slice(15));}
   if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});
-  if(p==='/')return response(synchronizeEditorial(pages['en/index.html'].replace('<head>','<head><base href="/en/">'),await allWorks(env,true)));
+  if(p==='/')return response(synchronizeEditorial(pages['en/index.html'].replace('<head>','<head><base href="/en/">'),await allWorks(env,true,true)));
   if(p==='/robots.txt')return new Response(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /cdn-cgi/\nSitemap: ${ORIGIN}/sitemap.xml\n`,{headers:{'Content-Type':'text/plain; charset=utf-8'}});
   if(p==='/sitemap.xml'){
    const xml=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${Object.keys(pages).filter(f=>!/(?:^|\/)(?:work-\d|mentor-|course-)/.test(f)).map(f=>`<url><loc>${ORIGIN}/${f==='index.html'?f:f.replace(/index.html$/,'')}</loc></url>`).join('')}${await contentSitemap(env)}</urlset>`;const works=await allWorks(env);
@@ -53,16 +53,16 @@ const handler={async fetch(request,env){
   if(matched){const lang=matched[1]||'zh',work=await getWork(env,matched[3]?`legacy-${matched[3]}`:matched[4]);if(!work||work.status!=='published')return response('<h1>作品暂未公开</h1><a href="/works.html">返回作品</a>',404,{'X-Robots-Tag':'noindex'});
    const creators=await workCreators(env,work,lang);
    const withCredits=html=>html.replace('<div class="player-shell',creators.byline+'<div class="player-shell').replace('</main>',creators.section+'</main>');
-   if(matched[3]&&work.updatedAt==='2026-09-08T00:00:00Z')return response(withCredits(synchronizeEditorial(pages[p.slice(1)],await allWorks(env,true))));
+   if(matched[3]&&work.updatedAt==='2026-09-08T00:00:00Z')return response(withCredits(synchronizeEditorial(pages[p.slice(1)],await allWorks(env,true,true))));
    return response(withCredits(detailPage(pages[`${lang==='zh'?'':lang+'/'}work-3.html`],work,lang)));
   }
   const gallery=p.match(/^\/(?:(en|fr)\/)?works(?:-([a-z]+))?\.html$/);
   if(gallery){const original=pages[p.slice(1)];if(!original)return response('Not found',404);const works=await allWorks(env);const list=gallery[2]?works.filter(w=>w.category===gallery[2]):works;
-   return response(synchronizeEditorial(original.replace(/<!--portfolio-start-->[\s\S]*?<!--portfolio-end-->/g,filmGroups(list,gallery[1]||'zh')),await allWorks(env,true)));
+   return response(synchronizeEditorial(original.replace(/<!--portfolio-start-->[\s\S]*?<!--portfolio-end-->/g,filmGroups(list,gallery[1]||'zh')),await allWorks(env,true,true)));
   }
   if(p.startsWith('/.openai')||p.startsWith('/server/'))return new Response('Not found',{status:404});
   const pageKey=p==='/'?'index.html':/^\/(en|fr)\/?$/.test(p)?p.slice(1).replace(/\/$/,'')+'/index.html':p.slice(1);
-  if(pages[pageKey])return response(synchronizeEditorial(pages[pageKey],await allWorks(env,true)));
+  if(pages[pageKey])return response(synchronizeEditorial(pages[pageKey],await allWorks(env,true,true)));
   if(pages[pageKey+'.html'])return new Response(null,{status:301,headers:{Location:'/'+pageKey+'.html'}});
   const asset=await env.ASSETS.fetch(request);const result=new Response(asset.body,asset);result.headers.set('X-Content-Type-Options','nosniff');return result;
  }catch(error){console.error('Request failed',error?.status||500,error?.message);return json({error:error.status?error.message:'暂时无法完成操作 请稍后重试'},error.status||500);}

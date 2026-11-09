@@ -39,7 +39,7 @@ export async function adminApi(request,env){
  if(statusMatch&&request.method==='PATCH'){
   const current=await getWork(env,statusMatch[1]);if(!current)fail('作品不存在',404);
   const data=await input(request);if(data.updatedAt!==current.updatedAt)fail('作品状态已改变 请刷新列表后重试',409);
-  return json(await saveWork(env,validateWork({...current,status:data.status,category:data.status==='published'?(data.category??current.category):current.category},current),user.id));
+  return json(await saveWork(env,validateWork({...current,status:data.status,category:data.status==='published'?(data.category??current.category):current.category},current),user.id,current.updatedAt));
  }
  const categoryMatch=p.match(/^\/api\/admin\/works\/([a-z0-9-]+)\/category$/);
  if(categoryMatch&&request.method==='PATCH'){
@@ -48,6 +48,13 @@ export async function adminApi(request,env){
   return json(await saveWork(env,validateWork({...current,category:data.category},current),user.id,current.updatedAt));
  }
  const workMatch=p.match(/^\/api\/admin\/works\/([a-z0-9-]+)$/);
+ if(workMatch&&request.method==='DELETE'){
+  const current=await getWork(env,workMatch[1]);if(!current)fail('作品不存在或已删除',404);
+  const data=await input(request);if(data.updatedAt!==current.updatedAt)fail('作品已在其他窗口修改，请刷新列表后再删除',409);
+  // Keep a tombstone so bundled portfolio entries cannot return after deletion.
+  await saveWork(env,{...current,status:'deleted',deletedAt:new Date().toISOString(),deletedBy:user.id},user.id,current.updatedAt);
+  return json({ok:true,id:current.id});
+ }
  if(workMatch&&request.method==='PUT'){
   const current=await getWork(env,workMatch[1]);if(!current)fail('作品不存在',404);
   const data=await input(request);if(data.updatedAt!==current.updatedAt)fail('作品已在其他窗口修改 请刷新后再编辑',409);
@@ -75,7 +82,8 @@ export async function adminApi(request,env){
    if(upload.state==='pending')await env.FILES.delete(upload.object_key);
    await db(env).prepare("UPDATE uploads SET state='cancelled' WHERE id=? AND state='pending'").bind(upload.id).run();return json({ok:true});
   }
-  if(upload.state==='complete'&&m[2]==='complete')return json(await getWork(env,upload.work_id));
+  const parent=await getWork(env,upload.work_id);if(!parent)fail('作品不存在或已删除',404);
+  if(upload.state==='complete'&&m[2]==='complete')return json(parent);
   if(upload.state!=='pending')fail('上传已结束');
   if(m[2]==='complete'&&request.method==='POST'){
    const work=await getWork(env,upload.work_id);if(!work||work.status!=='draft')fail('请先将作品下架为草稿');

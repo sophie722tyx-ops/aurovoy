@@ -9,16 +9,16 @@ export const baseline=films.map(f=>({id:`legacy-${f.id}`,titles:f.name,descripti
 // A later upload made in the admin always takes precedence.
 export function qualityWork(w){if(!w)return w;const q=quality[w.id];return q&&w.video===q.previousVideo?{...w,video:q.video,duration:q.duration,mediaWidth:q.width,mediaHeight:q.height,mediaFps:q.fps}:w;}
 export const db=env=>{if(!env.DB)throw new Error('数据库尚未连接');return env.DB;};
-export async function allWorks(env,includeDrafts=false){
+export async function allWorks(env,includeDrafts=false,includeDeleted=false){
  const {results}=await db(env).prepare('SELECT data, status, updated_at FROM works').all();
  const records=new Map(baseline.map(w=>[w.id,w]));
  for(const r of results)records.set(JSON.parse(r.data).id,{...JSON.parse(r.data),status:r.status,updatedAt:r.updated_at});
- return [...records.values()].map(qualityWork).filter(w=>includeDrafts||w.status==='published').sort((a,b)=>a.order-b.order||b.updatedAt.localeCompare(a.updatedAt));
+ return [...records.values()].map(qualityWork).filter(w=>(includeDeleted||w.status!=='deleted')&&(includeDrafts||w.status==='published')).sort((a,b)=>a.order-b.order||b.updatedAt.localeCompare(a.updatedAt));
 }
-export async function getWork(env,id){const row=await db(env).prepare('SELECT data,status,updated_at FROM works WHERE id=?').bind(id).first();return qualityWork(row?{...JSON.parse(row.data),status:row.status,updatedAt:row.updated_at}:baseline.find(w=>w.id===id));}
+export async function getWork(env,id){const row=await db(env).prepare('SELECT data,status,updated_at FROM works WHERE id=?').bind(id).first();if(row?.status==='deleted')return undefined;return qualityWork(row?{...JSON.parse(row.data),status:row.status,updatedAt:row.updated_at}:baseline.find(w=>w.id===id));}
 export async function saveWork(env,work,user,expected){
  const previous=Date.parse(work.updatedAt||''),now=new Date(Math.max(Date.now(),Number.isFinite(previous)?previous+1:0)).toISOString();
- const result=await db(env).prepare('INSERT INTO works(id,data,status,updated_at,updated_by) VALUES(?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,status=excluded.status,updated_at=excluded.updated_at,updated_by=excluded.updated_by WHERE ? IS NULL OR works.updated_at=?').bind(work.id,JSON.stringify(work),work.status,now,user,expected??null,expected??null).run();
+ const result=await db(env).prepare("INSERT INTO works(id,data,status,updated_at,updated_by) VALUES(?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,status=excluded.status,updated_at=excluded.updated_at,updated_by=excluded.updated_by WHERE works.status<>'deleted' AND (? IS NULL OR works.updated_at=?)").bind(work.id,JSON.stringify(work),work.status,now,user,expected??null,expected??null).run();
  if((result.meta?.changes??result.changes)!==1)throw Object.assign(new Error('作品已在其他窗口修改 请刷新后再编辑'),{status:409});
  return {...work,updatedAt:now};
 }
