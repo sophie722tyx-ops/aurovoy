@@ -43,7 +43,7 @@ export function polishPage(body,file,c){
  let visual=chapter[file];
  if(file.startsWith('works-')){
   const cat=categories.find(cat=>`works-${cat.id}.html`===file);
-  if(cat)visual={image:cat.id==='avatar'?'brand-horizon.webp':`cover-${cat.cover}.webp`,label:cat.name,meta:[cat.tags[0].join(' '),cat.tags[1].join(' '),cat.tags[2].join(' ')],contain:cat.id!=='avatar',noMeta:true};
+  if(cat)visual={image:cat.id==='avatar'?'brand-horizon.webp':(cat.coverFile||`cover-${cat.cover}.webp`),label:cat.name,meta:[cat.tags[0].join(' '),cat.tags[1].join(' '),cat.tags[2].join(' ')],contain:cat.id!=='avatar',noMeta:true};
  }
  if(file.startsWith('course-')){
   const course=courses.find(course=>`course-${course.id}.html`===file);
