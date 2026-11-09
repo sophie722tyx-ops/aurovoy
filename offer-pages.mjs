@@ -1,3 +1,4 @@
+import {programmeDetails} from './programme-details.mjs';
 import {email} from './content.mjs';
 
 const serviceRows = [
@@ -154,16 +155,39 @@ export function offerPages({t, title, button, asset}) {
   ['pricing/v5',t(['把一生，留给童年 · 制作案例','A Lifetime for Childhood · Production example','Toute une vie pour l’enfance · Exemple de production'])],
   ['pricing/v9',t(['TCL · 品牌广告参考','TCL · Advertising example','TCL · Exemple publicitaire'])],
  ];
+ const detailURL = i => `programme-${programmeDetails[i].slug}.html`;
+ const detailsLabel = t(['查看课程大纲与权益','View syllabus and benefits','Voir le programme et les prestations']);
  const courseNumber = index => '0' + (index + 1);
  const tabs = studentCourses.map((course,i)=>`<button class="goal-choice" type="button" role="tab" id="course-option-${i}" aria-controls="course-panel-${i}" aria-selected="${i===0}" tabindex="${i===0?0:-1}"><span class="goal-number">${courseNumber(i)}</span><span><strong>${t(course.name)}</strong><small>${t(course.format)}</small></span><b aria-hidden="true">↗</b></button>`).join('');
- const panels = studentCourses.map((course,i)=>`<div class="goal-panel" role="tabpanel" id="course-panel-${i}" aria-labelledby="course-option-${i}" tabindex="0"><div class="goal-course-meta"><span>${t(['个人课程','FOR INDIVIDUALS','COURS INDIVIDUELS'])}</span><span>${formatPrice(course.price)} / ${t(['人','person','personne'])}</span></div><h3>${t(course.name)}</h3><p class="goal-audience">${t(course.summary)}</p><p>${t(course.included)}</p><div class="goal-panel-bottom"><a class="text-link" href="#programme-${i+1}">${t(['课程详情与案例','Course details and example','Détails et exemple'])} ↗</a></div></div>`).join('');
+ const panels = studentCourses.map((course,i)=>`<div class="goal-panel" role="tabpanel" id="course-panel-${i}" aria-labelledby="course-option-${i}" tabindex="0"><div class="goal-course-meta"><span>${t(['个人课程','FOR INDIVIDUALS','COURS INDIVIDUELS'])}</span><span>${formatPrice(course.price)} / ${t(['人','person','personne'])}</span></div><h3>${t(course.name)}</h3><p class="goal-audience">${t(course.summary)}</p><p>${t(course.included)}</p><div class="goal-panel-bottom"><a class="text-link" href="${detailURL(i)}">${detailsLabel} ↗</a></div></div>`).join('');
  const rows = studentCourses.map((course,i)=>{
   const [media,name] = courseExamples[i];
   const poster = asset(media+(i<2?'.webp':'.jpg'));
   const subject = t(['报名咨询：','Enrolment: ','Inscription : ']) + t(course.name);
-  return `<article class="programme-row" id="programme-${i+1}"><div class="programme-video">${videoPreview(asset(media+'.mp4'),poster,name,i===3)}</div><div class="programme-summary"><p class="programme-meta"><span>${courseNumber(i)}</span><span>${t(course.format)}</span></p><h3>${t(course.name)}</h3><p>${t(course.summary)}</p><p>${t(course.included)}</p><div class="programme-bottom"><strong>${formatPrice(course.price)} / ${t(['人','person','personne'])}</strong><a class="text-link" href="${emailLink(subject)}">${t(['咨询班期与报名','Ask about dates and enrolment','Dates et inscriptions'])} ↗</a></div>${i===0?`<small class="case-disclosure">${t(['学员练习作品，非商业合作','Learner exercise, no commercial collaboration','Exercice d’apprenant, sans collaboration commerciale'])}</small>`:''}</div></article>`;
+  return `<article class="programme-row" id="programme-${i+1}"><div class="programme-video">${videoPreview(asset(media+'.mp4'),poster,name,i===3)}</div><div class="programme-summary"><p class="programme-meta"><span>${courseNumber(i)}</span><span>${t(course.format)}</span></p><h3><a href="${detailURL(i)}">${t(course.name)}</a></h3><p>${t(course.summary)}</p><p>${t(course.included)}</p><div class="programme-bottom"><strong>${formatPrice(course.price)} / ${t(['人','person','personne'])}</strong><div class="offer-actions"><a class="text-link" href="${detailURL(i)}">${detailsLabel} ↗</a><a class="text-link" href="${emailLink(subject)}">${t(['咨询班期与报名','Ask about dates and enrolment','Dates et inscriptions'])} ↗</a></div></div>${i===0?`<small class="case-disclosure">${t(['学员练习作品，非商业合作','Learner exercise, no commercial collaboration','Exercice d’apprenant, sans collaboration commerciale'])}</small>`:''}</div></article>`;
  }).join('');
  const training = `<section id="training-options" class="section goal-studio"><div class="goal-heading"><div><p class="eyebrow">AUROVOY TRAINING</p><h2>${t(['选择你的学习起点','Choose your starting point','Choisir votre point de départ'])}</h2></div><p>${t(['按你的创作目标选择课程','Find a course that fits your creative goals','Choisissez selon vos objectifs créatifs'])}</p></div><div class="goal-board" data-tabs><div class="goal-menu js-only" role="tablist" aria-orientation="vertical" aria-label="${t(['课程选择','Course selection','Choix du cours'])}">${tabs}</div>${panels}</div></section><section class="section programme-catalogue"><div class="section-head"><div><p class="eyebrow">COURSES & PRACTICE</p><h2>${t(['课程详情与案例','Course details and examples','Détails des cours et exemples'])}</h2></div></div><div class="programme-list">${rows}</div></section>`;
+ const programmes = studentCourses.map((course,i)=>{
+  const detail = programmeDetails[i];
+  const name = t(course.name);
+  const enrol = emailLink(t(['报名咨询：','Enrolment: ','Inscription : '])+name);
+  const [media,caseName] = courseExamples[i];
+  const syllabus = t(['课程大纲','Syllabus','Programme']);
+  const benefits = t(['报名包含的权益','What’s included','Prestations incluses']);
+  const outline = detail.topics
+   ? detail.topics.map(([topic,days])=>`<details class="programme-topic"><summary>${t(topic)}</summary><ol>${t(days).split(/ (?=D[2-3] |Day [2-3]:|J[2-3] :|目标：|Target:|Objectif :)|(?<=。)(?=目标：)/).map(line=>`<li>${line}</li>`).join('')}</ol></details>`).join('')
+   : '<ol class="programme-schedule">'+detail.outline.map(item=>'<li>'+t(item)+'</li>').join('')+'</ol>';
+  const enrolLabel = t(['咨询班期与报名','Ask about dates and enrolment','Dates et inscriptions']);
+  const prep = t(['报名须知','Before enrolling','Avant de s’inscrire']);
+  const body = title('AUROVOY / '+courseNumber(i),name,t(course.summary),[[t(['培训','Training','Formation']),'training.html'],[name]]) +
+   `<section class="section programme-detail"><nav class="programme-jump" aria-label="${t(['本页导航','On this page','Sur cette page'])}"><a href="#syllabus">${syllabus}</a><a href="#benefits">${benefits}</a><a href="#course-sample">${t(['参考案例','Sample work','Exemple'])}</a><a href="#enrolment">${prep}</a></nav>
+   <div class="programme-detail-layout"><div class="programme-detail-main"><section id="syllabus"><p class="eyebrow">01 / CURRICULUM</p><h2>${syllabus}</h2>${detail.topics?`<p>${t(['每期选一个专题，展开查看三天安排。','Choose one topic per cohort. Open a topic to see the three-day plan.','Choisissez un thème par session et ouvrez-le pour voir le programme.'])}</p>`:''}${outline}</section>
+   <section id="benefits"><p class="eyebrow">02 / INCLUDED</p><h2>${benefits}</h2><ul class="programme-benefits">${detail.benefits.map(item=>'<li>'+t(item)+'</li>').join('')}</ul></section></div>
+   <aside class="programme-facts"><p class="eyebrow">COURSE AT A GLANCE</p><strong>${formatPrice(course.price)} / ${t(['人','person','personne'])}</strong><p>${t(course.format)}</p>${button(enrol,enrolLabel)}</aside></div>
+   <section id="course-sample" class="programme-detail-sample"><h2>${t(['参考案例','Sample work','Exemple'])}</h2><div class="programme-video">${videoPreview(asset(media+'.mp4'),asset(media+(i<2?'.webp':'.jpg')),caseName,i===3)}</div>${i===0?'<p>'+t(['学员练习作品，非商业合作。','Learner exercise. No commercial collaboration.','Exercice d’apprenant, sans collaboration commerciale.'])+'</p>':''}</section>
+   <section id="enrolment"><h2>${prep}</h2><p>${t(['SKILL 是包含说明、提示词、模板、示例和检查表的可复用任务包。平台积分按实际生成消耗扣减，余量不折现。','SKILL packs contain reusable instructions, prompts, templates, examples and checklists. Credits are deducted based on actual usage. Unused credits have no cash value.','Les packs SKILL contiennent des consignes, prompts, modèles, exemples et listes de contrôle réutilisables. Les crédits sont déduits selon l’usage et ne sont pas convertibles en argent.'])}</p><p>${t(['请自备电脑。线下学费包含标准教学场地，交通食宿及第三方会员另计。班期、税费、付款和退改条件以报名确认单为准。','Bring your own computer. In-person tuition includes the standard venue. Travel, accommodation, meals and third-party subscriptions are separate. Dates, taxes, payment and change terms are set in your enrolment confirmation.','Prévoir votre ordinateur. Le tarif présentiel comprend la salle. Transport, hébergement, repas et abonnements tiers sont séparés. Dates, taxes, paiement et modifications sont précisés à l’inscription.'])}</p>${button(enrol,enrolLabel)}</section></section>`;
+  return {file:detailURL(i),name,body};
+ });
  const partnership = `<section class="section contact-band" id="training-partnership"><p class="eyebrow">TRAINING PARTNERSHIPS</p><div><div><h2>${partnerName}</h2><p>${t(['支持渠道送培、机构包班、校企共建及企业内训。欢迎联系获取合作方案与优惠报价。','Referral, private cohorts, school partnerships and corporate training are available. Contact us for terms and partner rates.','Orientation, sessions dédiées, partenariats scolaires et formations en entreprise. Contactez-nous pour une offre partenaire.'])}</p></div>${button(partnerEmail,partnerCta)}</div></section>`;
  const note = content => '<p class="offer-note">' + content + '</p>';
  const quotes = title('AUROVOY / PRICING',t(['服务报价与项目咨询','Service pricing and quotes','Tarifs et devis']),t(['查看常见制作服务的人民币起步价，按项目需求获取正式报价。','Browse starting prices in CNY and request a quote for your project.','Consultez les tarifs de départ en CNY et demandez un devis adapté.']),[[quoteName]],button(projectEmail,enquire)) +
@@ -174,5 +198,5 @@ export function offerPages({t, title, button, asset}) {
   </tbody></table>
   ${note(t(['标准范围含一个确认方向、一个交付版本与两轮集中小修改。分钟类 1 分钟起计，超出按 30 秒递增。实拍、现场执行、额外屏幕适配、复杂三维、源文件和税费按正式报价单确认。','Standard scope covers one approved direction, one delivery version and two rounds of minor revisions. Per-minute work starts at one minute, then increases in 30-second steps. Live filming, on-site work, extra screen adaptations, complex 3D, source files and taxes are specified in the quote.','L’offre standard comprend une direction validée, une version livrée et deux séries de retouches mineures. Les prestations à la minute sont facturées à partir d’une minute, puis par tranches de 30 secondes. Tournage, interventions sur site, adaptations d’écran, 3D complexe, fichiers sources et taxes sont précisés au devis.']))}
   <div class="offer-actions"><a class="text-link" href="works.html">${t(['查看官网作品','Browse our portfolio','Voir nos réalisations'])} ↗</a></div></section>`;
- return {quoteName, training, partnership, quotes};
+ return {quoteName, training, partnership, quotes, programmes};
 }
