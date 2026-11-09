@@ -1,3 +1,14 @@
+// Limit the normal browser save actions on public video players only.
+// Public playback still exposes media bytes; this is not DRM.
+for(const video of document.querySelectorAll('video')){
+ video.controlsList?.add('nodownload');
+ video.draggable=false;
+}
+for(const type of ['contextmenu','dragstart']){
+ document.addEventListener(type,event=>{
+  if(event.target instanceof HTMLVideoElement)event.preventDefault();
+ });
+}
 const menu=document.querySelector('.menu-toggle');
 const nav=document.querySelector('#nav');
 const language=document.querySelector('.language');
