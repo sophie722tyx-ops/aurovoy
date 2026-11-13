@@ -1,4 +1,5 @@
 import {languageWelcome} from './language-welcome.mjs';
+import {maintenanceResponse,privateDuringPause,retiredWorldResponse} from './maintenance.mjs';
 import quality from '../video-quality.json' with {type:'json'};
 import {allWorks,getWork,workPath} from './repository.mjs';
 import {isAdmin,isOwner,identity,authenticate,loginURL} from './auth.mjs';
@@ -71,8 +72,10 @@ const handler={async fetch(request,env){
 
 // Identity is verified at the only Worker entry point. Never trust caller-supplied identity headers.
 export default {async fetch(request,env){
+ const retired=retiredWorldResponse(request);if(retired)return retired;
  env=await authenticate(request,env);
- const result=await handler.fetch(request,env);
+ const maintenance=maintenanceResponse(request,env);if(maintenance)return maintenance;
+ const result=privateDuringPause(await handler.fetch(request,env),env);
  const type=result.headers.get('content-type')||'';
  if(type.includes('text/html')||type.includes('application/xml')||new URL(request.url).pathname==='/robots.txt'){
   const configured=env.PUBLIC_ORIGIN||new URL(request.url).origin;

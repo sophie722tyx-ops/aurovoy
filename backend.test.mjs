@@ -184,6 +184,32 @@ test('one-click removal and relisting synchronize existing works across all publ
  for(const prefix of ['','/en','/fr']){assert((await(await call(prefix+'/works-overseas.html','GET',null,null)).text()).includes('work-2.html'));assert.equal((await call(prefix+'/work-2.html','GET',null,null)).status,200);}
  const draft=await(await call('/api/admin/works','POST',{})).json();assert.equal((await call(`/api/admin/works/${draft.id}/status`,'PATCH',{status:'published',updatedAt:draft.updatedAt})).status,400);
 });
+test('site pause blocks every public surface without changing content, and preserves authenticated editing',async()=>{
+ const {call,env,sql}=setup();const original=await(await call('/api/admin/works')).json();env.PUBLIC_SITE_PAUSED='true';
+ const blocked=['/','/index.html','/en/','/fr/works.html','/work-3.html','/work-3','/creator/aurovoy-team','/training.html','/pricing.html','/sitemap.xml','/assets/film-3.mp4','/assets/cover-3.webp','/media/old-video','/content-media/old-photo','/showcase-video/global-en.mp4','/app.js','/missing'];
+ for(const p of blocked)for(const auth of [null,'outsider'])for(const method of ['GET','HEAD']){const r=await call(p,method,null,auth,{Range:'bytes=0-7'});assert.equal(r.status,503,p);assert.match(r.headers.get('cache-control'),/no-store/);assert.match(r.headers.get('x-robots-tag'),/noindex/);const text=await r.text();if(method==='HEAD')assert.equal(text,'');else assert(text.includes('官网暂未开放'));}
+ const spoof=await call('/assets/film-3.mp4','GET',null,null,{'cf-access-authenticated-user-email':accessEnv.ADMIN_EMAIL,'cf-access-jwt-assertion':'invalid'});assert.equal(spoof.status,503);
+ assert.equal(await(await call('/robots.txt','GET',null,null)).text(),'User-agent: *\nDisallow: /\n');
+ assert.equal((await call('/admin','GET',null,null)).status,302);assert.equal((await call('/api/admin/works','GET',null,null)).status,401);
+ for(const p of ['/admin','/admin/creators','/admin/training','/admin/mentors','/admin/members'])assert.equal((await call(p)).status,200);
+ for(const p of ['/admin.css','/content-admin.css','/creators.css','/admin.js','/content-admin.js','/members.js','/creator-works.js','/media-frame.js','/assets/mark.png','/assets/brand-sans.woff2'])assert.equal((await call(p,'GET',null,null)).status,200,p);
+ assert.deepEqual(await(await call('/api/admin/works')).json(),original);assert.equal(sql.prepare('SELECT COUNT(*) n FROM works').get().n,0);
+ await call('/api/admin/members','POST',{email:'outsider@example.test'});assert.equal((await call('/admin','GET',null,'outsider')).status,200);assert.equal((await call('/admin/members','GET',null,'outsider')).status,403);
+ const q=Object.values((await import('./video-quality.json',{with:{type:'json'}})).default).find(x=>x.showcase);await env.FILES.put(q.objectKey,Buffer.alloc(64,7));
+ const r=await call(q.video,'GET',null,'outsider',{Range:'bytes=8-15'});assert.equal(r.status,206);assert.equal((await r.arrayBuffer()).byteLength,8);assert.match(r.headers.get('cache-control'),/private, no-store/);
+ assert.equal((await call(q.video,'HEAD',null,'outsider')).headers.get('content-length'),'64');assert.equal((await call(q.video,'GET',null,null)).status,503);
+ let draft=await(await call('/api/admin/works','POST',{},'outsider')).json();assert(draft.id);draft=await(await call('/api/admin/works/'+draft.id,'PUT',{...draft,titles:['暂停期间编辑','','']},'outsider')).json();assert.equal(draft.titles[0],'暂停期间编辑');
+ const asset=await call('/assets/cover-3.webp','GET',null,'owner');assert.equal(asset.status,200);assert.match(asset.headers.get('cache-control'),/private, no-store/);
+ await call('/api/admin/members','DELETE',{email:'outsider@example.test'});assert.equal((await call(q.video,'GET',null,'outsider')).status,503);
+ env.PUBLIC_SITE_PAUSED='false';assert.equal((await call('/','GET',null,null)).status,200);assert.equal((await call('/works.html','GET',null,null)).status,200);assert.equal((await call(q.video,'GET',null,null)).status,200);
+});
+
+test('removed 3D world stays gone even when the rest of the site reopens',async()=>{
+ const {call,env}=setup();
+ for(const paused of ['true','false']){env.PUBLIC_SITE_PAUSED=paused;for(const p of ['/world','/world/','/world/index.html','/world/assets/scene.glb','/world.html','/en/world/','/fr/world/','/%77orld/'])for(const method of ['GET','HEAD']){const r=await call(p,method,null,null);assert.equal(r.status,410,p);if(method==='HEAD')assert.equal(await r.text(),'');}}
+ const pages=JSON.parse(fs.readFileSync('worker/pages.generated.json','utf8'));assert(!Object.keys(pages).some(p=>/(^|\/)world(?:\/|\.)/.test(p)));assert(!JSON.stringify(pages).includes('/world/'));assert(!fs.existsSync('dist/client/world'));
+});
+
 function setup(){const sql=new DatabaseSync(':memory:');for(const f of fs.readdirSync('drizzle').filter(f=>f.endsWith('.sql')))sql.exec(fs.readFileSync('drizzle/'+f,'utf8'));
  const DB={async batch(statements){sql.exec('BEGIN');try{const results=[];for(const statement of statements)results.push(await statement.run());sql.exec('COMMIT');return results;}catch(error){sql.exec('ROLLBACK');throw error;}},prepare(q){const s=sql.prepare(q);let args=[];return {bind(...a){args=a;return this;},async first(){return s.get(...args)??null;},async all(){return {results:s.all(...args)};},async run(){return s.run(...args);}};}};
  const blobs=new Map(),multiparts=new Map();const FILES={async put(k,b,o){blobs.set(k,{bytes:Buffer.from(b),type:o?.httpMetadata?.contentType});return this.head(k);},async head(k){const b=blobs.get(k);return b?{size:b.bytes.length}:null;},async get(k,o){const b=blobs.get(k);return b?{body:o?.range?b.bytes.subarray(o.range.offset,o.range.offset+o.range.length):b.bytes}:null;},async delete(k){blobs.delete(k);},async createMultipartUpload(k,o){const id=crypto.randomUUID();multiparts.set(id,{key:k,type:o.httpMetadata.contentType,parts:new Map()});return {uploadId:id};},resumeMultipartUpload(k,id){return {async uploadPart(n,b){multiparts.get(id).parts.set(n,Buffer.from(b));return {partNumber:n,etag:`etag-${n}`};},async complete(parts){const m=multiparts.get(id);blobs.set(k,{bytes:Buffer.concat(parts.map(p=>m.parts.get(p.partNumber))),type:m.type});multiparts.delete(id);},async abort(){multiparts.delete(id);}};}};
