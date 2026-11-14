@@ -20,7 +20,7 @@
   "preview_urls": false,
   "keep_vars": true,
   "vars": {
-    "PUBLIC_SITE_PAUSED": "true"
+    "PUBLIC_SITE_PAUSED": "false"
   },
   "secrets": {
     "required": [
