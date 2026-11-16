@@ -29,7 +29,7 @@ try{
   const login=await mf.dispatchFetch('https://aurovoy.example/admin',{redirect:'manual'});assert.equal(login.status,302);
   assert.equal((await call('/api/admin/works')).status,401);
   for(const p of ['/admin','/admin/creators','/admin/training','/admin/members','/assets/cover-3.webp']){const r=await call(p,'GET',null,true);assert.equal(r.status,200,p);assert.match(r.headers.get('cache-control'),/private, no-store/);}
-  for(const p of ['/admin.css','/content-admin.css','/admin.js','/content-admin.js','/creator-works.js','/media-frame.js'])assert.equal((await call(p)).status,200,p);
+  for(const p of ['/admin.css','/content-admin.css','/admin.js','/content-admin.js','/creator-works.js','/media-frame.js','/upload-drop.js'])assert.equal((await call(p)).status,200,p);
   const work=await(await call('/api/admin/works','POST',{},true)).json();assert(work.id);
   const bytes=new Uint8Array(32);bytes.set([0,0,0,24,102,116,121,112]);
   const upload=await(await call('/api/admin/uploads','POST',{workId:work.id,kind:'video',type:'video/mp4',size:32},true)).json();

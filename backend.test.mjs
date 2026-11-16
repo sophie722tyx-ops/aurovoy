@@ -192,7 +192,7 @@ test('site pause blocks every public surface without changing content, and prese
  assert.equal(await(await call('/robots.txt','GET',null,null)).text(),'User-agent: *\nDisallow: /\n');
  assert.equal((await call('/admin','GET',null,null)).status,302);assert.equal((await call('/api/admin/works','GET',null,null)).status,401);
  for(const p of ['/admin','/admin/creators','/admin/training','/admin/mentors','/admin/members'])assert.equal((await call(p)).status,200);
- for(const p of ['/admin.css','/content-admin.css','/creators.css','/admin.js','/content-admin.js','/members.js','/creator-works.js','/media-frame.js','/assets/mark.png','/assets/brand-sans.woff2'])assert.equal((await call(p,'GET',null,null)).status,200,p);
+ for(const p of ['/admin.css','/content-admin.css','/creators.css','/admin.js','/content-admin.js','/members.js','/creator-works.js','/media-frame.js','/upload-drop.js','/assets/mark.png','/assets/brand-sans.woff2'])assert.equal((await call(p,'GET',null,null)).status,200,p);
  assert.deepEqual(await(await call('/api/admin/works')).json(),original);assert.equal(sql.prepare('SELECT COUNT(*) n FROM works').get().n,0);
  await call('/api/admin/members','POST',{email:'outsider@example.test'});assert.equal((await call('/admin','GET',null,'outsider')).status,200);assert.equal((await call('/admin/members','GET',null,'outsider')).status,403);
  const q=Object.values((await import('./video-quality.json',{with:{type:'json'}})).default).find(x=>x.showcase);await env.FILES.put(q.objectKey,Buffer.alloc(64,7));
