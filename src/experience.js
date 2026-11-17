@@ -89,13 +89,14 @@
 
  const dialog=document.querySelector('[data-preview-dialog]');
  if(dialog&&typeof dialog.showModal==='function'){
-  const player=dialog.querySelector('video'),heading=dialog.querySelector('h2'),link=dialog.querySelector('[data-preview-link]');let opener;
+  const player=dialog.querySelector('video'),heading=dialog.querySelector('h2'),link=dialog.querySelector('[data-preview-link]'),footer=dialog.querySelector('.preview-dialog-footer'),caption=footer?.querySelector('p');let opener;
   document.addEventListener('click',event=>{
    const trigger=event.target.closest('[data-preview]');if(!trigger)return;
    opener=trigger;heading.textContent=trigger.dataset.title;player.poster=trigger.dataset.poster;
-   if(globalThis.AurovoyVideo)globalThis.AurovoyVideo.prepare(player,trigger.dataset.src);else player.src=trigger.dataset.src;
-   dialog.classList.toggle('preview-portrait',trigger.dataset.format==='portrait');link.closest('.preview-dialog-footer').hidden=!trigger.dataset.href;
-   if(trigger.dataset.href)link.href=trigger.dataset.href;
+   let adaptive=false;if(globalThis.AurovoyVideo)adaptive=globalThis.AurovoyVideo.prepare(player,trigger.dataset.src);else player.src=trigger.dataset.src;
+   if(caption)caption.textContent=adaptive?t(['完整样片 · 自动适配清晰度，可切换原片。','Full-length film · Adaptive quality, with the original available.','Film intégral · Qualité adaptative, original disponible.']):t(['完整样片 · 保留原始分辨率、帧率与原有语言。','Full-length film · Original resolution, frame rate and language.','Film intégral · Résolution, fréquence d’images et langue d’origine.']);
+   dialog.classList.toggle('preview-portrait',trigger.dataset.format==='portrait');if(footer)footer.hidden=!trigger.dataset.href;
+   if(trigger.dataset.href&&link)link.href=trigger.dataset.href;
    dialog.showModal();root.classList.add('preview-open');(globalThis.AurovoyVideo?globalThis.AurovoyVideo.play(player):player.play()).catch(()=>{});
   });
   dialog.querySelector('[data-preview-close]').addEventListener('click',()=>dialog.close());

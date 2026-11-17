@@ -1,8 +1,8 @@
 (()=>{
  'use strict';
  // This controller is shared by detail pages and the reusable preview dialog.
- function createPlayback({video,source,manifest,loadHls,onState=()=>{},onLevels=()=>{},fetchManifest}){
-  let engine=null,choice='auto',mode='',started=false,dead=false,generation=0,wantsPlay=false,position=0,abort=null,pendingMetadata=null;
+ function createPlayback({video,source,manifest,loadHls,preferNative=false,onState=()=>{},onLevels=()=>{},fetchManifest}){
+  let engine=null,choice='auto',mode='',started=false,dead=false,generation=0,wantsPlay=false,playedThisSource=false,position=0,abort=null,pendingMetadata=null;
   const valid=token=>!dead&&token===generation;
   const state=value=>{if(!dead)onState(value);};
   const savePosition=()=>{if(Number.isFinite(video.currentTime)&&video.currentTime>0)position=video.currentTime;};
@@ -13,7 +13,7 @@
   }
   async function resume(token){
    if(!valid(token)||!wantsPlay)return;
-   try{await video.play();if(valid(token))state('playing');}catch{if(valid(token))state('ready');}
+   try{await video.play();if(valid(token)){playedThisSource=true;state('playing');}}catch{if(valid(token))state('ready');}
   }
   function restore(token){
    if(!valid(token))return;
@@ -25,19 +25,34 @@
    resume(token);
   }
   function nativeSource(url,token){
+   playedThisSource=false;
    pendingMetadata=()=>{pendingMetadata=null;restore(token);};
    video.addEventListener('loadedmetadata',pendingMetadata,{once:true});
    video.src=url;video.load();resume(token);
   }
   function original(token,fallback=false){
    if(!valid(token))return;
+   // After playback has begun, native controls own the user's pause intent.
+   // Before the first frame, keep the pending Play request through a fallback.
+   if(fallback&&playedThisSource)wantsPlay=!video.paused;
+   playedThisSource=false;
    detach();mode='original';choice='original';
    state(fallback?'fallback':'loading');nativeSource(source,token);
   }
+  async function startNative(token){
+   mode='native';nativeSource(choice.startsWith('native:')?choice.slice(7):manifest,token);
+   if(fetchManifest){
+    abort=new AbortController();
+    try{const variants=await fetchManifest(manifest,abort.signal);if(valid(token)&&mode==='native')onLevels(variants);}catch{/* Native automatic playback remains available. */}
+   }
+  }
   async function start(){
    if(dead)return;
-   savePosition();const token=++generation;mode='loading';detach();started=true;video.controls=true;video.pause();state('loading');
+   savePosition();const token=++generation;mode='loading';playedThisSource=false;detach();started=true;video.controls=true;video.pause();state('loading');
    if(choice==='original'){original(token);return;}
+   // Native Safari playback must begin inside the original click, before loading
+   // a library or fetching a manifest can consume the user activation.
+   if(preferNative&&video.canPlayType('application/vnd.apple.mpegurl'))return startNative(token);
    let Hls;try{Hls=await loadHls();}catch{}
    if(!valid(token))return;
    if(Hls?.isSupported()){
@@ -47,21 +62,20 @@
     instance.on(Hls.Events.MANIFEST_PARSED,()=>{
      if(!valid(token)||engine!==instance)return;
      onLevels(instance.levels.map((level,index)=>({value:String(index),label:level.name||`${Math.min(level.width||level.height,level.height)}p`})));
-     if(choice!=='auto'&&/^\d+$/.test(choice)){instance.capLevelToPlayerSize=false;instance.currentLevel=Number(choice);}else instance.currentLevel=-1;
+     // Leave automatic mode untouched so startLevel=0 can deliver the first
+     // frame before bandwidth-based upshifts. Setting currentLevel here flushes it.
+     if(choice!=='auto'&&/^\d+$/.test(choice)){instance.capLevelToPlayerSize=false;instance.currentLevel=Number(choice);}
      restore(token);
     });
     instance.on(Hls.Events.ERROR,(_event,data)=>{if(valid(token)&&engine===instance&&data.fatal){savePosition();original(token,true);}});
     instance.attachMedia(video);
-   }else if(video.canPlayType('application/vnd.apple.mpegurl')){
-    mode='native';nativeSource(choice.startsWith('native:')?choice.slice(7):manifest,token);
-    if(fetchManifest){
-     abort=new AbortController();
-     try{const variants=await fetchManifest(manifest,abort.signal);if(valid(token)&&mode==='native')onLevels(variants);}catch{/* Native automatic playback remains available. */}
-    }
-   }else original(token,true);
+   }else if(video.canPlayType('application/vnd.apple.mpegurl'))return startNative(token);
+   else original(token,true);
   }
   const onError=()=>{if(!dead&&started&&mode==='native'){savePosition();original(generation,true);}else if(!dead&&started&&mode==='original')state('error');};
+  const onPlaying=()=>{if(!dead&&started)playedThisSource=true;};
   video.addEventListener('error',onError);
+  video.addEventListener('playing',onPlaying);
   return {
    play(){if(dead)return Promise.resolve();wantsPlay=true;if(!started)return start();return resume(generation);},
    select(value){
@@ -76,7 +90,7 @@
     }
     return start();
    },
-   destroy(){if(dead)return;dead=true;generation++;detach();video.removeEventListener('error',onError);video.pause();video.removeAttribute('src');video.load();},
+   destroy(){if(dead)return;dead=true;generation++;detach();video.removeEventListener('error',onError);video.removeEventListener('playing',onPlaying);video.pause();video.removeAttribute('src');video.load();},
    get mode(){return mode;},get choice(){return choice;}
   };
  }
@@ -90,7 +104,14 @@
   }
   return out;
  }
- globalThis.AurovoyVideoCore={createPlayback,parseVariants};
+ function preferNativeHls(video,client=globalThis.navigator){
+  if(!client||!video.canPlayType('application/vnd.apple.mpegurl'))return false;
+  const ua=client.userAgent||'',platform=client.platform||'',apple=client.vendor==='Apple Computer, Inc.';
+  const ios=/^(iPhone|iPad|iPod)$/.test(platform)||(platform==='MacIntel'&&client.maxTouchPoints>1&&apple);
+  const safari=apple&&/Safari\//.test(ua)&&!/Chrome|Chromium|CriOS|Edg|OPR|Android|FxiOS/.test(ua);
+  return ios||safari;
+ }
+ globalThis.AurovoyVideoCore={createPlayback,parseVariants,preferNativeHls};
  if(typeof document==='undefined')return;
  const locale=document.documentElement.lang.split('-')[0],li={zh:0,en:1,fr:2}[locale]??0,t=list=>list[li];
  let sources={};try{sources=JSON.parse(document.getElementById('playback-sources')?.textContent||'{}');}catch{}
@@ -124,7 +145,7 @@
   const message=document.createElement('span');message.className='adaptive-status';message.setAttribute('role','status');message.setAttribute('aria-live','polite');tools.append(label,message);stage.after(tools);
   const option=(value,text)=>{const item=document.createElement('option');item.value=value;item.textContent=text;return item;};
   const fill=levels=>{const selected=select.value||'auto';select.replaceChildren(option('auto',t(['自动','Auto','Auto'])),...levels.map(level=>option(level.value,level.label)),option('original',t(['原片','Original','Original'])));select.value=[...select.options].some(item=>item.value===selected)?selected:'auto';};fill([]);
-  const controller=createPlayback({video,source,manifest,loadHls,onLevels:fill,fetchManifest:async(url,signal)=>{const r=await fetch(url,{signal});if(!r.ok)throw Error('Manifest unavailable');return parseVariants(await r.text(),url);},onState:state=>{
+  const controller=createPlayback({video,source,manifest,loadHls,preferNative:preferNativeHls(video),onLevels:fill,fetchManifest:async(url,signal)=>{const r=await fetch(url,{signal});if(!r.ok)throw Error('Manifest unavailable');return parseVariants(await r.text(),url);},onState:state=>{
    playButton.disabled=state==='loading';playButton.hidden=state==='playing';playButton.textContent=state==='loading'?'…':'▶';
    message.textContent=state==='loading'?t(['正在准备播放','Preparing playback','Préparation de la lecture']):state==='fallback'?t(['已切换到原片','Switched to original','Lecture de l’original']):state==='error'?t(['暂时无法播放，请刷新重试','Unable to play. Please refresh and retry.','Lecture indisponible. Actualisez et réessayez.']):'';
    if(state==='fallback')select.value='original';

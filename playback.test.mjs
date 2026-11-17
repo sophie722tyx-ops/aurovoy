@@ -16,7 +16,7 @@ function setup(t,{id='test-video',workId='test-work',baseline=false}={}){
  function setWork(status='published',video=entry.source){sql.prepare('INSERT INTO works(id,data,status,updated_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,status=excluded.status,updated_at=excluded.updated_at').run(workId,JSON.stringify({id:workId,video}),status,new Date().toISOString());}
  if(!baseline)setWork();
  async function call(file='master.m3u8',{method='GET',headers={},auth,path}={}){
-  const request=new Request('https://site.test'+(path??'/playback/'+id+'/'+file),{method,headers:{...headers,...(auth?{'cf-access-jwt-assertion':tokens[auth]??auth}:{})}});
+  const request=new Request('https://site.test'+(path??'/playback/'+id+'/'+entry.prefix.split('/').pop()+'/'+file),{method,headers:{...headers,...(auth?{'cf-access-jwt-assertion':tokens[auth]??auth}:{})}});
   return playback(request,await authenticate(request,env),{waitUntil:p=>pending.push(p)},catalog);
  }
  return {sql,env,entry,catalog,bytes,manifest,blobs,calls,pending,setWork,call};
@@ -69,7 +69,7 @@ test('baseline quality media can use HLS but deletion never revives its bundled 
 
 test('only complete catalog files with safe paths are served, without revealing storage locations',async t=>{
  const f=setup(t);
- for(const path of ['/playback/missing/master.m3u8','/playback/test-video/missing.ts','/playback/test-video/480p/../private.ts','/playback/test-video/480p/%2e%2e/private.ts','/playback/test-video/480p%2fseg00000.ts','/playback/test-video/%2e%2e%2fmaster.m3u8','/playback/test-video/480p/seg00000.ts/extra','/playback/test-video/index.json','/playback/test-video/constructor','/playback/test-video/../../works/private','/playback/test-video/480p%5cseg00000.ts']){
+ for(const path of ['/playback/missing/version1/master.m3u8','/playback/test-video/version1/missing.ts','/playback/test-video/version1/480p/../private.ts','/playback/test-video/version1/480p/%2e%2e/private.ts','/playback/test-video/version1/480p%2fseg00000.ts','/playback/test-video/version1/%2e%2e%2fmaster.m3u8','/playback/test-video/version1/480p/seg00000.ts/extra','/playback/test-video/version1/index.json','/playback/test-video/version1/constructor','/playback/test-video/version1/../../works/private','/playback/test-video/version1/480p%5cseg00000.ts']){
   const r=await f.call(undefined,{path});assert.equal(r.status,404,path);assert.equal(r.headers.get('cache-control'),'no-store');
  }
  assert.equal(f.calls.gets,0);assert.equal(f.calls.queries,0);
@@ -96,4 +96,34 @@ test('only the two audited editorial showcase sources bypass work rows and site 
   r=await f.call('master.m3u8',{auth:'owner',headers:{'If-None-Match':etag}});assert.equal(r.status,200);assert.equal(r.headers.get('cache-control'),'private, no-store');await r.arrayBuffer();
  }
  const f=setup(t,{id:'showcase-legacy-12',workId:'showcase-legacy-12'});assert.equal((await f.call()).status,404);assert.equal(f.calls.gets,0);
+});
+
+test('only the authorized legacy master redirects; unversioned variants and segments never reinterpret offsets',async t=>{
+ const f=setup(t),path='/playback/test-video/master.m3u8';
+ for(const method of ['GET','HEAD']){
+  const r=await f.call(undefined,{path,method,headers:{'If-None-Match':'*'}});assert.equal(r.status,302);assert.equal(r.headers.get('location'),'/playback/test-video/version1/master.m3u8');assert.equal(r.headers.get('cache-control'),'no-store');assert.equal(await r.text(),'');
+ }
+ assert.equal(f.calls.gets,0);
+ for(const path of ['/playback/test-video/480p/index.m3u8','/playback/test-video/480p/seg00000.ts'])assert.equal((await f.call(undefined,{path,headers:{Range:'bytes=0-7'}})).status,404);
+ f.setWork('draft');assert.equal((await f.call(undefined,{path})).status,404);assert.equal((await f.call(undefined,{path,auth:'owner'})).status,302);
+ f.setWork('published','/media/replaced');assert.equal((await f.call(undefined,{path,auth:'owner'})).status,404);
+ f.setWork('deleted');assert.equal((await f.call(undefined,{path,auth:'owner'})).status,404);
+ f.setWork('published');f.env.PUBLIC_SITE_PAUSED='true';assert.equal((await f.call(undefined,{path})).status,503);
+});
+
+test('old version ranges and validators cannot read cached or replacement rendition bytes',async t=>{
+ const f=setup(t),old=Object.getOwnPropertyDescriptor(globalThis,'caches'),cache=new Map();let cacheReads=0;
+ Object.defineProperty(globalThis,'caches',{configurable:true,value:{default:{async match(request){cacheReads++;return cache.get(request.url)?.clone();},async put(request,response){cache.set(request.url,new Response(await response.arrayBuffer(),response));}}}});
+ t.after(()=>{if(old)Object.defineProperty(globalThis,'caches',old);else delete globalThis.caches;});
+ const oldPath='/playback/test-video/version1/480p/seg00000.ts';
+ let r=await f.call('480p/seg00000.ts',{headers:{Range:'bytes=8-23'}});const etag=r.headers.get('etag');await r.arrayBuffer();await Promise.all(f.pending.splice(0));
+ r=await f.call('480p/seg00000.ts',{headers:{Range:'bytes=8-23'}});assert.match(r.headers.get('server-timing'),/edge-hit/);await r.arrayBuffer();
+ f.entry.prefix='playback/v1/test-video/version2';const updated=f.bytes.map(x=>255-x);f.blobs.set(f.entry.prefix+'/480p/seg00000.ts',updated);
+ const reads=cacheReads,gets=f.calls.gets;
+ for(const headers of [{Range:'bytes=8-23'},{'If-None-Match':etag},{Range:'bytes=8-23','If-Range':etag}])for(const auth of [undefined,'owner']){
+  r=await f.call(undefined,{path:oldPath,headers,auth});assert.equal(r.status,404);assert.equal(r.headers.get('cache-control'),'no-store');
+ }
+ assert.equal(cacheReads,reads);assert.equal(f.calls.gets,gets);
+ r=await f.call('480p/seg00000.ts',{headers:{Range:'bytes=8-23'}});assert.equal(r.status,206);assert.notEqual(r.headers.get('etag'),etag);assert.deepEqual(new Uint8Array(await r.arrayBuffer()),updated.slice(8,24));await Promise.all(f.pending.splice(0));
+ f.setWork('draft');r=await f.call('480p/seg00000.ts',{headers:{Range:'bytes=8-23'}});assert.equal(r.status,404);
 });

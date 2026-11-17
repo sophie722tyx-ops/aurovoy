@@ -1,6 +1,6 @@
 import catalog from '../playback-catalog.json' with {type:'json'};
 export function playbackPage(html){
- const sources=Object.fromEntries(Object.entries(catalog).filter(([,value])=>html.includes('="'+value.source+'"')).map(([id,value])=>[value.source,'/playback/'+id+'/master.m3u8']));
+ const sources=Object.fromEntries(Object.entries(catalog).filter(([,value])=>html.includes('="'+value.source+'"')).map(([id,value])=>[value.source,'/playback/'+id+'/'+value.prefix.split('/').pop()+'/master.m3u8']));
  if(!Object.keys(sources).length)return html;
  const prepared=[...html.matchAll(/<video\b[\s\S]*?<\/video>/g)].some(([video])=>Object.keys(sources).some(source=>video.includes('src="'+source+'"')));
  if(prepared){

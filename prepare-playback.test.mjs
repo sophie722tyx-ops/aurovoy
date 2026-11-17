@@ -10,6 +10,8 @@ test('playback ladder preserves orientation and never upscales small originals',
  assert.deepEqual(ladderFor(1922,1080).at(-1).width,1920);
  assert.deepEqual(ladderFor(1080,1922).at(-1).height,1920);
  assert.ok(ladderFor(3840,1600).every(x=>Math.ceil(x.width/16)*Math.ceil(x.height/16)<=8192));
+ const wide=ladderFor(3266,1080);assert.equal(wide.length,2);assert.equal(new Set(wide.map(x=>`${x.width}x${x.height}`)).size,wide.length);assert.deepEqual(wide.map(x=>x.name),['480p','634p']);
+ assert.ok(ladderFor(1922,1080).every(x=>x.name===Math.min(x.width,x.height)+'p'));
 });
 const valid=['#EXTM3U','#EXT-X-INDEPENDENT-SEGMENTS','#EXTINF:4,','#EXT-X-BYTERANGE:1000@0','stream.ts','#EXTINF:1.5,','#EXT-X-BYTERANGE:500@1000','stream.ts','#EXT-X-ENDLIST'].join('\n');
 test('validation rejects truncated, gapped or oversized segmented media',()=>{

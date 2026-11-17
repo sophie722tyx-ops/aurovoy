@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import './src/adaptive-video.js';
 
-const {createPlayback,parseVariants}=globalThis.AurovoyVideoCore;
+const {createPlayback,parseVariants,preferNativeHls}=globalThis.AurovoyVideoCore;
 class Video extends EventTarget{
  constructor(native=false){super();this.src='';this.paused=true;this.currentTime=0;this.duration=100;this.readyState=1;this.native=native;this.plays=0;this.loads=0;}
  play(){this.paused=false;this.plays++;return Promise.resolve();}
@@ -24,14 +24,14 @@ function fixture(options={}){
   destroy(){this.destroyed=true;}
  }
  let calls=0;
- const controller=createPlayback({video,source:'/media/movie',manifest:'/playback/movie/master.m3u8',loadHls:options.loadHls||(()=>{calls++;return Promise.resolve(Hls);}),onState:s=>states.push(s),onLevels:l=>levels.push(l),fetchManifest:options.fetchManifest});
+ const controller=createPlayback({video,source:'/media/movie',manifest:'/playback/movie/master.m3u8',loadHls:options.loadHls||(()=>{calls++;return Promise.resolve(Hls);}),preferNative:options.preferNative,onState:s=>states.push(s),onLevels:l=>levels.push(l),fetchManifest:options.fetchManifest});
  return {controller,video,instances,states,levels,Hls,get calls(){return calls;}};
 }
 test('opening a prepared player does not fetch or start a video; HLS starts on explicit play',async()=>{
  const f=fixture();assert.equal(f.calls,0);assert.equal(f.video.plays,0);assert.equal(f.instances.length,0);
  await f.controller.play();assert.equal(f.calls,1);assert.equal(f.instances[0].url,'/playback/movie/master.m3u8');assert.equal(f.video.src,'');
  f.instances[0].emit('manifest');await Promise.resolve();
- assert.equal(f.video.paused,false);assert.equal(f.instances[0].currentLevel,-1);assert.equal(f.instances[0].config.startLevel,0);
+ assert.equal(f.video.paused,false);assert.equal(f.instances[0].currentLevel,undefined,'do not reset the first buffered level while automatic mode is active');assert.equal(f.instances[0].config.startLevel,0);
  assert.deepEqual(f.levels[0],[{value:'0',label:'480p'},{value:'1',label:'720p'}]);
  f.video.currentTime=17;f.controller.select('1');assert.equal(f.instances[0].nextLevel,1);assert.equal(f.video.currentTime,17);
  f.controller.select('auto');assert.equal(f.instances[0].nextLevel,-1);
@@ -42,12 +42,44 @@ test('closing while the lazy player script is loading never attaches an engine o
  const task=f.controller.play();f.controller.destroy();resolve(f.Hls);await task;
  assert.equal(f.instances.length,0);assert.equal(f.video.plays,0);assert.equal(f.video.src,'');
 });
+test('a manually selected level before first play is honored without enabling automatic switching',async()=>{
+ const f=fixture();f.controller.select('1');assert.equal(f.calls,0);await f.controller.play();f.instances[0].emit('manifest');
+ assert.equal(f.instances[0].currentLevel,1);assert.equal(f.instances[0].capLevelToPlayerSize,false);f.controller.destroy();
+});
 test('fatal HLS failure falls back once to original and retains the current position',async()=>{
  const f=fixture();await f.controller.play();f.instances[0].emit('manifest');f.video.currentTime=23;
  f.instances[0].emit('error',{fatal:true});assert(f.instances[0].destroyed);assert.equal(f.controller.mode,'original');assert.equal(f.video.src,'/media/movie');
  f.video.currentTime=0;f.video.dispatchEvent(new Event('loadedmetadata'));assert.equal(f.video.currentTime,23);
  f.video.dispatchEvent(new Event('error'));assert.equal(f.states.at(-1),'error');assert.equal(f.instances.length,1);
  f.controller.destroy();
+});
+test('a fatal HLS error after a native pause falls back without restarting playback',async()=>{
+ const f=fixture();await f.controller.play();f.instances[0].emit('manifest');await Promise.resolve();
+ f.video.currentTime=23;f.video.pause();const plays=f.video.plays;
+ f.instances[0].emit('error',{fatal:true});assert.equal(f.controller.mode,'original');assert(f.video.paused);assert.equal(f.video.plays,plays);
+ f.video.currentTime=0;f.video.dispatchEvent(new Event('loadedmetadata'));assert.equal(f.video.currentTime,23);assert(f.video.paused);assert.equal(f.video.plays,plays);
+ f.controller.destroy();
+});
+test('an initial HLS failure keeps the original Play request even before playback has started',async()=>{
+ const f=fixture();await f.controller.play();assert(f.video.paused);assert.equal(f.video.plays,0);
+ f.instances[0].emit('error',{fatal:true});assert.equal(f.controller.mode,'original');assert.equal(f.video.plays,1);assert(!f.video.paused);f.controller.destroy();
+});
+test('preferred native HLS error respects a pause and does not autoplay its original fallback',async()=>{
+ const f=fixture({preferNative:true,native:true});await f.controller.play();assert.equal(f.calls,0);f.video.dispatchEvent(new Event('playing'));f.video.currentTime=12;f.video.pause();const plays=f.video.plays;
+ f.video.dispatchEvent(new Event('error'));assert.equal(f.controller.mode,'original');f.video.dispatchEvent(new Event('loadedmetadata'));assert(f.video.paused);assert.equal(f.video.plays,plays);f.controller.destroy();
+});
+test('preferred native HLS starts inside the initial gesture without requesting the vendor or awaiting metadata',async()=>{
+ let resolve;const pendingManifest=new Promise(r=>resolve=r),f=fixture({preferNative:true,native:true,fetchManifest:()=>pendingManifest});
+ const task=f.controller.play();assert.equal(f.calls,0);assert.equal(f.instances.length,0);assert.equal(f.video.src,'/playback/movie/master.m3u8');assert.equal(f.video.plays,1);assert.equal(f.controller.mode,'native');
+ resolve([]);await task;assert.equal(f.calls,0);f.controller.destroy();
+});
+test('native-first detection is limited to native-capable Safari and actual iOS platforms',()=>{
+ const capable=new Video(true),apple={vendor:'Apple Computer, Inc.',platform:'MacIntel',maxTouchPoints:0,userAgent:'Mozilla/5.0 (Macintosh) AppleWebKit/605.1.15 Version/18.0 Safari/605.1.15'};
+ assert(preferNativeHls(capable,apple));assert(preferNativeHls(capable,{...apple,maxTouchPoints:5}));
+ assert(preferNativeHls(capable,{...apple,platform:'iPhone',userAgent:'Mozilla/5.0 (iPhone) CriOS/147.0 Mobile/15E148 Safari/604.1'}));
+ assert.equal(preferNativeHls(capable,{vendor:'Google Inc.',platform:'MacIntel',maxTouchPoints:0,userAgent:'Mozilla/5.0 (Macintosh) AppleWebKit/537.36 Chrome/147.0.0.0 Safari/537.36'}),false);
+ assert.equal(preferNativeHls(capable,{vendor:'Google Inc.',platform:'Win32',maxTouchPoints:5,userAgent:'Mozilla/5.0 AppleWebKit/537.36 Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0'}),false);
+ assert.equal(preferNativeHls(new Video(false),apple),false);
 });
 test('switching Original to adaptive preserves a paused position without forcing playback',async()=>{
  const f=fixture();f.controller.select('original');await f.controller.play();assert.equal(f.calls,0);assert.equal(f.video.src,'/media/movie');

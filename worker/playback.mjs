@@ -14,11 +14,15 @@ const denied=(request,status=404)=>new Response(request.method==='HEAD'?null:sta
 export async function playback(request,env,context,entries=catalog){
  if(!['GET','HEAD'].includes(request.method))return denied(request,405);
  const match=new URL(request.url).pathname.match(/^\/playback\/([a-z0-9-]{1,160})\/(.+)$/);
- if(!match||!safeFile.test(match[2]))return denied(request);
- const [,id,file]=match;
+ if(!match)return denied(request);
+ const [,id,tail]=match;
  if(!Object.hasOwn(entries,id))return denied(request);
  const entry=entries[id];
  if(!entry||!/^playback\/v1\/[a-z0-9-]{1,160}\/[a-zA-Z0-9_-]+$/.test(entry.prefix)||!entry.prefix.startsWith('playback/v1/'+id+'/'))return denied(request);
+ const version=entry.prefix.split('/').pop(),legacy=tail==='master.m3u8';
+ if(!legacy&&!tail.startsWith(version+'/'))return denied(request);
+ const file=legacy?tail:tail.slice(version.length+1);
+ if(!safeFile.test(file))return denied(request);
  // These two editorial videos have no work row. Their original URL, object key
  // and byte length must match the existing trusted showcase inventory exactly.
  const showcaseKey=id==='showcase-global-en'?'global-en':id==='showcase-global-pt'?'global-pt':null;
@@ -34,6 +38,10 @@ export async function playback(request,env,context,entries=catalog){
  // also revoke already cached manifests, segments and conditional responses.
  const start=performance.now(),work=showcase?null:await getWork(env,entry.workId);
  if(!showcase&&(!work||work.video!==entry.source||!(work.status==='published'||work.status==='draft'&&admin)))return denied(request);
+ // Older pages may still request the pilot's unversioned master. Resolve it
+ // only after live authorization. Never reinterpret old variant byte offsets
+ // against a newer encoding of the same original upload.
+ if(legacy)return new Response(null,{status:302,headers:{Location:`/playback/${id}/${version}/master.m3u8`,'Cache-Control':'no-store'}});
  const accessMs=performance.now()-start;
  const result=await storedMedia(request,env,entry.prefix+'/'+file,types[file.split('.').pop()],{size:metadata.size,published:(showcase||work.status==='published')&&!paused,context});
  result.headers.append('Server-Timing','access;dur='+accessMs.toFixed(1));

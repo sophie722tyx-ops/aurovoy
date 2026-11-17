@@ -1,80 +1,4 @@
 {
-  "eaa0efb0-c039-4a88-bcbe-16c196fb837a": {
-    "workId": "7de8ea29-95ee-4d95-84db-38f86d433101",
-    "source": "/media/eaa0efb0-c039-4a88-bcbe-16c196fb837a",
-    "sourceObjectKey": "works/7de8ea29-95ee-4d95-84db-38f86d433101/eaa0efb0-c039-4a88-bcbe-16c196fb837a",
-    "sourceSize": 88526948,
-    "sourceSha256": "d78144a898ef9b63d702d2cb84579ec84e64cbb20378dffca98d1cc5d33a6e10",
-    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
-    "duration": 23.8,
-    "width": 2160,
-    "height": 2880,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/eaa0efb0-c039-4a88-bcbe-16c196fb837a/bf9dc8e599f321a5",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 492,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 1704596,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 493,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 3696644,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 500,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 7427128,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 529,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 480,
-        "height": 640,
-        "bandwidth": 896008,
-        "averageBandwidth": 572974,
-        "duration": 23.8,
-        "segments": 6,
-        "maxSegmentBytes": 448004
-      },
-      {
-        "name": "720p",
-        "width": 720,
-        "height": 960,
-        "bandwidth": 1962344,
-        "averageBandwidth": 1242570,
-        "duration": 23.8,
-        "segments": 6,
-        "maxSegmentBytes": 981172
-      },
-      {
-        "name": "1080p",
-        "width": 1080,
-        "height": 1440,
-        "bandwidth": 3457320,
-        "averageBandwidth": 2496514,
-        "duration": 23.8,
-        "segments": 6,
-        "maxSegmentBytes": 1728660
-      }
-    ]
-  },
   "quality-20260913-legacy-1": {
     "workId": "legacy-1",
     "source": "/media/quality-20260913-legacy-1",
@@ -148,672 +72,6 @@
         "duration": 30.1,
         "segments": 8,
         "maxSegmentBytes": 2020248
-      }
-    ]
-  },
-  "quality-20260913-legacy-10": {
-    "workId": "legacy-10",
-    "source": "/media/quality-20260913-legacy-10",
-    "sourceObjectKey": "quality-20260913/legacy-10.mp4",
-    "sourceSize": 22619271,
-    "sourceSha256": "ef4d314a0ccfa5f70f21f2a9e3d2608886fb8e799d4cec62f51e4a47d7721067",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 30.1,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-10/3c1324af26d07196",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 613,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 2586692,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 614,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 5698280,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 623,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 11765980,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 845248,
-        "averageBandwidth": 687493,
-        "duration": 30.1,
-        "segments": 8,
-        "maxSegmentBytes": 422624
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 1844656,
-        "averageBandwidth": 1514494,
-        "duration": 30.1,
-        "segments": 8,
-        "maxSegmentBytes": 922328
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 3644192,
-        "averageBandwidth": 3127171,
-        "duration": 30.1,
-        "segments": 8,
-        "maxSegmentBytes": 1822096
-      }
-    ]
-  },
-  "quality-20260913-legacy-12": {
-    "workId": "legacy-12",
-    "source": "/media/quality-20260913-legacy-12",
-    "sourceObjectKey": "quality-20260913/legacy-12.mp4",
-    "sourceSize": 168298433,
-    "sourceSha256": "550ecf1d2163e815954109fa3f01d2f34c5d2a67ac85cf32017e83276687ff9b",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 243.966667,
-    "width": 1922,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-12/f21dc3c274bf0d2d",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 3825,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 21638236,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 3846,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 47497260,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 3910,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 97136404,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 854,
-        "height": 480,
-        "bandwidth": 937368,
-        "averageBandwidth": 709548,
-        "duration": 243.966667,
-        "segments": 61,
-        "maxSegmentBytes": 468684
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2146584,
-        "averageBandwidth": 1557500,
-        "duration": 243.966667,
-        "segments": 61,
-        "maxSegmentBytes": 1073292
-      },
-      {
-        "name": "1080p",
-        "width": 1922,
-        "height": 1080,
-        "bandwidth": 4050648,
-        "averageBandwidth": 3185236,
-        "duration": 243.966667,
-        "segments": 61,
-        "maxSegmentBytes": 2025324
-      }
-    ]
-  },
-  "quality-20260913-legacy-13": {
-    "workId": "legacy-13",
-    "source": "/media/quality-20260913-legacy-13",
-    "sourceObjectKey": "quality-20260913/legacy-13.mp4",
-    "sourceSize": 122644012,
-    "sourceSha256": "0cca2d247e47b9cffcfc34dcd72b403af7208fae67c2d20fd61381eb865d31e1",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 98.933333,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-13/2f654b22e86ccb95",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1633,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 8535952,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1647,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 18723484,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 1678,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 38825572,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 951656,
-        "averageBandwidth": 690239,
-        "duration": 98.933333,
-        "segments": 25,
-        "maxSegmentBytes": 475828
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2183056,
-        "averageBandwidth": 1514029,
-        "duration": 98.933333,
-        "segments": 25,
-        "maxSegmentBytes": 1091528
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 4114568,
-        "averageBandwidth": 3139535,
-        "duration": 98.933333,
-        "segments": 25,
-        "maxSegmentBytes": 2057284
-      }
-    ]
-  },
-  "quality-20260913-legacy-14": {
-    "workId": "legacy-14",
-    "source": "/media/quality-20260913-legacy-14",
-    "sourceObjectKey": "quality-20260913/legacy-14.mp4",
-    "sourceSize": 16868100,
-    "sourceSha256": "a45372eef414d6697e90018b0388cf953adbbb352a3fffcebdc082089ff8f593",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 80.866667,
-    "width": 1280,
-    "height": 720,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-14/3356e3abd993ba68",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1392,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 7062032,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1402,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 15548352,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 368,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 914056,
-        "averageBandwidth": 698635,
-        "duration": 80.866667,
-        "segments": 21,
-        "maxSegmentBytes": 457028
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2094320,
-        "averageBandwidth": 1538172,
-        "duration": 80.866667,
-        "segments": 21,
-        "maxSegmentBytes": 1047160
-      }
-    ]
-  },
-  "quality-20260913-legacy-15": {
-    "workId": "legacy-15",
-    "source": "/media/quality-20260913-legacy-15",
-    "sourceObjectKey": "quality-20260913/legacy-15.mp4",
-    "sourceSize": 72428704,
-    "sourceSha256": "45125c5576fd7c1577447c66a2d02304837c28365f00ee5dd0a45448351a1a09",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 83.033333,
-    "width": 1080,
-    "height": 1920,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-15/839bc7a8976cc2f1",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1391,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 7162988,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1401,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 15664724,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 1429,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 31897396,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 480,
-        "height": 852,
-        "bandwidth": 928344,
-        "averageBandwidth": 690132,
-        "duration": 83.033333,
-        "segments": 21,
-        "maxSegmentBytes": 464172
-      },
-      {
-        "name": "720p",
-        "width": 720,
-        "height": 1280,
-        "bandwidth": 1941288,
-        "averageBandwidth": 1509247,
-        "duration": 83.033333,
-        "segments": 21,
-        "maxSegmentBytes": 970644
-      },
-      {
-        "name": "1080p",
-        "width": 1080,
-        "height": 1920,
-        "bandwidth": 3810384,
-        "averageBandwidth": 3073214,
-        "duration": 83.033333,
-        "segments": 21,
-        "maxSegmentBytes": 1905192
-      }
-    ]
-  },
-  "quality-20260913-legacy-16": {
-    "workId": "legacy-16",
-    "source": "/media/quality-20260913-legacy-16",
-    "sourceObjectKey": "quality-20260913/legacy-16.mp4",
-    "sourceSize": 186596482,
-    "sourceSha256": "4d3fa69f5f9683fdbc9521ba2a2814fe9507fe8545f266393e9c03b841c8bf71",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 207.166667,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-16/ba6dfc30398a97f3",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 3276,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 18398244,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 3295,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 40437296,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 3352,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 82825468,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 916312,
-        "averageBandwidth": 710472,
-        "duration": 207.166667,
-        "segments": 52,
-        "maxSegmentBytes": 458156
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2099584,
-        "averageBandwidth": 1561537,
-        "duration": 207.166667,
-        "segments": 52,
-        "maxSegmentBytes": 1049792
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 3995000,
-        "averageBandwidth": 3198410,
-        "duration": 207.166667,
-        "segments": 52,
-        "maxSegmentBytes": 1997500
-      }
-    ]
-  },
-  "quality-20260913-legacy-17": {
-    "workId": "legacy-17",
-    "source": "/media/quality-20260913-legacy-17",
-    "sourceObjectKey": "quality-20260913/legacy-17.mp4",
-    "sourceSize": 47405843,
-    "sourceSha256": "6010ce05e33e42b61f50ba67e1d05c7a20ba80d182884e55743f07657c6834d7",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 50.033333,
-    "width": 1080,
-    "height": 1920,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-17/9b88bb889fbd0c05",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 913,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 4071704,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 914,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 8774900,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 931,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 17911512,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 480,
-        "height": 852,
-        "bandwidth": 822688,
-        "averageBandwidth": 651039,
-        "duration": 50.033333,
-        "segments": 13,
-        "maxSegmentBytes": 411344
-      },
-      {
-        "name": "720p",
-        "width": 720,
-        "height": 1280,
-        "bandwidth": 1855936,
-        "averageBandwidth": 1403049,
-        "duration": 50.033333,
-        "segments": 13,
-        "maxSegmentBytes": 927968
-      },
-      {
-        "name": "1080p",
-        "width": 1080,
-        "height": 1920,
-        "bandwidth": 3723904,
-        "averageBandwidth": 2863933,
-        "duration": 50.033333,
-        "segments": 13,
-        "maxSegmentBytes": 1861952
-      }
-    ]
-  },
-  "quality-20260913-legacy-18": {
-    "workId": "legacy-18",
-    "source": "/media/quality-20260913-legacy-18",
-    "sourceObjectKey": "quality-20260913/legacy-18.mp4",
-    "sourceSize": 89617987,
-    "sourceSha256": "cc1af163baa10829556c27b6de4ebbb54c1e7d1c188bbe42b0decafa29f75ac2",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 75.033333,
-    "width": 3266,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-18/48243def5b47aadb",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1273,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 6722316,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1280,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 14700472,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 1305,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 30020404,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 531,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 1450,
-        "height": 480,
-        "bandwidth": 833216,
-        "averageBandwidth": 716729,
-        "duration": 75.033333,
-        "segments": 19,
-        "maxSegmentBytes": 416608
-      },
-      {
-        "name": "720p",
-        "width": 2176,
-        "height": 720,
-        "bandwidth": 1797656,
-        "averageBandwidth": 1567354,
-        "duration": 75.033333,
-        "segments": 19,
-        "maxSegmentBytes": 898828
-      },
-      {
-        "name": "1080p",
-        "width": 3266,
-        "height": 1080,
-        "bandwidth": 3479128,
-        "averageBandwidth": 3200754,
-        "duration": 75.033333,
-        "segments": 19,
-        "maxSegmentBytes": 1739564
-      }
-    ]
-  },
-  "quality-20260913-legacy-19": {
-    "workId": "legacy-19",
-    "source": "/media/quality-20260913-legacy-19",
-    "sourceObjectKey": "quality-20260913/legacy-19.mp4",
-    "sourceSize": 99025824,
-    "sourceSha256": "fcdb93672380fca794416eb18c59aa745176a6582be2265d7fd11f9e3464b711",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 68.766667,
-    "width": 3260,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-19/b8ac023fc923a640",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1212,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 5756936,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1221,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 12552384,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 1241,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 25711068,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 531,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 1448,
-        "height": 480,
-        "bandwidth": 948272,
-        "averageBandwidth": 669736,
-        "duration": 68.766667,
-        "segments": 18,
-        "maxSegmentBytes": 474136
-      },
-      {
-        "name": "720p",
-        "width": 2172,
-        "height": 720,
-        "bandwidth": 2136056,
-        "averageBandwidth": 1460288,
-        "duration": 68.766667,
-        "segments": 18,
-        "maxSegmentBytes": 1068028
-      },
-      {
-        "name": "1080p",
-        "width": 3260,
-        "height": 1080,
-        "bandwidth": 4121336,
-        "averageBandwidth": 2991109,
-        "duration": 68.766667,
-        "segments": 18,
-        "maxSegmentBytes": 2060668
       }
     ]
   },
@@ -893,538 +151,6 @@
       }
     ]
   },
-  "quality-20260913-legacy-20": {
-    "workId": "legacy-20",
-    "source": "/media/quality-20260913-legacy-20",
-    "sourceObjectKey": "quality-20260913/legacy-20.mp4",
-    "sourceSize": 104486447,
-    "sourceSha256": "f8477a26a5794e0de589160b42a95d00522ca41587df8aaa9914ed1e681f1145",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 118.1,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-20/57ef12c0e499e243",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1934,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 10571052,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1952,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 23307488,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 1987,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 47560240,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 913304,
-        "averageBandwidth": 716075,
-        "duration": 118.1,
-        "segments": 30,
-        "maxSegmentBytes": 456652
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2004080,
-        "averageBandwidth": 1578831,
-        "duration": 118.1,
-        "segments": 30,
-        "maxSegmentBytes": 1002040
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 3826928,
-        "averageBandwidth": 3221693,
-        "duration": 118.1,
-        "segments": 30,
-        "maxSegmentBytes": 1913464
-      }
-    ]
-  },
-  "quality-20260913-legacy-21": {
-    "workId": "legacy-21",
-    "source": "/media/quality-20260913-legacy-21",
-    "sourceObjectKey": "quality-20260913/legacy-21.mp4",
-    "sourceSize": 44774106,
-    "sourceSha256": "ebe04590ffb3191f6e10508fca41ac6917cfca7acdbeab61c9382b814f497e83",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 48.8,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-21/233e3a7dd0969ac5",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 912,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 4214584,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 914,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 9300172,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 932,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 19158140,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 853520,
-        "averageBandwidth": 690916,
-        "duration": 48.8,
-        "segments": 13,
-        "maxSegmentBytes": 426760
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 1902560,
-        "averageBandwidth": 1524619,
-        "duration": 48.8,
-        "segments": 13,
-        "maxSegmentBytes": 951280
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 3816400,
-        "averageBandwidth": 3140679,
-        "duration": 48.8,
-        "segments": 13,
-        "maxSegmentBytes": 1873984
-      }
-    ]
-  },
-  "quality-20260913-legacy-24": {
-    "workId": "legacy-24",
-    "source": "/media/quality-20260913-legacy-24",
-    "sourceObjectKey": "quality-20260913/legacy-24.mp4",
-    "sourceSize": 42013496,
-    "sourceSha256": "d43b85c421c6b445b867dad78a9c62f39c434b61f143aa18806d025023a556f4",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 57.933333,
-    "width": 1080,
-    "height": 1920,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-24/7e6d846d3d00bc72",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1033,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 5256668,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1037,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 11576100,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 1058,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 23593624,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 480,
-        "height": 852,
-        "bandwidth": 964635,
-        "averageBandwidth": 725893,
-        "duration": 57.933333,
-        "segments": 15,
-        "maxSegmentBytes": 459472
-      },
-      {
-        "name": "720p",
-        "width": 720,
-        "height": 1280,
-        "bandwidth": 2204657,
-        "averageBandwidth": 1598541,
-        "duration": 57.933333,
-        "segments": 15,
-        "maxSegmentBytes": 1011252
-      },
-      {
-        "name": "1080p",
-        "width": 1080,
-        "height": 1920,
-        "bandwidth": 4218721,
-        "averageBandwidth": 3258038,
-        "duration": 57.933333,
-        "segments": 15,
-        "maxSegmentBytes": 1991860
-      }
-    ]
-  },
-  "quality-20260913-legacy-25": {
-    "workId": "legacy-25",
-    "source": "/media/quality-20260913-legacy-25",
-    "sourceObjectKey": "quality-20260913/legacy-25.mp4",
-    "sourceSize": 57248596,
-    "sourceSha256": "ebd7b4add1e4435184ef37177ee7a721c9e451432dd0d4473c7a1d23b3997cd4",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 71.3,
-    "width": 1080,
-    "height": 1920,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-25/58ffa559163e77a3",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1213,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 6281832,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1220,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 13834168,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 1244,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 28449476,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 480,
-        "height": 852,
-        "bandwidth": 944888,
-        "averageBandwidth": 704834,
-        "duration": 71.3,
-        "segments": 18,
-        "maxSegmentBytes": 472444
-      },
-      {
-        "name": "720p",
-        "width": 720,
-        "height": 1280,
-        "bandwidth": 2111616,
-        "averageBandwidth": 1552221,
-        "duration": 71.3,
-        "segments": 18,
-        "maxSegmentBytes": 1055808
-      },
-      {
-        "name": "1080p",
-        "width": 1080,
-        "height": 1920,
-        "bandwidth": 4054032,
-        "averageBandwidth": 3192088,
-        "duration": 71.3,
-        "segments": 18,
-        "maxSegmentBytes": 2027016
-      }
-    ]
-  },
-  "quality-20260913-legacy-26": {
-    "workId": "legacy-26",
-    "source": "/media/quality-20260913-legacy-26",
-    "sourceObjectKey": "quality-20260913/legacy-26.mp4",
-    "sourceSize": 39980988,
-    "sourceSha256": "bdaee692f565d429f9c45c635a7fb0ec2ec1fbe93edfe00f4febb54bc5153993",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 41.666667,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-26/85620d8d22ae31ea",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 793,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 3683860,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 795,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 8112012,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 809,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 16511100,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 919696,
-        "averageBandwidth": 707302,
-        "duration": 41.666667,
-        "segments": 11,
-        "maxSegmentBytes": 459848
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2013104,
-        "averageBandwidth": 1557507,
-        "duration": 41.666667,
-        "segments": 11,
-        "maxSegmentBytes": 1006552
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 3952888,
-        "averageBandwidth": 3170132,
-        "duration": 41.666667,
-        "segments": 11,
-        "maxSegmentBytes": 1976444
-      }
-    ]
-  },
-  "quality-20260913-legacy-27": {
-    "workId": "legacy-27",
-    "source": "/media/quality-20260913-legacy-27",
-    "sourceObjectKey": "quality-20260913/legacy-27.mp4",
-    "sourceSize": 71449257,
-    "sourceSha256": "2f00e9c13be87a95f2008aa601e92e385ab53072fcdeb594d68a08e735f5405f",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 63.466667,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-27/e6482bc4756fb215",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 1093,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 5462528,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 1099,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 12000604,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 1118,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 24429096,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 927216,
-        "averageBandwidth": 688554,
-        "duration": 63.466667,
-        "segments": 16,
-        "maxSegmentBytes": 463608
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2138688,
-        "averageBandwidth": 1512682,
-        "duration": 63.466667,
-        "segments": 16,
-        "maxSegmentBytes": 1069344
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 4016808,
-        "averageBandwidth": 3079298,
-        "duration": 63.466667,
-        "segments": 16,
-        "maxSegmentBytes": 2008404
-      }
-    ]
-  },
-  "quality-20260913-legacy-29": {
-    "workId": "legacy-29",
-    "source": "/media/quality-20260913-legacy-29",
-    "sourceObjectKey": "quality-20260913/legacy-29.mp4",
-    "sourceSize": 254370825,
-    "sourceSha256": "0d14cfa97c9d737c860acb1bc2673bbde602de15d08771c8025fd9bc24e98144",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 207.066667,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-29/206d5493ab7a02fb",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 3276,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 18368540,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 3296,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 40459856,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 3349,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 82138704,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 913680,
-        "averageBandwidth": 709667,
-        "duration": 207.066667,
-        "segments": 52,
-        "maxSegmentBytes": 456840
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2107856,
-        "averageBandwidth": 1563163,
-        "duration": 207.066667,
-        "segments": 52,
-        "maxSegmentBytes": 1053928
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 4004024,
-        "averageBandwidth": 3173421,
-        "duration": 207.066667,
-        "segments": 52,
-        "maxSegmentBytes": 2002012
-      }
-    ]
-  },
   "quality-20260913-legacy-3": {
     "workId": "legacy-3",
     "source": "/media/quality-20260913-legacy-3",
@@ -1498,82 +224,6 @@
         "duration": 30.233333000000002,
         "segments": 8,
         "maxSegmentBytes": 1830556
-      }
-    ]
-  },
-  "quality-20260913-legacy-31": {
-    "workId": "legacy-31",
-    "source": "/media/quality-20260913-legacy-31",
-    "sourceObjectKey": "quality-20260913/legacy-31.mp4",
-    "sourceSize": 13784893,
-    "sourceSha256": "828cc07baf676daa94a996047283e029cb0853f80beada8ab79611022dbd46a7",
-    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
-    "duration": 30.1,
-    "width": 1920,
-    "height": 1080,
-    "fps": 30,
-    "hasAudio": true,
-    "prefix": "playback/v1/quality-20260913-legacy-31/51f850ed652894b9",
-    "files": {
-      "480p/index.m3u8": {
-        "size": 611,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "480p/stream.ts": {
-        "size": 2441932,
-        "type": "video/mp2t"
-      },
-      "720p/index.m3u8": {
-        "size": 615,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "720p/stream.ts": {
-        "size": 5343148,
-        "type": "video/mp2t"
-      },
-      "1080p/index.m3u8": {
-        "size": 621,
-        "type": "application/vnd.apple.mpegurl"
-      },
-      "1080p/stream.ts": {
-        "size": 10769956,
-        "type": "video/mp2t"
-      },
-      "master.m3u8": {
-        "size": 530,
-        "type": "application/vnd.apple.mpegurl"
-      }
-    },
-    "variants": [
-      {
-        "name": "480p",
-        "width": 852,
-        "height": 480,
-        "bandwidth": 927968,
-        "averageBandwidth": 649019,
-        "duration": 30.1,
-        "segments": 8,
-        "maxSegmentBytes": 463984
-      },
-      {
-        "name": "720p",
-        "width": 1280,
-        "height": 720,
-        "bandwidth": 2118760,
-        "averageBandwidth": 1420106,
-        "duration": 30.1,
-        "segments": 8,
-        "maxSegmentBytes": 1059380
-      },
-      {
-        "name": "1080p",
-        "width": 1920,
-        "height": 1080,
-        "bandwidth": 4069824,
-        "averageBandwidth": 2862447,
-        "duration": 30.1,
-        "segments": 8,
-        "maxSegmentBytes": 2034912
       }
     ]
   },
@@ -2033,6 +683,4470 @@
       }
     ]
   },
+  "quality-20260913-legacy-10": {
+    "workId": "legacy-10",
+    "source": "/media/quality-20260913-legacy-10",
+    "sourceObjectKey": "quality-20260913/legacy-10.mp4",
+    "sourceSize": 22619271,
+    "sourceSha256": "ef4d314a0ccfa5f70f21f2a9e3d2608886fb8e799d4cec62f51e4a47d7721067",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 30.1,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-10/3c1324af26d07196",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 613,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 2586692,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 614,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 5698280,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 623,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 11765980,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 845248,
+        "averageBandwidth": 687493,
+        "duration": 30.1,
+        "segments": 8,
+        "maxSegmentBytes": 422624
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1844656,
+        "averageBandwidth": 1514494,
+        "duration": 30.1,
+        "segments": 8,
+        "maxSegmentBytes": 922328
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3644192,
+        "averageBandwidth": 3127171,
+        "duration": 30.1,
+        "segments": 8,
+        "maxSegmentBytes": 1822096
+      }
+    ]
+  },
+  "quality-20260913-legacy-12": {
+    "workId": "legacy-12",
+    "source": "/media/quality-20260913-legacy-12",
+    "sourceObjectKey": "quality-20260913/legacy-12.mp4",
+    "sourceSize": 168298433,
+    "sourceSha256": "550ecf1d2163e815954109fa3f01d2f34c5d2a67ac85cf32017e83276687ff9b",
+    "recipe": "hls-ts-range-v4-4s-480-720-1080-veryfast",
+    "duration": 243.966667,
+    "width": 1922,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-12/94c8c097a4c6440a",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3825,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 21638236,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 3846,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 47497260,
+        "type": "video/mp2t"
+      },
+      "1078p/index.m3u8": {
+        "size": 3910,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1078p/stream.ts": {
+        "size": 96396436,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 854,
+        "height": 480,
+        "bandwidth": 937368,
+        "averageBandwidth": 709548,
+        "duration": 243.966667,
+        "segments": 61,
+        "maxSegmentBytes": 468684
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2146584,
+        "averageBandwidth": 1557500,
+        "duration": 243.966667,
+        "segments": 61,
+        "maxSegmentBytes": 1073292
+      },
+      {
+        "name": "1078p",
+        "width": 1920,
+        "height": 1078,
+        "bandwidth": 3515224,
+        "averageBandwidth": 3160971,
+        "duration": 243.966667,
+        "segments": 61,
+        "maxSegmentBytes": 1757612
+      }
+    ]
+  },
+  "quality-20260913-legacy-13": {
+    "workId": "legacy-13",
+    "source": "/media/quality-20260913-legacy-13",
+    "sourceObjectKey": "quality-20260913/legacy-13.mp4",
+    "sourceSize": 122644012,
+    "sourceSha256": "0cca2d247e47b9cffcfc34dcd72b403af7208fae67c2d20fd61381eb865d31e1",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 98.933333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-13/2f654b22e86ccb95",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1633,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 8535952,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1647,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 18723484,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1678,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 38825572,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 951656,
+        "averageBandwidth": 690239,
+        "duration": 98.933333,
+        "segments": 25,
+        "maxSegmentBytes": 475828
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2183056,
+        "averageBandwidth": 1514029,
+        "duration": 98.933333,
+        "segments": 25,
+        "maxSegmentBytes": 1091528
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4114568,
+        "averageBandwidth": 3139535,
+        "duration": 98.933333,
+        "segments": 25,
+        "maxSegmentBytes": 2057284
+      }
+    ]
+  },
+  "quality-20260913-legacy-14": {
+    "workId": "legacy-14",
+    "source": "/media/quality-20260913-legacy-14",
+    "sourceObjectKey": "quality-20260913/legacy-14.mp4",
+    "sourceSize": 16868100,
+    "sourceSha256": "a45372eef414d6697e90018b0388cf953adbbb352a3fffcebdc082089ff8f593",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 80.866667,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-14/3356e3abd993ba68",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1392,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 7062032,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1402,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 15548352,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 914056,
+        "averageBandwidth": 698635,
+        "duration": 80.866667,
+        "segments": 21,
+        "maxSegmentBytes": 457028
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2094320,
+        "averageBandwidth": 1538172,
+        "duration": 80.866667,
+        "segments": 21,
+        "maxSegmentBytes": 1047160
+      }
+    ]
+  },
+  "quality-20260913-legacy-15": {
+    "workId": "legacy-15",
+    "source": "/media/quality-20260913-legacy-15",
+    "sourceObjectKey": "quality-20260913/legacy-15.mp4",
+    "sourceSize": 72428704,
+    "sourceSha256": "45125c5576fd7c1577447c66a2d02304837c28365f00ee5dd0a45448351a1a09",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 83.033333,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-15/839bc7a8976cc2f1",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1391,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 7162988,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1401,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 15664724,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1429,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 31897396,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 928344,
+        "averageBandwidth": 690132,
+        "duration": 83.033333,
+        "segments": 21,
+        "maxSegmentBytes": 464172
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1941288,
+        "averageBandwidth": 1509247,
+        "duration": 83.033333,
+        "segments": 21,
+        "maxSegmentBytes": 970644
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3810384,
+        "averageBandwidth": 3073214,
+        "duration": 83.033333,
+        "segments": 21,
+        "maxSegmentBytes": 1905192
+      }
+    ]
+  },
+  "quality-20260913-legacy-16": {
+    "workId": "legacy-16",
+    "source": "/media/quality-20260913-legacy-16",
+    "sourceObjectKey": "quality-20260913/legacy-16.mp4",
+    "sourceSize": 186596482,
+    "sourceSha256": "4d3fa69f5f9683fdbc9521ba2a2814fe9507fe8545f266393e9c03b841c8bf71",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 207.166667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-16/ba6dfc30398a97f3",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3276,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 18398244,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 3295,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 40437296,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 3352,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 82825468,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 916312,
+        "averageBandwidth": 710472,
+        "duration": 207.166667,
+        "segments": 52,
+        "maxSegmentBytes": 458156
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2099584,
+        "averageBandwidth": 1561537,
+        "duration": 207.166667,
+        "segments": 52,
+        "maxSegmentBytes": 1049792
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3995000,
+        "averageBandwidth": 3198410,
+        "duration": 207.166667,
+        "segments": 52,
+        "maxSegmentBytes": 1997500
+      }
+    ]
+  },
+  "quality-20260913-legacy-17": {
+    "workId": "legacy-17",
+    "source": "/media/quality-20260913-legacy-17",
+    "sourceObjectKey": "quality-20260913/legacy-17.mp4",
+    "sourceSize": 47405843,
+    "sourceSha256": "6010ce05e33e42b61f50ba67e1d05c7a20ba80d182884e55743f07657c6834d7",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 50.033333,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-17/9b88bb889fbd0c05",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 913,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4071704,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 914,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8774900,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 931,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 17911512,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 822688,
+        "averageBandwidth": 651039,
+        "duration": 50.033333,
+        "segments": 13,
+        "maxSegmentBytes": 411344
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1855936,
+        "averageBandwidth": 1403049,
+        "duration": 50.033333,
+        "segments": 13,
+        "maxSegmentBytes": 927968
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3723904,
+        "averageBandwidth": 2863933,
+        "duration": 50.033333,
+        "segments": 13,
+        "maxSegmentBytes": 1861952
+      }
+    ]
+  },
+  "quality-20260913-legacy-18": {
+    "workId": "legacy-18",
+    "source": "/media/quality-20260913-legacy-18",
+    "sourceObjectKey": "quality-20260913/legacy-18.mp4",
+    "sourceSize": 89617987,
+    "sourceSha256": "cc1af163baa10829556c27b6de4ebbb54c1e7d1c188bbe42b0decafa29f75ac2",
+    "recipe": "hls-ts-range-v4-4s-480-720-1080-veryfast",
+    "duration": 75.033333,
+    "width": 3266,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-18/da6fc197db782dd5",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1273,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 6722316,
+        "type": "video/mp2t"
+      },
+      "634p/index.m3u8": {
+        "size": 1306,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "634p/stream.ts": {
+        "size": 29503592,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 369,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 1450,
+        "height": 480,
+        "bandwidth": 833216,
+        "averageBandwidth": 716729,
+        "duration": 75.033333,
+        "segments": 19,
+        "maxSegmentBytes": 416608
+      },
+      {
+        "name": "634p",
+        "width": 1920,
+        "height": 634,
+        "bandwidth": 3345272,
+        "averageBandwidth": 3145652,
+        "duration": 75.033333,
+        "segments": 19,
+        "maxSegmentBytes": 1672636
+      }
+    ]
+  },
+  "quality-20260913-legacy-19": {
+    "workId": "legacy-19",
+    "source": "/media/quality-20260913-legacy-19",
+    "sourceObjectKey": "quality-20260913/legacy-19.mp4",
+    "sourceSize": 99025824,
+    "sourceSha256": "fcdb93672380fca794416eb18c59aa745176a6582be2265d7fd11f9e3464b711",
+    "recipe": "hls-ts-range-v4-4s-480-720-1080-veryfast",
+    "duration": 68.766667,
+    "width": 3260,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-19/4d242249cfe461fa",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1212,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 5756936,
+        "type": "video/mp2t"
+      },
+      "636p/index.m3u8": {
+        "size": 1242,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "636p/stream.ts": {
+        "size": 25941932,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 369,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 1448,
+        "height": 480,
+        "bandwidth": 948272,
+        "averageBandwidth": 669736,
+        "duration": 68.766667,
+        "segments": 18,
+        "maxSegmentBytes": 474136
+      },
+      {
+        "name": "636p",
+        "width": 1920,
+        "height": 636,
+        "bandwidth": 3543424,
+        "averageBandwidth": 3017966,
+        "duration": 68.766667,
+        "segments": 18,
+        "maxSegmentBytes": 1771712
+      }
+    ]
+  },
+  "quality-20260913-legacy-20": {
+    "workId": "legacy-20",
+    "source": "/media/quality-20260913-legacy-20",
+    "sourceObjectKey": "quality-20260913/legacy-20.mp4",
+    "sourceSize": 104486447,
+    "sourceSha256": "f8477a26a5794e0de589160b42a95d00522ca41587df8aaa9914ed1e681f1145",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 118.1,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-20/57ef12c0e499e243",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1934,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 10571052,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1952,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 23307488,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1987,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 47560240,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 913304,
+        "averageBandwidth": 716075,
+        "duration": 118.1,
+        "segments": 30,
+        "maxSegmentBytes": 456652
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2004080,
+        "averageBandwidth": 1578831,
+        "duration": 118.1,
+        "segments": 30,
+        "maxSegmentBytes": 1002040
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3826928,
+        "averageBandwidth": 3221693,
+        "duration": 118.1,
+        "segments": 30,
+        "maxSegmentBytes": 1913464
+      }
+    ]
+  },
+  "quality-20260913-legacy-21": {
+    "workId": "legacy-21",
+    "source": "/media/quality-20260913-legacy-21",
+    "sourceObjectKey": "quality-20260913/legacy-21.mp4",
+    "sourceSize": 44774106,
+    "sourceSha256": "ebe04590ffb3191f6e10508fca41ac6917cfca7acdbeab61c9382b814f497e83",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 48.8,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-21/233e3a7dd0969ac5",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 912,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4214584,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 914,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 9300172,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 932,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 19158140,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 853520,
+        "averageBandwidth": 690916,
+        "duration": 48.8,
+        "segments": 13,
+        "maxSegmentBytes": 426760
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1902560,
+        "averageBandwidth": 1524619,
+        "duration": 48.8,
+        "segments": 13,
+        "maxSegmentBytes": 951280
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3816400,
+        "averageBandwidth": 3140679,
+        "duration": 48.8,
+        "segments": 13,
+        "maxSegmentBytes": 1873984
+      }
+    ]
+  },
+  "quality-20260913-legacy-24": {
+    "workId": "legacy-24",
+    "source": "/media/quality-20260913-legacy-24",
+    "sourceObjectKey": "quality-20260913/legacy-24.mp4",
+    "sourceSize": 42013496,
+    "sourceSha256": "d43b85c421c6b445b867dad78a9c62f39c434b61f143aa18806d025023a556f4",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 57.933333,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-24/7e6d846d3d00bc72",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1033,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 5256668,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1037,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 11576100,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1058,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 23593624,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 964635,
+        "averageBandwidth": 725893,
+        "duration": 57.933333,
+        "segments": 15,
+        "maxSegmentBytes": 459472
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 2204657,
+        "averageBandwidth": 1598541,
+        "duration": 57.933333,
+        "segments": 15,
+        "maxSegmentBytes": 1011252
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 4218721,
+        "averageBandwidth": 3258038,
+        "duration": 57.933333,
+        "segments": 15,
+        "maxSegmentBytes": 1991860
+      }
+    ]
+  },
+  "quality-20260913-legacy-25": {
+    "workId": "legacy-25",
+    "source": "/media/quality-20260913-legacy-25",
+    "sourceObjectKey": "quality-20260913/legacy-25.mp4",
+    "sourceSize": 57248596,
+    "sourceSha256": "ebd7b4add1e4435184ef37177ee7a721c9e451432dd0d4473c7a1d23b3997cd4",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 71.3,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-25/58ffa559163e77a3",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1213,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 6281832,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1220,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 13834168,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1244,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 28449476,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 944888,
+        "averageBandwidth": 704834,
+        "duration": 71.3,
+        "segments": 18,
+        "maxSegmentBytes": 472444
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 2111616,
+        "averageBandwidth": 1552221,
+        "duration": 71.3,
+        "segments": 18,
+        "maxSegmentBytes": 1055808
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 4054032,
+        "averageBandwidth": 3192088,
+        "duration": 71.3,
+        "segments": 18,
+        "maxSegmentBytes": 2027016
+      }
+    ]
+  },
+  "quality-20260913-legacy-26": {
+    "workId": "legacy-26",
+    "source": "/media/quality-20260913-legacy-26",
+    "sourceObjectKey": "quality-20260913/legacy-26.mp4",
+    "sourceSize": 39980988,
+    "sourceSha256": "bdaee692f565d429f9c45c635a7fb0ec2ec1fbe93edfe00f4febb54bc5153993",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 41.666667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-26/85620d8d22ae31ea",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 793,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3683860,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 795,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8112012,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 809,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 16511100,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 919696,
+        "averageBandwidth": 707302,
+        "duration": 41.666667,
+        "segments": 11,
+        "maxSegmentBytes": 459848
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2013104,
+        "averageBandwidth": 1557507,
+        "duration": 41.666667,
+        "segments": 11,
+        "maxSegmentBytes": 1006552
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3952888,
+        "averageBandwidth": 3170132,
+        "duration": 41.666667,
+        "segments": 11,
+        "maxSegmentBytes": 1976444
+      }
+    ]
+  },
+  "quality-20260913-legacy-27": {
+    "workId": "legacy-27",
+    "source": "/media/quality-20260913-legacy-27",
+    "sourceObjectKey": "quality-20260913/legacy-27.mp4",
+    "sourceSize": 71449257,
+    "sourceSha256": "2f00e9c13be87a95f2008aa601e92e385ab53072fcdeb594d68a08e735f5405f",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 63.466667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-27/e6482bc4756fb215",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1093,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 5462528,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1099,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 12000604,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1118,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 24429096,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 927216,
+        "averageBandwidth": 688554,
+        "duration": 63.466667,
+        "segments": 16,
+        "maxSegmentBytes": 463608
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2138688,
+        "averageBandwidth": 1512682,
+        "duration": 63.466667,
+        "segments": 16,
+        "maxSegmentBytes": 1069344
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4016808,
+        "averageBandwidth": 3079298,
+        "duration": 63.466667,
+        "segments": 16,
+        "maxSegmentBytes": 2008404
+      }
+    ]
+  },
+  "quality-20260913-legacy-28": {
+    "workId": "legacy-28",
+    "source": "/media/quality-20260913-legacy-28",
+    "sourceObjectKey": "quality-20260913/legacy-28.mp4",
+    "sourceSize": 207028572,
+    "sourceSha256": "db16fc8578604d5177cc13fe3f318a01f0ff22718354ecb4cb576497198a2eab",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 186.1,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-28/5f11dfc0b84ca1b0",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 2970,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 15828848,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 2994,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 34586736,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 3032,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 70035828,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 929848,
+        "averageBandwidth": 680445,
+        "duration": 186.1,
+        "segments": 47,
+        "maxSegmentBytes": 464924
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2138688,
+        "averageBandwidth": 1486803,
+        "duration": 186.1,
+        "segments": 47,
+        "maxSegmentBytes": 1069344
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4028464,
+        "averageBandwidth": 3010676,
+        "duration": 186.1,
+        "segments": 47,
+        "maxSegmentBytes": 2014232
+      }
+    ]
+  },
+  "quality-20260913-legacy-29": {
+    "workId": "legacy-29",
+    "source": "/media/quality-20260913-legacy-29",
+    "sourceObjectKey": "quality-20260913/legacy-29.mp4",
+    "sourceSize": 254370825,
+    "sourceSha256": "0d14cfa97c9d737c860acb1bc2673bbde602de15d08771c8025fd9bc24e98144",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 207.066667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-29/206d5493ab7a02fb",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3276,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 18368540,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 3296,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 40459856,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 3349,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 82138704,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 913680,
+        "averageBandwidth": 709667,
+        "duration": 207.066667,
+        "segments": 52,
+        "maxSegmentBytes": 456840
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2107856,
+        "averageBandwidth": 1563163,
+        "duration": 207.066667,
+        "segments": 52,
+        "maxSegmentBytes": 1053928
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4004024,
+        "averageBandwidth": 3173421,
+        "duration": 207.066667,
+        "segments": 52,
+        "maxSegmentBytes": 2002012
+      }
+    ]
+  },
+  "quality-20260913-legacy-30": {
+    "workId": "legacy-30",
+    "source": "/media/quality-20260913-legacy-30",
+    "sourceObjectKey": "quality-20260913/legacy-30.mp4",
+    "sourceSize": 289320852,
+    "sourceSha256": "c71b9ef37b99802ee22c73138a818549d00278b813245a9d2c7239419d1bbbf4",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 249.133333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-30/407f1db82466ba27",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3946,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 21848796,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 3969,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 47746360,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 4028,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 97503568,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 936240,
+        "averageBandwidth": 701594,
+        "duration": 249.133333,
+        "segments": 63,
+        "maxSegmentBytes": 468120
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2143952,
+        "averageBandwidth": 1533199,
+        "duration": 249.133333,
+        "segments": 63,
+        "maxSegmentBytes": 1071976
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4103288,
+        "averageBandwidth": 3130969,
+        "duration": 249.133333,
+        "segments": 63,
+        "maxSegmentBytes": 2051644
+      }
+    ]
+  },
+  "quality-20260913-legacy-31": {
+    "workId": "legacy-31",
+    "source": "/media/quality-20260913-legacy-31",
+    "sourceObjectKey": "quality-20260913/legacy-31.mp4",
+    "sourceSize": 13784893,
+    "sourceSha256": "828cc07baf676daa94a996047283e029cb0853f80beada8ab79611022dbd46a7",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 30.1,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-31/51f850ed652894b9",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 611,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 2441932,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 615,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 5343148,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 621,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 10769956,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 927968,
+        "averageBandwidth": 649019,
+        "duration": 30.1,
+        "segments": 8,
+        "maxSegmentBytes": 463984
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2118760,
+        "averageBandwidth": 1420106,
+        "duration": 30.1,
+        "segments": 8,
+        "maxSegmentBytes": 1059380
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4069824,
+        "averageBandwidth": 2862447,
+        "duration": 30.1,
+        "segments": 8,
+        "maxSegmentBytes": 2034912
+      }
+    ]
+  },
+  "quality-20260913-legacy-33": {
+    "workId": "legacy-33",
+    "source": "/media/quality-20260913-legacy-33",
+    "sourceObjectKey": "quality-20260913/legacy-33.mp4",
+    "sourceSize": 215543577,
+    "sourceSha256": "42b3f2f6f434aed17f9c5bf0efbf81fa2e8932df2f15ef56df8dfb39d24a1dc4",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 169.133333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-33/23bf3ea036a643db",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 2727,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 15040000,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 2749,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 32991744,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 2793,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 67267716,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 968952,
+        "averageBandwidth": 711392,
+        "duration": 169.133333,
+        "segments": 43,
+        "maxSegmentBytes": 484476
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2136808,
+        "averageBandwidth": 1560509,
+        "duration": 169.133333,
+        "segments": 43,
+        "maxSegmentBytes": 1068404
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4168712,
+        "averageBandwidth": 3181761,
+        "duration": 169.133333,
+        "segments": 43,
+        "maxSegmentBytes": 2084356
+      }
+    ]
+  },
+  "quality-20260913-legacy-34": {
+    "workId": "legacy-34",
+    "source": "/media/quality-20260913-legacy-34",
+    "sourceObjectKey": "quality-20260913/legacy-34.mp4",
+    "sourceSize": 221061230,
+    "sourceSha256": "ee65f3512d919fdcff82c3ebb717f76e9187baac8dca373069b2f36261f0874b",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 219.7,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-34/cff002d6153efbfb",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3460,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 19158704,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 3478,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 42052216,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 3535,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 86014136,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 921576,
+        "averageBandwidth": 697632,
+        "duration": 219.7,
+        "segments": 55,
+        "maxSegmentBytes": 460788
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2091688,
+        "averageBandwidth": 1531260,
+        "duration": 219.7,
+        "segments": 55,
+        "maxSegmentBytes": 1045844
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3963040,
+        "averageBandwidth": 3132058,
+        "duration": 219.7,
+        "segments": 55,
+        "maxSegmentBytes": 1981520
+      }
+    ]
+  },
+  "quality-20260913-legacy-35": {
+    "workId": "legacy-35",
+    "source": "/media/quality-20260913-legacy-35",
+    "sourceObjectKey": "quality-20260913/legacy-35.mp4",
+    "sourceSize": 103108336,
+    "sourceSha256": "a8c1cede1867fe772a4e7ddf0be4438714e5ebc0aa6570352db78fcb3da0b3f9",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 89.033333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-35/b68557a6a20886f3",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1512,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 7848624,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1526,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 17202564,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1552,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 35100164,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 901272,
+        "averageBandwidth": 705231,
+        "duration": 89.033333,
+        "segments": 23,
+        "maxSegmentBytes": 450636
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2014608,
+        "averageBandwidth": 1545719,
+        "duration": 89.033333,
+        "segments": 23,
+        "maxSegmentBytes": 1007304
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3844224,
+        "averageBandwidth": 3153890,
+        "duration": 89.033333,
+        "segments": 23,
+        "maxSegmentBytes": 1922112
+      }
+    ]
+  },
+  "quality-20260913-legacy-39": {
+    "workId": "legacy-39",
+    "source": "/media/quality-20260913-legacy-39",
+    "sourceObjectKey": "quality-20260913/legacy-39.mp4",
+    "sourceSize": 51171680,
+    "sourceSha256": "4fa80394b257b38de592af4131dec5a34be560548b1f47256f3995ece5b0bf36",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 56.3,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-39/fd75b643656acbab",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1032,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4955868,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1037,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 10838764,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1057,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 22266908,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 531,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 1534080,
+        "averageBandwidth": 704209,
+        "duration": 56.3,
+        "segments": 15,
+        "maxSegmentBytes": 467556
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2852587,
+        "averageBandwidth": 1540145,
+        "duration": 56.3,
+        "segments": 15,
+        "maxSegmentBytes": 1076112
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 5429440,
+        "averageBandwidth": 3164037,
+        "duration": 56.3,
+        "segments": 15,
+        "maxSegmentBytes": 2045816
+      }
+    ]
+  },
+  "quality-20260913-legacy-40": {
+    "workId": "legacy-40",
+    "source": "/media/quality-20260913-legacy-40",
+    "sourceObjectKey": "quality-20260913/legacy-40.mp4",
+    "sourceSize": 9135499,
+    "sourceSha256": "227b60b1bebda309a9b83e6d6941921ec02b176dc76cd3ae325cdd13c854f6aa",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 8.1,
+    "width": 1080,
+    "height": 1882,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-40/76a3309f71d0f97a",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 312,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 727748,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 313,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 1591796,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 316,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 3252776,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 531,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 836,
+        "bandwidth": 1759680,
+        "averageBandwidth": 718764,
+        "duration": 8.1,
+        "segments": 3,
+        "maxSegmentBytes": 410404
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1254,
+        "bandwidth": 3338880,
+        "averageBandwidth": 1572145,
+        "duration": 8.1,
+        "segments": 3,
+        "maxSegmentBytes": 885856
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1882,
+        "bandwidth": 5640000,
+        "averageBandwidth": 3212619,
+        "duration": 8.1,
+        "segments": 3,
+        "maxSegmentBytes": 1787128
+      }
+    ]
+  },
+  "quality-20260913-legacy-41": {
+    "workId": "legacy-41",
+    "source": "/media/quality-20260913-legacy-41",
+    "sourceObjectKey": "quality-20260913/legacy-41.mp4",
+    "sourceSize": 16762147,
+    "sourceSha256": "66e25fc4b458759f2530a2e7df5ff7c4f27fda7739bc6d3a6477a5a609c0dd18",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 105.033333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-41/e6c1799cfe7cea8a",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1752,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 7318088,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1765,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 17275696,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1796,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 35469396,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 844181,
+        "averageBandwidth": 557392,
+        "duration": 105.033333,
+        "segments": 27,
+        "maxSegmentBytes": 349492
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1896497,
+        "averageBandwidth": 1315826,
+        "duration": 105.033333,
+        "segments": 27,
+        "maxSegmentBytes": 870252
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4450872,
+        "averageBandwidth": 2701573,
+        "duration": 105.033333,
+        "segments": 27,
+        "maxSegmentBytes": 1697264
+      }
+    ]
+  },
+  "quality-20260913-legacy-42": {
+    "workId": "legacy-42",
+    "source": "/media/quality-20260913-legacy-42",
+    "sourceObjectKey": "quality-20260913/legacy-42.mp4",
+    "sourceSize": 136436717,
+    "sourceSha256": "091259b1f4fa45a49286c6f5dd7c475b274d14dfc92839b1a3b40ea937cdbcf8",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 122.533333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-42/ab62066163169139",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1995,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 10943668,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 2017,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 24081108,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 2048,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 48832812,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 946768,
+        "averageBandwidth": 714495,
+        "duration": 122.533333,
+        "segments": 31,
+        "maxSegmentBytes": 473384
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2164256,
+        "averageBandwidth": 1572216,
+        "duration": 122.533333,
+        "segments": 31,
+        "maxSegmentBytes": 1082128
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4104792,
+        "averageBandwidth": 3188215,
+        "duration": 122.533333,
+        "segments": 31,
+        "maxSegmentBytes": 2052396
+      }
+    ]
+  },
+  "quality-20260913-legacy-43": {
+    "workId": "legacy-43",
+    "source": "/media/quality-20260913-legacy-43",
+    "sourceObjectKey": "quality-20260913/legacy-43.mp4",
+    "sourceSize": 44952823,
+    "sourceSha256": "2d3885b82b42daf67bdd1e034961551dd32028aa3431f3b0513abd6a73c52ccd",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 61.9,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-43/fc901ec1b005bdf3",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1092,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 5549572,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1097,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 12184280,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1119,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 24849840,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 865176,
+        "averageBandwidth": 717231,
+        "duration": 61.9,
+        "segments": 16,
+        "maxSegmentBytes": 432588
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1863080,
+        "averageBandwidth": 1574706,
+        "duration": 61.9,
+        "segments": 16,
+        "maxSegmentBytes": 931540
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3685552,
+        "averageBandwidth": 3211611,
+        "duration": 61.9,
+        "segments": 16,
+        "maxSegmentBytes": 1842776
+      }
+    ]
+  },
+  "quality-20260913-legacy-44": {
+    "workId": "legacy-44",
+    "source": "/media/quality-20260913-legacy-44",
+    "sourceObjectKey": "quality-20260913/legacy-44.mp4",
+    "sourceSize": 153642105,
+    "sourceSha256": "08a28efbcf0f090e351959d226f0fd445bc3d0a8c6e582e2be599560766562d4",
+    "recipe": "hls-ts-range-v4-4s-480-720-1080-veryfast",
+    "duration": 179.5,
+    "width": 1080,
+    "height": 1922,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-44/c7e63026f662af29",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 2848,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 16077008,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 2869,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 35251692,
+        "type": "video/mp2t"
+      },
+      "1078p/index.m3u8": {
+        "size": 2918,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1078p/stream.ts": {
+        "size": 71122656,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 854,
+        "bandwidth": 932104,
+        "averageBandwidth": 716525,
+        "duration": 179.5,
+        "segments": 45,
+        "maxSegmentBytes": 466052
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 2135304,
+        "averageBandwidth": 1571107,
+        "duration": 179.5,
+        "segments": 45,
+        "maxSegmentBytes": 1067652
+      },
+      {
+        "name": "1078p",
+        "width": 1078,
+        "height": 1920,
+        "bandwidth": 3529512,
+        "averageBandwidth": 3169812,
+        "duration": 179.5,
+        "segments": 45,
+        "maxSegmentBytes": 1764756
+      }
+    ]
+  },
+  "quality-20260913-legacy-45": {
+    "workId": "legacy-45",
+    "source": "/media/quality-20260913-legacy-45",
+    "sourceObjectKey": "quality-20260913/legacy-45.mp4",
+    "sourceSize": 32644333,
+    "sourceSha256": "d1eff5bf009e2006b557743ed66e270eb66f77fe6e7002866313988e32dc120d",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 210,
+    "width": 967,
+    "height": 544,
+    "fps": 26,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-45/5f3e2419b98c32c4",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3338,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 18541876,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 209,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 923832,
+        "averageBandwidth": 706357,
+        "duration": 210.000267,
+        "segments": 53,
+        "maxSegmentBytes": 461916
+      }
+    ]
+  },
+  "quality-20260913-legacy-46": {
+    "workId": "legacy-46",
+    "source": "/media/quality-20260913-legacy-46",
+    "sourceObjectKey": "quality-20260913/legacy-46.mp4",
+    "sourceSize": 112087035,
+    "sourceSha256": "f9c342be451aaf5cf9a28491c90d855b0cef8e2e0dd68c2ae8ff531456763628",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 118.3,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-46/01d2614493e7f997",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1933,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 10120228,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1954,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 22185504,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1985,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 45451820,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 933608,
+        "averageBandwidth": 684378,
+        "duration": 118.3,
+        "segments": 30,
+        "maxSegmentBytes": 466804
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2115000,
+        "averageBandwidth": 1500288,
+        "duration": 118.3,
+        "segments": 30,
+        "maxSegmentBytes": 1057500
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4052528,
+        "averageBandwidth": 3073665,
+        "duration": 118.3,
+        "segments": 30,
+        "maxSegmentBytes": 2026264
+      }
+    ]
+  },
+  "quality-20260913-legacy-47": {
+    "workId": "legacy-47",
+    "source": "/media/quality-20260913-legacy-47",
+    "sourceObjectKey": "quality-20260913/legacy-47.mp4",
+    "sourceSize": 87899690,
+    "sourceSha256": "63749ff67cef610b97984cdb51b11b644b17bc35394e15863698b70295ada837",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 118.133333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-47/c8b09a91d1c2b642",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1934,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 10513524,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1951,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 23093732,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1987,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 46915212,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 905032,
+        "averageBandwidth": 711977,
+        "duration": 118.133333,
+        "segments": 30,
+        "maxSegmentBytes": 452516
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1991296,
+        "averageBandwidth": 1563910,
+        "duration": 118.133333,
+        "segments": 30,
+        "maxSegmentBytes": 995648
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3815648,
+        "averageBandwidth": 3177103,
+        "duration": 118.133333,
+        "segments": 30,
+        "maxSegmentBytes": 1907824
+      }
+    ]
+  },
+  "quality-20260913-legacy-48": {
+    "workId": "legacy-48",
+    "source": "/media/quality-20260913-legacy-48",
+    "sourceObjectKey": "quality-20260913/legacy-48.mp4",
+    "sourceSize": 181090061,
+    "sourceSha256": "8563161dd25cbb50f49bdcbf7aa7ba35f06af11172a6a6f6876e0b17ca4bda51",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 209.966667,
+    "width": 1918,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-48/306d27d9676c7a86",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3337,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 18464232,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 3356,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 40305132,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 3409,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 82312416,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 935112,
+        "averageBandwidth": 703511,
+        "duration": 209.966667,
+        "segments": 53,
+        "maxSegmentBytes": 467556
+      },
+      {
+        "name": "720p",
+        "width": 1278,
+        "height": 720,
+        "bandwidth": 2089808,
+        "averageBandwidth": 1535678,
+        "duration": 209.966667,
+        "segments": 53,
+        "maxSegmentBytes": 1044904
+      },
+      {
+        "name": "1080p",
+        "width": 1918,
+        "height": 1080,
+        "bandwidth": 4064936,
+        "averageBandwidth": 3136209,
+        "duration": 209.966667,
+        "segments": 53,
+        "maxSegmentBytes": 2032468
+      }
+    ]
+  },
+  "quality-20260913-legacy-49": {
+    "workId": "legacy-49",
+    "source": "/media/quality-20260913-legacy-49",
+    "sourceObjectKey": "quality-20260913/legacy-49.mp4",
+    "sourceSize": 40969608,
+    "sourceSha256": "ea4c42dd194c187c661eea27c282e63b61f735a0dc87d316bbda1a3c21ffef3b",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 46.5,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-49/0a228afbe2d0446c",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 853,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3754548,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 854,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8031172,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 869,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 16339268,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 836224,
+        "averageBandwidth": 645944,
+        "duration": 46.5,
+        "segments": 12,
+        "maxSegmentBytes": 418112
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1826984,
+        "averageBandwidth": 1381708,
+        "duration": 46.5,
+        "segments": 12,
+        "maxSegmentBytes": 913492
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3695328,
+        "averageBandwidth": 2811057,
+        "duration": 46.5,
+        "segments": 12,
+        "maxSegmentBytes": 1847664
+      }
+    ]
+  },
+  "quality-20260913-legacy-50": {
+    "workId": "legacy-50",
+    "source": "/media/quality-20260913-legacy-50",
+    "sourceObjectKey": "quality-20260913/legacy-50.mp4",
+    "sourceSize": 139999938,
+    "sourceSha256": "0bbbe38ade48e40bbe10346b4ad011d46f114252991a6eb66b567c6677da368c",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 114.3,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-50/f66cb72ef5ae34e2",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1873,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 9868308,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1890,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 21622068,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1925,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 44668424,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 887736,
+        "averageBandwidth": 690696,
+        "duration": 114.3,
+        "segments": 29,
+        "maxSegmentBytes": 443868
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1980392,
+        "averageBandwidth": 1513356,
+        "duration": 114.3,
+        "segments": 29,
+        "maxSegmentBytes": 990196
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3969056,
+        "averageBandwidth": 3126399,
+        "duration": 114.3,
+        "segments": 29,
+        "maxSegmentBytes": 1984528
+      }
+    ]
+  },
+  "quality-20260913-legacy-51": {
+    "workId": "legacy-51",
+    "source": "/media/quality-20260913-legacy-51",
+    "sourceObjectKey": "quality-20260913/legacy-51.mp4",
+    "sourceSize": 45410746,
+    "sourceSha256": "43ad99cb0c959c238d7509f41da0311f33beee86743f6cdd5cf0cebc5bac24b6",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 52.033333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-51/167ad262d3791e01",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 971,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4162320,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 975,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 9076640,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 992,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 18751308,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 532,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 4331564,
+        "averageBandwidth": 639947,
+        "duration": 52.033333,
+        "segments": 14,
+        "maxSegmentBytes": 472068
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 8031441,
+        "averageBandwidth": 1395512,
+        "duration": 52.033333,
+        "segments": 14,
+        "maxSegmentBytes": 1076676
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 16333604,
+        "averageBandwidth": 2882969,
+        "duration": 52.033333,
+        "segments": 14,
+        "maxSegmentBytes": 2042244
+      }
+    ]
+  },
+  "quality-20260913-legacy-52": {
+    "workId": "legacy-52",
+    "source": "/media/quality-20260913-legacy-52",
+    "sourceObjectKey": "quality-20260913/legacy-52.mp4",
+    "sourceSize": 31746859,
+    "sourceSha256": "3357fe8bab98f4eec29f774ed929dfc1aa6d5413e280b36630ddc9d385b2eb28",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 39.966667,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-52/4788683c4370b3af",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 733,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3129448,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 734,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 6681896,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 746,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 13720428,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 864424,
+        "averageBandwidth": 626412,
+        "duration": 39.966667,
+        "segments": 10,
+        "maxSegmentBytes": 432212
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1893536,
+        "averageBandwidth": 1337494,
+        "duration": 39.966667,
+        "segments": 10,
+        "maxSegmentBytes": 946768
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3908144,
+        "averageBandwidth": 2746375,
+        "duration": 39.966667,
+        "segments": 10,
+        "maxSegmentBytes": 1954072
+      }
+    ]
+  },
+  "quality-20260913-legacy-53": {
+    "workId": "legacy-53",
+    "source": "/media/quality-20260913-legacy-53",
+    "sourceObjectKey": "quality-20260913/legacy-53.mp4",
+    "sourceSize": 29447511,
+    "sourceSha256": "3b505670aeed1255f3a5aafb429f8025b697c45fd2f3e25ab50803041f9f52a0",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 46.366016,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-53/fba48947717d47dd",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 853,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4057228,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 854,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 9016292,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 871,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 18421180,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 904280,
+        "averageBandwidth": 700025,
+        "duration": 46.366667,
+        "segments": 12,
+        "maxSegmentBytes": 452140
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1969112,
+        "averageBandwidth": 1555651,
+        "duration": 46.366667,
+        "segments": 12,
+        "maxSegmentBytes": 984556
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4008160,
+        "averageBandwidth": 3178349,
+        "duration": 46.366667,
+        "segments": 12,
+        "maxSegmentBytes": 2004080
+      }
+    ]
+  },
+  "quality-20260913-legacy-54": {
+    "workId": "legacy-54",
+    "source": "/media/quality-20260913-legacy-54",
+    "sourceObjectKey": "quality-20260913/legacy-54.mp4",
+    "sourceSize": 217245235,
+    "sourceSha256": "f13d2525bf9ff368353125dad2ac00e9c43f669229bbe8e44b12895f38b252d8",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 212.266667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-54/c90c4fda9d72c842",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3397,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 18540936,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 3418,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 40569836,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 3472,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 82523164,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 531,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 2109358,
+        "averageBandwidth": 698779,
+        "duration": 212.266667,
+        "segments": 54,
+        "maxSegmentBytes": 471128
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 4641715,
+        "averageBandwidth": 1529014,
+        "duration": 212.266667,
+        "segments": 54,
+        "maxSegmentBytes": 1081376
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 8646110,
+        "averageBandwidth": 3110170,
+        "duration": 212.266667,
+        "segments": 54,
+        "maxSegmentBytes": 2055216
+      }
+    ]
+  },
+  "quality-20260913-legacy-56": {
+    "workId": "legacy-56",
+    "source": "/media/quality-20260913-legacy-56",
+    "sourceObjectKey": "quality-20260913/legacy-56.mp4",
+    "sourceSize": 21702211,
+    "sourceSha256": "23a803c5fa3500f4bbe7a28b0b0292fd538002332482cc0fc6a516e619f1e9b3",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 28.666667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-56/bed235439e8f73a2",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 611,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 2421064,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 613,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 5319460,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 622,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 10895540,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 873072,
+        "averageBandwidth": 675646,
+        "duration": 28.666667,
+        "segments": 8,
+        "maxSegmentBytes": 436536
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1862704,
+        "averageBandwidth": 1484501,
+        "duration": 28.666667,
+        "segments": 8,
+        "maxSegmentBytes": 931352
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3794968,
+        "averageBandwidth": 3040616,
+        "duration": 28.666667,
+        "segments": 8,
+        "maxSegmentBytes": 1897484
+      }
+    ]
+  },
+  "quality-20260913-legacy-57": {
+    "workId": "legacy-57",
+    "source": "/media/quality-20260913-legacy-57",
+    "sourceObjectKey": "quality-20260913/legacy-57.mp4",
+    "sourceSize": 28070439,
+    "sourceSha256": "6829cc3c80ea34c3600e5581fff214f23a3efe85ae453a25b0bfcf5dcb575448",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 30.233333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-57/ce833309ba667a26",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 612,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 2526532,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 614,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 5536976,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 623,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 11312148,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 797496,
+        "averageBandwidth": 668543,
+        "duration": 30.233333000000002,
+        "segments": 8,
+        "maxSegmentBytes": 398748
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1797280,
+        "averageBandwidth": 1465132,
+        "duration": 30.233333000000002,
+        "segments": 8,
+        "maxSegmentBytes": 898640
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3608848,
+        "averageBandwidth": 2993292,
+        "duration": 30.233333000000002,
+        "segments": 8,
+        "maxSegmentBytes": 1804424
+      }
+    ]
+  },
+  "quality-20260913-legacy-58": {
+    "workId": "legacy-58",
+    "source": "/media/quality-20260913-legacy-58",
+    "sourceObjectKey": "quality-20260913/legacy-58.mp4",
+    "sourceSize": 14536649,
+    "sourceSha256": "d2169e114491f7637c9e170feee2e107ebc57f71b5e2721b7c2d369f09f2e63a",
+    "recipe": "hls-ts-range-v4-4s-480-720-1080-veryfast",
+    "duration": 14.3,
+    "width": 1938,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-58/dc0796f25321371c",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 372,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 1029676,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 374,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 2277056,
+        "type": "video/mp2t"
+      },
+      "1068p/index.m3u8": {
+        "size": 378,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1068p/stream.ts": {
+        "size": 5262308,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 860,
+        "height": 480,
+        "bandwidth": 646720,
+        "averageBandwidth": 576043,
+        "duration": 14.3,
+        "segments": 4,
+        "maxSegmentBytes": 323360
+      },
+      {
+        "name": "720p",
+        "width": 1292,
+        "height": 720,
+        "bandwidth": 1454744,
+        "averageBandwidth": 1273878,
+        "duration": 14.3,
+        "segments": 4,
+        "maxSegmentBytes": 727372
+      },
+      {
+        "name": "1068p",
+        "width": 1920,
+        "height": 1068,
+        "bandwidth": 3470317,
+        "averageBandwidth": 2943949,
+        "duration": 14.3,
+        "segments": 4,
+        "maxSegmentBytes": 1665868
+      }
+    ]
+  },
+  "quality-20260913-legacy-59": {
+    "workId": "legacy-59",
+    "source": "/media/quality-20260913-legacy-59",
+    "sourceObjectKey": "quality-20260913/legacy-59.mp4",
+    "sourceSize": 29271800,
+    "sourceSha256": "adad541254aa2fa634fb7ed5790917228a4597a6f4a884bcb3fb2711c46cb51b",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 31.733333,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-legacy-59/23de5246a953a174",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 613,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 2599852,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 614,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 5708620,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 623,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 11709392,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 756512,
+        "averageBandwidth": 655425,
+        "duration": 31.733333000000002,
+        "segments": 8,
+        "maxSegmentBytes": 378256
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1658160,
+        "averageBandwidth": 1439148,
+        "duration": 31.733333000000002,
+        "segments": 8,
+        "maxSegmentBytes": 829080
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3431000,
+        "averageBandwidth": 2951948,
+        "duration": 31.733333000000002,
+        "segments": 8,
+        "maxSegmentBytes": 1715500
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-new-1": {
+    "workId": "release-20260910-new-1",
+    "source": "/media/quality-20260913-release-20260910-new-1",
+    "sourceObjectKey": "quality-20260913/release-20260910-new-1.mp4",
+    "sourceSize": 69877858,
+    "sourceSha256": "4601f27a52e48150b846028e09171f9c7fe1db61f467ebbcfb71fc33ccc374ec",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 93.9,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-new-1/e6e6b7597933e76a",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1572,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 8228384,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1587,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 18146888,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1614,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 37272316,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 933232,
+        "averageBandwidth": 701034,
+        "duration": 93.9,
+        "segments": 24,
+        "maxSegmentBytes": 466616
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2104472,
+        "averageBandwidth": 1546061,
+        "duration": 93.9,
+        "segments": 24,
+        "maxSegmentBytes": 1052236
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4009288,
+        "averageBandwidth": 3175491,
+        "duration": 93.9,
+        "segments": 24,
+        "maxSegmentBytes": 2004644
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-new-2": {
+    "workId": "release-20260910-new-2",
+    "source": "/media/quality-20260913-release-20260910-new-2",
+    "sourceObjectKey": "quality-20260913/release-20260910-new-2.mp4",
+    "sourceSize": 218943818,
+    "sourceSha256": "1c8f0ab4de6136fd26e87912f0d9ded97aff3c0decc6c4a39847cd1c00605452",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 239.333333,
+    "width": 1904,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-new-2/214921516c77bb8b",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3764,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 21435760,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 3784,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 46965596,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 3848,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 95848980,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 846,
+        "height": 480,
+        "bandwidth": 930976,
+        "averageBandwidth": 716516,
+        "duration": 239.333333,
+        "segments": 60,
+        "maxSegmentBytes": 465488
+      },
+      {
+        "name": "720p",
+        "width": 1268,
+        "height": 720,
+        "bandwidth": 2149968,
+        "averageBandwidth": 1569881,
+        "duration": 239.333333,
+        "segments": 60,
+        "maxSegmentBytes": 1074984
+      },
+      {
+        "name": "1080p",
+        "width": 1904,
+        "height": 1080,
+        "bandwidth": 4011920,
+        "averageBandwidth": 3203866,
+        "duration": 239.333333,
+        "segments": 60,
+        "maxSegmentBytes": 2005960
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-new-3": {
+    "workId": "release-20260910-new-3",
+    "source": "/media/quality-20260913-release-20260910-new-3",
+    "sourceObjectKey": "quality-20260913/release-20260910-new-3.mp4",
+    "sourceSize": 16859330,
+    "sourceSha256": "48ada4704841ba56d17ba2df600f733aa5b764700336aaa5374f0a030ea9e21b",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 20.166667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-new-3/56eec26dd24fe1bb",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 492,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 1803108,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 494,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 4022636,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 500,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 8086820,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 531,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 1290430,
+        "averageBandwidth": 715283,
+        "duration": 20.166667,
+        "segments": 6,
+        "maxSegmentBytes": 444996
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2797435,
+        "averageBandwidth": 1595757,
+        "duration": 20.166667,
+        "segments": 6,
+        "maxSegmentBytes": 1007492
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 5495606,
+        "averageBandwidth": 3207995,
+        "duration": 20.166667,
+        "segments": 6,
+        "maxSegmentBytes": 1947304
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-new-4": {
+    "workId": "release-20260910-new-4",
+    "source": "/media/quality-20260913-release-20260910-new-4",
+    "sourceObjectKey": "quality-20260913/release-20260910-new-4.mp4",
+    "sourceSize": 76195996,
+    "sourceSha256": "e18b20ece422c9e3c7862716416ad534522ece1adc2c0d1ea75917aea2f03ba3",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 49.533333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-new-4/4c4eb70b47eb40bc",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 912,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4412548,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 916,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 9667524,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 933,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 19608588,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 916688,
+        "averageBandwidth": 712660,
+        "duration": 49.533333,
+        "segments": 13,
+        "maxSegmentBytes": 458344
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2007088,
+        "averageBandwidth": 1561377,
+        "duration": 49.533333,
+        "segments": 13,
+        "maxSegmentBytes": 1003544
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3963040,
+        "averageBandwidth": 3166933,
+        "duration": 49.533333,
+        "segments": 13,
+        "maxSegmentBytes": 1981520
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-new-5": {
+    "workId": "release-20260910-new-5",
+    "source": "/media/quality-20260913-release-20260910-new-5",
+    "sourceObjectKey": "quality-20260913/release-20260910-new-5.mp4",
+    "sourceSize": 62211393,
+    "sourceSha256": "fb0265c088dd57ad13b31491d034f87e42899056ebc363ec094f4c1bf1584c9c",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 48.466667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-new-5/565af72bdb67bd48",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 912,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4371376,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 914,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 9552092,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 933,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 19452548,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 929096,
+        "averageBandwidth": 721548,
+        "duration": 48.466667,
+        "segments": 13,
+        "maxSegmentBytes": 464548
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2068376,
+        "averageBandwidth": 1576687,
+        "duration": 48.466667,
+        "segments": 13,
+        "maxSegmentBytes": 1034188
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 4072080,
+        "averageBandwidth": 3210875,
+        "duration": 48.466667,
+        "segments": 13,
+        "maxSegmentBytes": 2036040
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-new-6": {
+    "workId": "release-20260910-new-6",
+    "source": "/media/quality-20260913-release-20260910-new-6",
+    "sourceObjectKey": "quality-20260913/release-20260910-new-6.mp4",
+    "sourceSize": 9962177,
+    "sourceSha256": "74a463e8fc1950873b1da84929afcac8e7e58b21ab9ca59d976ecae03843c15a",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 60.533333,
+    "width": 1834,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-new-6/bab9d06a8a0fecf4",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1091,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 5503888,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1097,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 11978044,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1119,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 23866788,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 531,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 814,
+        "height": 480,
+        "bandwidth": 1421281,
+        "averageBandwidth": 727387,
+        "duration": 60.533333,
+        "segments": 16,
+        "maxSegmentBytes": 416796
+      },
+      {
+        "name": "720p",
+        "width": 1222,
+        "height": 720,
+        "bandwidth": 3220443,
+        "averageBandwidth": 1583002,
+        "duration": 60.533333,
+        "segments": 16,
+        "maxSegmentBytes": 918944
+      },
+      {
+        "name": "1080p",
+        "width": 1834,
+        "height": 1080,
+        "bandwidth": 4715043,
+        "averageBandwidth": 3154202,
+        "duration": 60.533333,
+        "segments": 16,
+        "maxSegmentBytes": 1934144
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-new-7": {
+    "workId": "release-20260910-new-7",
+    "source": "/media/quality-20260913-release-20260910-new-7",
+    "sourceObjectKey": "quality-20260913/release-20260910-new-7.mp4",
+    "sourceSize": 55267935,
+    "sourceSha256": "d197605d65320e7925e16e7ac1a149b4b78912687c41bfc667b7283aa1188d85",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 61.9,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-new-7/f4a26897e8bef8a5",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1093,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 5544872,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1097,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 12124684,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1119,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 24797388,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 824192,
+        "averageBandwidth": 716624,
+        "duration": 61.9,
+        "segments": 16,
+        "maxSegmentBytes": 412096
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1773592,
+        "averageBandwidth": 1567003,
+        "duration": 61.9,
+        "segments": 16,
+        "maxSegmentBytes": 886796
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3473488,
+        "averageBandwidth": 3204833,
+        "duration": 61.9,
+        "segments": 16,
+        "maxSegmentBytes": 1736744
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-01": {
+    "workId": "release-20260910-avatar-01",
+    "source": "/media/quality-20260913-release-20260910-avatar-01",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-01.mp4",
+    "sourceSize": 9661377,
+    "sourceSha256": "f39c1230d604c016d1cfa79857fa5448973efcfd941a938d35bc2623cd24a056",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 47.566667,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-01/fc7c7ca68e3b9d96",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 852,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4181308,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 854,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 9229672,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 800128,
+        "averageBandwidth": 703234,
+        "duration": 47.566667,
+        "segments": 12,
+        "maxSegmentBytes": 400064
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1781864,
+        "averageBandwidth": 1552293,
+        "duration": 47.566667,
+        "segments": 12,
+        "maxSegmentBytes": 890932
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-02": {
+    "workId": "release-20260910-avatar-02",
+    "source": "/media/quality-20260913-release-20260910-avatar-02",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-02.mp4",
+    "sourceSize": 8539104,
+    "sourceSha256": "8dc9d6b0b8c68079225c21549142c7d439b398a4a47d4bb6c5012159de54265d",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 45.566667,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-02/f004a8ec8ce2ea4d",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 852,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4093136,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 854,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8995424,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 842880,
+        "averageBandwidth": 718620,
+        "duration": 45.566667,
+        "segments": 12,
+        "maxSegmentBytes": 419992
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1850880,
+        "averageBandwidth": 1579300,
+        "duration": 45.566667,
+        "segments": 12,
+        "maxSegmentBytes": 902776
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-03": {
+    "workId": "release-20260910-avatar-03",
+    "source": "/media/quality-20260913-release-20260910-avatar-03",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-03.mp4",
+    "sourceSize": 8514710,
+    "sourceSha256": "9cf0dea3eafbbb0516dfada6fd43e3666b1c56282c127cd1855dc7ec52aa9f88",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 43.866667,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-03/c865a885edcd4319",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 792,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3880884,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 795,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8548172,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 888112,
+        "averageBandwidth": 707760,
+        "duration": 43.866667,
+        "segments": 11,
+        "maxSegmentBytes": 444056
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 2028896,
+        "averageBandwidth": 1558938,
+        "duration": 43.866667,
+        "segments": 11,
+        "maxSegmentBytes": 1014448
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-04": {
+    "workId": "release-20260910-avatar-04",
+    "source": "/media/quality-20260913-release-20260910-avatar-04",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-04.mp4",
+    "sourceSize": 8325687,
+    "sourceSha256": "ffea21f66aec5e831a07c4181483ce12827cb052670c5966cc4facdd3609d00c",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 42.1,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-04/928b403ec9e206b2",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 792,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3732740,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 794,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8167472,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 800880,
+        "averageBandwidth": 709310,
+        "duration": 42.1,
+        "segments": 11,
+        "maxSegmentBytes": 400440
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1731480,
+        "averageBandwidth": 1552014,
+        "duration": 42.1,
+        "segments": 11,
+        "maxSegmentBytes": 865740
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-05": {
+    "workId": "release-20260910-avatar-05",
+    "source": "/media/quality-20260913-release-20260910-avatar-05",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-05.mp4",
+    "sourceSize": 8312278,
+    "sourceSha256": "7b8c73a5eae6568bbc7c567d524bc170f5d06ae4b4ee9b92c60a491439de7d6d",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 43.666667,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-05/aeca79cac2739a2c",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 793,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3751916,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 794,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8256020,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 846000,
+        "averageBandwidth": 687374,
+        "duration": 43.666667,
+        "segments": 11,
+        "maxSegmentBytes": 423000
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1945424,
+        "averageBandwidth": 1512554,
+        "duration": 43.666667,
+        "segments": 11,
+        "maxSegmentBytes": 972712
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-06": {
+    "workId": "release-20260910-avatar-06",
+    "source": "/media/quality-20260913-release-20260910-avatar-06",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-06.mp4",
+    "sourceSize": 8790551,
+    "sourceSha256": "6bde1fd323b7602cfd5bf73c29d3d0fe0b2997aaf92f03336094f862c7947c91",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 43.866667,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-06/27f3f8517b2b3856",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 793,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3858136,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 794,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8465828,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 831712,
+        "averageBandwidth": 703612,
+        "duration": 43.866667,
+        "segments": 11,
+        "maxSegmentBytes": 415856
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1843152,
+        "averageBandwidth": 1543920,
+        "duration": 43.866667,
+        "segments": 11,
+        "maxSegmentBytes": 921576
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-07": {
+    "workId": "release-20260910-avatar-07",
+    "source": "/media/quality-20260913-release-20260910-avatar-07",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-07.mp4",
+    "sourceSize": 8349450,
+    "sourceSha256": "61732ebf0a95ff846469d95b844893d756d94191d87240928287e53ad7c7527c",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 41.333333,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-07/bf94c0be4b5c54ab",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 792,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3650772,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 794,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 7952024,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 832840,
+        "averageBandwidth": 706602,
+        "duration": 41.333333,
+        "segments": 11,
+        "maxSegmentBytes": 416420
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1794648,
+        "averageBandwidth": 1539102,
+        "duration": 41.333333,
+        "segments": 11,
+        "maxSegmentBytes": 897324
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-08": {
+    "workId": "release-20260910-avatar-08",
+    "source": "/media/quality-20260913-release-20260910-avatar-08",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-08.mp4",
+    "sourceSize": 8681570,
+    "sourceSha256": "3ffc0695e78db3a6a26dd611748d9a505ad2d78b3521303398955c3f2c06eb1c",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 42.8,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-08/29679ad6f33fe2d9",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 792,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3773160,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 794,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8289296,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 911424,
+        "averageBandwidth": 705264,
+        "duration": 42.8,
+        "segments": 11,
+        "maxSegmentBytes": 455712
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1969488,
+        "averageBandwidth": 1549402,
+        "duration": 42.8,
+        "segments": 11,
+        "maxSegmentBytes": 984744
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-09": {
+    "workId": "release-20260910-avatar-09",
+    "source": "/media/quality-20260913-release-20260910-avatar-09",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-09.mp4",
+    "sourceSize": 8579409,
+    "sourceSha256": "f6d1e42ce66288b695dd912838ca6f22e06e1d74f13e7eabe66710ea687482d4",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 42.366667,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-09/54d96cb711d9b5b6",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 793,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3752668,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 794,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8276512,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 873803,
+        "averageBandwidth": 708608,
+        "duration": 42.366667,
+        "segments": 11,
+        "maxSegmentBytes": 411156
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1835939,
+        "averageBandwidth": 1562835,
+        "duration": 42.366667,
+        "segments": 11,
+        "maxSegmentBytes": 909920
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-10": {
+    "workId": "release-20260910-avatar-10",
+    "source": "/media/quality-20260913-release-20260910-avatar-10",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-10.mp4",
+    "sourceSize": 8360222,
+    "sourceSha256": "6759afc00cff3a5084c92d31fce2f2f6221d853a23efdb5a5f437b3dcffb4588",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 43.666667,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-10/5466beef972b8e91",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 792,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3782184,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 795,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8322760,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 912928,
+        "averageBandwidth": 692920,
+        "duration": 43.666667,
+        "segments": 11,
+        "maxSegmentBytes": 456464
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 2028144,
+        "averageBandwidth": 1524781,
+        "duration": 43.666667,
+        "segments": 11,
+        "maxSegmentBytes": 1014072
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-11": {
+    "workId": "release-20260910-avatar-11",
+    "source": "/media/quality-20260913-release-20260910-avatar-11",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-11.mp4",
+    "sourceSize": 8662493,
+    "sourceSha256": "de2f289d9b278a6d03f08019aaa59d7ce7c444425d5df3a19fa84757a6cd555a",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 45.566667,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-11/29547145d8410706",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 852,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4096332,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 854,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8998620,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 850888,
+        "averageBandwidth": 719181,
+        "duration": 45.566667,
+        "segments": 12,
+        "maxSegmentBytes": 425444
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1826880,
+        "averageBandwidth": 1579861,
+        "duration": 45.566667,
+        "segments": 12,
+        "maxSegmentBytes": 899392
+      }
+    ]
+  },
+  "quality-20260913-release-20260910-avatar-12": {
+    "workId": "release-20260910-avatar-12",
+    "source": "/media/quality-20260913-release-20260910-avatar-12",
+    "sourceObjectKey": "quality-20260913/release-20260910-avatar-12.mp4",
+    "sourceSize": 7625904,
+    "sourceSha256": "ab99312169d84e7cf0609ab1106a93bbfcc1b935de69eb10d7d6040b72be8163",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 41.5,
+    "width": 725,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-release-20260910-avatar-12/fa51ba04378c929d",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 793,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3694576,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 794,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8172360,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 858408,
+        "averageBandwidth": 712208,
+        "duration": 41.5,
+        "segments": 11,
+        "maxSegmentBytes": 429204
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1270,
+        "bandwidth": 1930760,
+        "averageBandwidth": 1575395,
+        "duration": 41.5,
+        "segments": 11,
+        "maxSegmentBytes": 965380
+      }
+    ]
+  },
+  "quality-20260913-35830f95-6fcb-4b96-9178-8867ed9dbe96": {
+    "workId": "35830f95-6fcb-4b96-9178-8867ed9dbe96",
+    "source": "/media/quality-20260913-35830f95-6fcb-4b96-9178-8867ed9dbe96",
+    "sourceObjectKey": "quality-20260913/35830f95-6fcb-4b96-9178-8867ed9dbe96.mp4",
+    "sourceSize": 8816772,
+    "sourceSha256": "67e9a52f39e83cf550c8e9a49edea75b24788942efd03742482b0dd13b2ae738",
+    "recipe": "hls-ts-range-v1-4s-480-720-1080-veryfast",
+    "duration": 42.266667,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/quality-20260913-35830f95-6fcb-4b96-9178-8867ed9dbe96/2dd65b8c8849ece3",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 793,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3798352,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 795,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8588404,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 930976,
+        "averageBandwidth": 718931,
+        "duration": 42.266667,
+        "segments": 11,
+        "maxSegmentBytes": 465488
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2107480,
+        "averageBandwidth": 1625566,
+        "duration": 42.266667,
+        "segments": 11,
+        "maxSegmentBytes": 1053740
+      }
+    ]
+  },
+  "7f37afae-f0aa-4aeb-9d76-cecf673e319e": {
+    "workId": "cc34c9b8-7ec2-4bb6-a9c5-639b2a44d554",
+    "source": "/media/7f37afae-f0aa-4aeb-9d76-cecf673e319e",
+    "sourceObjectKey": "works/cc34c9b8-7ec2-4bb6-a9c5-639b2a44d554/7f37afae-f0aa-4aeb-9d76-cecf673e319e",
+    "sourceSize": 151964467,
+    "sourceSha256": "a25bf995cac7b87f6118af0528bc3b612504f216b76b00b56ab54cf99a940e1d",
+    "recipe": "hls-ts-range-v4-4s-480-720-1080-veryfast",
+    "duration": 85.066667,
+    "width": 1922,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/7f37afae-f0aa-4aeb-9d76-cecf673e319e/99c38f36c993392c",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1452,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 7469428,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1466,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 16392848,
+        "type": "video/mp2t"
+      },
+      "1078p/index.m3u8": {
+        "size": 1491,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1078p/stream.ts": {
+        "size": 32708428,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 854,
+        "height": 480,
+        "bandwidth": 925712,
+        "averageBandwidth": 702455,
+        "duration": 85.066667,
+        "segments": 22,
+        "maxSegmentBytes": 462856
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2105224,
+        "averageBandwidth": 1541648,
+        "duration": 85.066667,
+        "segments": 22,
+        "maxSegmentBytes": 1052612
+      },
+      {
+        "name": "1078p",
+        "width": 1920,
+        "height": 1078,
+        "bandwidth": 3499808,
+        "averageBandwidth": 3076028,
+        "duration": 85.066667,
+        "segments": 22,
+        "maxSegmentBytes": 1749904
+      }
+    ]
+  },
   "release-20261004-rules-video": {
     "workId": "release-20261004-rules",
     "source": "/media/release-20261004-rules-video",
@@ -2146,6 +5260,1314 @@
         "duration": 52.066667,
         "segments": 14,
         "maxSegmentBytes": 2034724
+      }
+    ]
+  },
+  "1701942e-4134-41ee-91b9-a74032dfbce9": {
+    "workId": "dd50617f-fe10-4189-a329-ee70efd467af",
+    "source": "/media/1701942e-4134-41ee-91b9-a74032dfbce9",
+    "sourceObjectKey": "works/dd50617f-fe10-4189-a329-ee70efd467af/1701942e-4134-41ee-91b9-a74032dfbce9",
+    "sourceSize": 176796718,
+    "sourceSha256": "4971faa09ceb1f574de68542b9f146de68eb79713ad7e25f600a5b32c45a282d",
+    "recipe": "hls-ts-range-v4-4s-480-720-1080-veryfast",
+    "duration": 62.633333,
+    "width": 3844,
+    "height": 2160,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/1701942e-4134-41ee-91b9-a74032dfbce9/69141d9895d707aa",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1093,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 5510280,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1097,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 12100244,
+        "type": "video/mp2t"
+      },
+      "1078p/index.m3u8": {
+        "size": 1119,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1078p/stream.ts": {
+        "size": 24192592,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 854,
+        "height": 480,
+        "bandwidth": 888864,
+        "averageBandwidth": 703815,
+        "duration": 62.633333,
+        "segments": 16,
+        "maxSegmentBytes": 444432
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 1912712,
+        "averageBandwidth": 1545535,
+        "duration": 62.633333,
+        "segments": 16,
+        "maxSegmentBytes": 956356
+      },
+      {
+        "name": "1078p",
+        "width": 1920,
+        "height": 1078,
+        "bandwidth": 3496424,
+        "averageBandwidth": 3090060,
+        "duration": 62.633333,
+        "segments": 16,
+        "maxSegmentBytes": 1748212
+      }
+    ]
+  },
+  "0e891048-6c85-432f-875e-e3107c6e1771": {
+    "workId": "b61b32f9-f5be-4f3a-a259-6ba60129814b",
+    "source": "/media/0e891048-6c85-432f-875e-e3107c6e1771",
+    "sourceObjectKey": "works/b61b32f9-f5be-4f3a-a259-6ba60129814b/0e891048-6c85-432f-875e-e3107c6e1771",
+    "sourceSize": 21242475,
+    "sourceSha256": "bb06795ec8b28cdfd3c55c6e16b0cbf0c287dd3f494097d1c517a4689de2bc2b",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 12.866667,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/0e891048-6c85-432f-875e-e3107c6e1771/c853bc1e5c62a4e7",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 372,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 1081940,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 374,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 2381584,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 378,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 4957748,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 711768,
+        "averageBandwidth": 672709,
+        "duration": 12.866667,
+        "segments": 4,
+        "maxSegmentBytes": 355884
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1544232,
+        "averageBandwidth": 1480778,
+        "duration": 12.866667,
+        "segments": 4,
+        "maxSegmentBytes": 772116
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3234352,
+        "averageBandwidth": 3082538,
+        "duration": 12.866667,
+        "segments": 4,
+        "maxSegmentBytes": 1617176
+      }
+    ]
+  },
+  "d05e75d9-2d18-43cf-898e-a6d01366c94c": {
+    "workId": "31942d9f-4298-4a87-878c-ab5c23f1e916",
+    "source": "/media/d05e75d9-2d18-43cf-898e-a6d01366c94c",
+    "sourceObjectKey": "works/31942d9f-4298-4a87-878c-ab5c23f1e916/d05e75d9-2d18-43cf-898e-a6d01366c94c",
+    "sourceSize": 143769862,
+    "sourceSha256": "9127f1e0d7ecf9ec82f759c8684be9b529e981828d6e6d76e261bd34a8b58582",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 93.466667,
+    "width": 1440,
+    "height": 2560,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/d05e75d9-2d18-43cf-898e-a6d01366c94c/1fa998c4994880e3",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1573,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 8016508,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1587,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 17662224,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1615,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 34692768,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 908792,
+        "averageBandwidth": 686150,
+        "duration": 93.466667,
+        "segments": 24,
+        "maxSegmentBytes": 454396
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 2062360,
+        "averageBandwidth": 1511746,
+        "duration": 93.466667,
+        "segments": 24,
+        "maxSegmentBytes": 1031180
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3392272,
+        "averageBandwidth": 2969424,
+        "duration": 93.466667,
+        "segments": 24,
+        "maxSegmentBytes": 1696136
+      }
+    ]
+  },
+  "f0fa8d1c-089a-4c66-a38f-a30922a534bd": {
+    "workId": "d74f57d2-332f-42ed-a5ed-ca929da2e335",
+    "source": "/media/f0fa8d1c-089a-4c66-a38f-a30922a534bd",
+    "sourceObjectKey": "works/d74f57d2-332f-42ed-a5ed-ca929da2e335/f0fa8d1c-089a-4c66-a38f-a30922a534bd",
+    "sourceSize": 12790657,
+    "sourceSha256": "2fcbb5dc7a77fedb3949f877df0f0a9ceecdcb345154be4383e56b6efa702757",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 219.88,
+    "width": 960,
+    "height": 544,
+    "fps": 25.995997816991085,
+    "hasAudio": true,
+    "prefix": "playback/v1/f0fa8d1c-089a-4c66-a38f-a30922a534bd/5f8cfd26e8c948b9",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 3459,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 19620056,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 209,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 846,
+        "height": 480,
+        "bandwidth": 887598,
+        "averageBandwidth": 713847,
+        "duration": 219.8799139999999,
+        "segments": 55,
+        "maxSegmentBytes": 443868
+      }
+    ]
+  },
+  "4356f7d2-617c-4b9a-a36c-89ea606d090f": {
+    "workId": "11dc13ff-4ebe-4dab-ac7b-6c5872ca0709",
+    "source": "/media/4356f7d2-617c-4b9a-a36c-89ea606d090f",
+    "sourceObjectKey": "works/11dc13ff-4ebe-4dab-ac7b-6c5872ca0709/4356f7d2-617c-4b9a-a36c-89ea606d090f",
+    "sourceSize": 40828033,
+    "sourceSha256": "b7f32b4428d51fc8e7a9b97a347e4625d358a6984e2a184a1b1ede9f6ac59cf2",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 639.7,
+    "width": 960,
+    "height": 544,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/4356f7d2-617c-4b9a-a36c-89ea606d090f/89531e716b2af06d",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 9865,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 57152188,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 209,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 846,
+        "height": 480,
+        "bandwidth": 926464,
+        "averageBandwidth": 714738,
+        "duration": 639.7,
+        "segments": 160,
+        "maxSegmentBytes": 463232
+      }
+    ]
+  },
+  "eb5d1613-fbdd-4fe0-a32f-c642dc39a8c9": {
+    "workId": "a08f4524-ff38-43fb-91d4-0e911c8aa7ed",
+    "source": "/media/eb5d1613-fbdd-4fe0-a32f-c642dc39a8c9",
+    "sourceObjectKey": "works/a08f4524-ff38-43fb-91d4-0e911c8aa7ed/eb5d1613-fbdd-4fe0-a32f-c642dc39a8c9",
+    "sourceSize": 145800062,
+    "sourceSha256": "81fac0d318f4d058cd86b06bfd3c15c1bfad2567421ad5a113827bc3f1e17986",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 57.1,
+    "width": 2160,
+    "height": 2880,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/eb5d1613-fbdd-4fe0-a32f-c642dc39a8c9/e5c688490ca2ca2c",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1030,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 4629688,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1035,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 10097292,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1055,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 19733420,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 529,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 640,
+        "bandwidth": 905408,
+        "averageBandwidth": 648643,
+        "duration": 57.1,
+        "segments": 15,
+        "maxSegmentBytes": 452704
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 960,
+        "bandwidth": 2068000,
+        "averageBandwidth": 1414682,
+        "duration": 57.1,
+        "segments": 15,
+        "maxSegmentBytes": 1034000
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1440,
+        "bandwidth": 3333240,
+        "averageBandwidth": 2764753,
+        "duration": 57.1,
+        "segments": 15,
+        "maxSegmentBytes": 1666620
+      }
+    ]
+  },
+  "eaa0efb0-c039-4a88-bcbe-16c196fb837a": {
+    "workId": "7de8ea29-95ee-4d95-84db-38f86d433101",
+    "source": "/media/eaa0efb0-c039-4a88-bcbe-16c196fb837a",
+    "sourceObjectKey": "works/7de8ea29-95ee-4d95-84db-38f86d433101/eaa0efb0-c039-4a88-bcbe-16c196fb837a",
+    "sourceSize": 88526948,
+    "sourceSha256": "d78144a898ef9b63d702d2cb84579ec84e64cbb20378dffca98d1cc5d33a6e10",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 23.8,
+    "width": 2160,
+    "height": 2880,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/eaa0efb0-c039-4a88-bcbe-16c196fb837a/bf9dc8e599f321a5",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 492,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 1704596,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 493,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 3696644,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 500,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 7427128,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 529,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 640,
+        "bandwidth": 896008,
+        "averageBandwidth": 572974,
+        "duration": 23.8,
+        "segments": 6,
+        "maxSegmentBytes": 448004
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 960,
+        "bandwidth": 1962344,
+        "averageBandwidth": 1242570,
+        "duration": 23.8,
+        "segments": 6,
+        "maxSegmentBytes": 981172
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1440,
+        "bandwidth": 3457320,
+        "averageBandwidth": 2496514,
+        "duration": 23.8,
+        "segments": 6,
+        "maxSegmentBytes": 1728660
+      }
+    ]
+  },
+  "1c41a84a-4a33-4233-b520-190bd0f83b4e": {
+    "workId": "56f71b2d-4931-475b-9f8a-147905ad7b4f",
+    "source": "/media/1c41a84a-4a33-4233-b520-190bd0f83b4e",
+    "sourceObjectKey": "works/56f71b2d-4931-475b-9f8a-147905ad7b4f/1c41a84a-4a33-4233-b520-190bd0f83b4e",
+    "sourceSize": 50970556,
+    "sourceSha256": "f6b75eb6e75e4800eb26f32311471ff07dc6ec01a85752bcff29aef63d20d6e6",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 29.033333,
+    "width": 1440,
+    "height": 2560,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/1c41a84a-4a33-4233-b520-190bd0f83b4e/2db11daf4441b706",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 611,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 2345112,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 614,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 5109276,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 622,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 10122484,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 950528,
+        "averageBandwidth": 646185,
+        "duration": 29.033333,
+        "segments": 8,
+        "maxSegmentBytes": 475264
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 2148464,
+        "averageBandwidth": 1407838,
+        "duration": 29.033333,
+        "segments": 8,
+        "maxSegmentBytes": 1074232
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3510712,
+        "averageBandwidth": 2789204,
+        "duration": 29.033333,
+        "segments": 8,
+        "maxSegmentBytes": 1755356
+      }
+    ]
+  },
+  "125bf0f6-b0e5-4ece-982e-b491ef5ebd69": {
+    "workId": "664ab500-1319-48b5-96bb-71d3bf678e85",
+    "source": "/media/125bf0f6-b0e5-4ece-982e-b491ef5ebd69",
+    "sourceObjectKey": "works/664ab500-1319-48b5-96bb-71d3bf678e85/125bf0f6-b0e5-4ece-982e-b491ef5ebd69",
+    "sourceSize": 86144208,
+    "sourceSha256": "ddb92a5996d455a422d7b36ad2fc5bbadfa43d2cefcdf1cfd4f73c25ceb0083b",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 38.766667,
+    "width": 2160,
+    "height": 3840,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/125bf0f6-b0e5-4ece-982e-b491ef5ebd69/f5e2ed214e15e8cf",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 733,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3168176,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 734,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 6818760,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 747,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 13974228,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 750496,
+        "averageBandwidth": 653794,
+        "duration": 38.766667,
+        "segments": 10,
+        "maxSegmentBytes": 375248
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1648384,
+        "averageBandwidth": 1407139,
+        "duration": 38.766667,
+        "segments": 10,
+        "maxSegmentBytes": 824192
+      },
+      {
+        "name": "1080p",
+        "width": 1080,
+        "height": 1920,
+        "bandwidth": 3397536,
+        "averageBandwidth": 2883762,
+        "duration": 38.766667,
+        "segments": 10,
+        "maxSegmentBytes": 1698768
+      }
+    ]
+  },
+  "f368b249-a4e2-4bb2-958d-169df035b2ce": {
+    "workId": "69549ab2-7275-497a-9a93-b4109aea6924",
+    "source": "/media/f368b249-a4e2-4bb2-958d-169df035b2ce",
+    "sourceObjectKey": "works/69549ab2-7275-497a-9a93-b4109aea6924/f368b249-a4e2-4bb2-958d-169df035b2ce",
+    "sourceSize": 18445024,
+    "sourceSha256": "03d82f5d3700325e5447e5ef4720bbb9794890371c928862d8f0ae35fba90887",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 91.333333,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/f368b249-a4e2-4bb2-958d-169df035b2ce/e612ba18c6a62877",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1513,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 8073660,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1525,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 17749832,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 950152,
+        "averageBandwidth": 707182,
+        "duration": 91.333333,
+        "segments": 23,
+        "maxSegmentBytes": 475076
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2152600,
+        "averageBandwidth": 1554730,
+        "duration": 91.333333,
+        "segments": 23,
+        "maxSegmentBytes": 1076300
+      }
+    ]
+  },
+  "d55e9ad3-be0b-4766-ae48-247ae4a61382": {
+    "workId": "23b36ca4-bea1-4943-aa2f-0242ebf0a18f",
+    "source": "/media/d55e9ad3-be0b-4766-ae48-247ae4a61382",
+    "sourceObjectKey": "works/23b36ca4-bea1-4943-aa2f-0242ebf0a18f/d55e9ad3-be0b-4766-ae48-247ae4a61382",
+    "sourceSize": 20436638,
+    "sourceSha256": "85f0c4e968336e83d8f5f872fb3973b226960d5317c27378f2722bbe163978aa",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 320.333333,
+    "width": 544,
+    "height": 960,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/d55e9ad3-be0b-4766-ae48-247ae4a61382/45c7db9d59174ec4",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 5045,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 28443460,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 210,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 846,
+        "bandwidth": 1267874,
+        "averageBandwidth": 710347,
+        "duration": 320.333333,
+        "segments": 81,
+        "maxSegmentBytes": 463984
+      }
+    ]
+  },
+  "release-20261109-liuli-sha-video": {
+    "workId": "release-20261109-liuli-sha",
+    "source": "/media/release-20261109-liuli-sha-video",
+    "sourceObjectKey": "works/release-20261109-liuli-sha/video.mp4",
+    "sourceSize": 22047695,
+    "sourceSha256": "3f6bb5ed90bb340104c66188a37e8fa82c53081310222c0f984b7b8ba437d1fd",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 144.678571,
+    "width": 968,
+    "height": 544,
+    "fps": 28,
+    "hasAudio": true,
+    "prefix": "playback/v1/release-20261109-liuli-sha-video/9a30f6ddf4fe2a57",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 2360,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 12925000,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 209,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 854,
+        "height": 480,
+        "bandwidth": 918192,
+        "averageBandwidth": 714689,
+        "duration": 144.678511,
+        "segments": 37,
+        "maxSegmentBytes": 459096
+      }
+    ]
+  },
+  "release-20261109-xiufu-video": {
+    "workId": "release-20261109-xiufu",
+    "source": "/media/release-20261109-xiufu-video",
+    "sourceObjectKey": "works/release-20261109-xiufu/video.mp4",
+    "sourceSize": 175983559,
+    "sourceSha256": "6bce6d8893fc53cce6ca47b846059038899f88d1d2ea0ed4ae92f4104708be34",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 142.066667,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/release-20261109-xiufu-video/673defe067fb756c",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 2300,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 12572124,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 2317,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 27798432,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 2359,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 55318624,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 852,
+        "height": 480,
+        "bandwidth": 920448,
+        "averageBandwidth": 707957,
+        "duration": 142.066667,
+        "segments": 36,
+        "maxSegmentBytes": 460224
+      },
+      {
+        "name": "720p",
+        "width": 1280,
+        "height": 720,
+        "bandwidth": 2073640,
+        "averageBandwidth": 1565374,
+        "duration": 142.066667,
+        "segments": 36,
+        "maxSegmentBytes": 1036820
+      },
+      {
+        "name": "1080p",
+        "width": 1920,
+        "height": 1080,
+        "bandwidth": 3526637,
+        "averageBandwidth": 3115080,
+        "duration": 142.066667,
+        "segments": 36,
+        "maxSegmentBytes": 1740504
+      }
+    ]
+  },
+  "382d8ce6-caff-473b-8f5d-c1769124e15a": {
+    "workId": "99f47d52-d9f7-4c68-ab10-c8317bce9ce3",
+    "source": "/media/382d8ce6-caff-473b-8f5d-c1769124e15a",
+    "sourceObjectKey": "works/99f47d52-d9f7-4c68-ab10-c8317bce9ce3/382d8ce6-caff-473b-8f5d-c1769124e15a",
+    "sourceSize": 21172805,
+    "sourceSha256": "1cb480817d196ae97d5329d3be20b7c428ca91e55b2caefb41e0cf8e4b69f9a1",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 105.633333,
+    "width": 719,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/382d8ce6-caff-473b-8f5d-c1769124e15a/6dc81087bcc3fc7c",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1753,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 9585368,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 209,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 854,
+        "bandwidth": 908040,
+        "averageBandwidth": 725936,
+        "duration": 105.633333,
+        "segments": 27,
+        "maxSegmentBytes": 454020
+      }
+    ]
+  },
+  "e9878477-b0f1-4b05-bcf5-feab3c16bc0f": {
+    "workId": "899e32fa-fb50-48db-9aef-f002f6d1e94c",
+    "source": "/media/e9878477-b0f1-4b05-bcf5-feab3c16bc0f",
+    "sourceObjectKey": "works/899e32fa-fb50-48db-9aef-f002f6d1e94c/e9878477-b0f1-4b05-bcf5-feab3c16bc0f",
+    "sourceSize": 108663448,
+    "sourceSha256": "000f35771e66dc412817fa3d68177cdd9d46e24e24cf2cacfa26d0708cb1b224",
+    "recipe": "hls-ts-range-v4-4s-480-720-1080-veryfast",
+    "duration": 93.6,
+    "width": 1080,
+    "height": 1922,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/e9878477-b0f1-4b05-bcf5-feab3c16bc0f/401fd44445510880",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1573,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 8290800,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1585,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 18245776,
+        "type": "video/mp2t"
+      },
+      "1078p/index.m3u8": {
+        "size": 1615,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1078p/stream.ts": {
+        "size": 36961364,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 530,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 854,
+        "bandwidth": 854272,
+        "averageBandwidth": 708616,
+        "duration": 93.6,
+        "segments": 24,
+        "maxSegmentBytes": 427136
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1892032,
+        "averageBandwidth": 1559469,
+        "duration": 93.6,
+        "segments": 24,
+        "maxSegmentBytes": 946016
+      },
+      {
+        "name": "1078p",
+        "width": 1078,
+        "height": 1920,
+        "bandwidth": 3448296,
+        "averageBandwidth": 3159091,
+        "duration": 93.6,
+        "segments": 24,
+        "maxSegmentBytes": 1724148
+      }
+    ]
+  },
+  "404c07a8-77bd-4a08-8c51-92f582128705": {
+    "workId": "8d985c55-bb30-4a5c-9657-9b131147b3ce",
+    "source": "/media/404c07a8-77bd-4a08-8c51-92f582128705",
+    "sourceObjectKey": "works/8d985c55-bb30-4a5c-9657-9b131147b3ce/404c07a8-77bd-4a08-8c51-92f582128705",
+    "sourceSize": 12598056,
+    "sourceSha256": "0e641c1210e63b3dc52388e2b321ff6481f241836a31a047f8330caa80810eb9",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 60.933333,
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/404c07a8-77bd-4a08-8c51-92f582128705/ff7d3ebe49314224",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1092,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 5525508,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1097,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 12017900,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 871192,
+        "averageBandwidth": 725450,
+        "duration": 60.933333,
+        "segments": 16,
+        "maxSegmentBytes": 435596
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 1853304,
+        "averageBandwidth": 1577843,
+        "duration": 60.933333,
+        "segments": 16,
+        "maxSegmentBytes": 926652
+      }
+    ]
+  },
+  "1a3d8ebc-de47-4d16-88df-4079848ba36e": {
+    "workId": "686d8320-4422-4ace-b2d0-a8801bcb4628",
+    "source": "/media/1a3d8ebc-de47-4d16-88df-4079848ba36e",
+    "sourceObjectKey": "works/686d8320-4422-4ace-b2d0-a8801bcb4628/1a3d8ebc-de47-4d16-88df-4079848ba36e",
+    "sourceSize": 7032338,
+    "sourceSha256": "5e443e199e6d898f892541405951c29b8965e2f08315213e58f48760ecf892cd",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 40.066667,
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/1a3d8ebc-de47-4d16-88df-4079848ba36e/0bdb0027224624b5",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 791,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3495484,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 794,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 7727552,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 369,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 3180945,
+        "averageBandwidth": 697934,
+        "duration": 40.066667,
+        "segments": 11,
+        "maxSegmentBytes": 464172
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 5233894,
+        "averageBandwidth": 1542939,
+        "duration": 40.066667,
+        "segments": 11,
+        "maxSegmentBytes": 1080248
+      }
+    ]
+  },
+  "df2238b6-ddcb-4c7a-990f-5eb2ad8229d5": {
+    "workId": "a3e9c084-9736-4dcb-bba5-f79c2291b864",
+    "source": "/media/df2238b6-ddcb-4c7a-990f-5eb2ad8229d5",
+    "sourceObjectKey": "works/a3e9c084-9736-4dcb-bba5-f79c2291b864/df2238b6-ddcb-4c7a-990f-5eb2ad8229d5",
+    "sourceSize": 7503185,
+    "sourceSha256": "16a2a1196356d2472bb0cb81137bd278910b9b01f180bb9ade39190d0e528c17",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 45.033333,
+    "width": 720,
+    "height": 1280,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/df2238b6-ddcb-4c7a-990f-5eb2ad8229d5/42f92a6d06d6f37e",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 851,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 3793276,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 855,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 8322196,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 368,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 900144,
+        "averageBandwidth": 673862,
+        "duration": 45.033333,
+        "segments": 12,
+        "maxSegmentBytes": 450072
+      },
+      {
+        "name": "720p",
+        "width": 720,
+        "height": 1280,
+        "bandwidth": 2003328,
+        "averageBandwidth": 1478407,
+        "duration": 45.033333,
+        "segments": 12,
+        "maxSegmentBytes": 1001664
+      }
+    ]
+  },
+  "417be39f-7bf4-4133-ad37-7e993cc5807c": {
+    "workId": "00021b5e-efa2-45a5-8a3a-9a33164713df",
+    "source": "/media/417be39f-7bf4-4133-ad37-7e993cc5807c",
+    "sourceObjectKey": "works/00021b5e-efa2-45a5-8a3a-9a33164713df/417be39f-7bf4-4133-ad37-7e993cc5807c",
+    "sourceSize": 21687766,
+    "sourceSha256": "dc381b13e44273d31e6548bd935fff7c41154f755025a6f6108654e91b8d74e6",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 144.642857,
+    "width": 540,
+    "height": 960,
+    "fps": 28,
+    "hasAudio": true,
+    "prefix": "playback/v1/417be39f-7bf4-4133-ad37-7e993cc5807c/e3b7bd0ec185b71f",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 2360,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 12954704,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 209,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 480,
+        "height": 852,
+        "bandwidth": 937744,
+        "averageBandwidth": 716508,
+        "duration": 144.6428,
+        "segments": 37,
+        "maxSegmentBytes": 468872
+      }
+    ]
+  },
+  "showcase-global-en": {
+    "workId": "showcase-global-en",
+    "source": "/showcase-video/global-en.mp4",
+    "sourceObjectKey": "quality-20260913/global-en.mp4",
+    "sourceSize": 49692185,
+    "sourceSha256": "1e09198d3ca79bc0e2263822f07dee655540524718e34823409a3db98eca6dc2",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 76.466667,
+    "width": 1440,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/showcase-global-en/10a577dcb9ad5839",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 1332,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 7063724,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 1341,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 15499096,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 1367,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 30592488,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 529,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 640,
+        "height": 480,
+        "bandwidth": 922704,
+        "averageBandwidth": 739013,
+        "duration": 76.466667,
+        "segments": 20,
+        "maxSegmentBytes": 461352
+      },
+      {
+        "name": "720p",
+        "width": 960,
+        "height": 720,
+        "bandwidth": 1980768,
+        "averageBandwidth": 1621528,
+        "duration": 76.466667,
+        "segments": 20,
+        "maxSegmentBytes": 990384
+      },
+      {
+        "name": "1080p",
+        "width": 1440,
+        "height": 1080,
+        "bandwidth": 3521992,
+        "averageBandwidth": 3200610,
+        "duration": 76.466667,
+        "segments": 20,
+        "maxSegmentBytes": 1760996
+      }
+    ]
+  },
+  "showcase-global-pt": {
+    "workId": "showcase-global-pt",
+    "source": "/showcase-video/global-pt.mp4",
+    "sourceObjectKey": "quality-20260913/global-pt.mp4",
+    "sourceSize": 58647822,
+    "sourceSha256": "6d3e05da03321c61697b89ca8df2825f820587d40da225b4044950210c08378b",
+    "recipe": "hls-ts-range-v2-4s-480-720-1080-veryfast",
+    "duration": 126.633333,
+    "width": 1430,
+    "height": 1080,
+    "fps": 30,
+    "hasAudio": true,
+    "prefix": "playback/v1/showcase-global-pt/443fc6ff7375adcd",
+    "files": {
+      "480p/index.m3u8": {
+        "size": 2057,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "480p/stream.ts": {
+        "size": 11287708,
+        "type": "video/mp2t"
+      },
+      "720p/index.m3u8": {
+        "size": 2073,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "720p/stream.ts": {
+        "size": 24718992,
+        "type": "video/mp2t"
+      },
+      "1080p/index.m3u8": {
+        "size": 2111,
+        "type": "application/vnd.apple.mpegurl"
+      },
+      "1080p/stream.ts": {
+        "size": 50089592,
+        "type": "video/mp2t"
+      },
+      "master.m3u8": {
+        "size": 529,
+        "type": "application/vnd.apple.mpegurl"
+      }
+    },
+    "variants": [
+      {
+        "name": "480p",
+        "width": 634,
+        "height": 480,
+        "bandwidth": 915560,
+        "averageBandwidth": 713096,
+        "duration": 126.633333,
+        "segments": 32,
+        "maxSegmentBytes": 457780
+      },
+      {
+        "name": "720p",
+        "width": 952,
+        "height": 720,
+        "bandwidth": 1998816,
+        "averageBandwidth": 1561611,
+        "duration": 126.633333,
+        "segments": 32,
+        "maxSegmentBytes": 999408
+      },
+      {
+        "name": "1080p",
+        "width": 1430,
+        "height": 1080,
+        "bandwidth": 3553576,
+        "averageBandwidth": 3164386,
+        "duration": 126.633333,
+        "segments": 32,
+        "maxSegmentBytes": 1776788
       }
     ]
   }
