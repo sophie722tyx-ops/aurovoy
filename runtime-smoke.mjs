@@ -28,8 +28,8 @@ try{
   assert.equal((await call('/world/')).status,410);assert.equal((await call('/world/assets/scene.glb')).status,410);
   const login=await mf.dispatchFetch('https://aurovoy.example/admin',{redirect:'manual'});assert.equal(login.status,302);
   assert.equal((await call('/api/admin/works')).status,401);
-  for(const p of ['/admin','/admin/creators','/admin/training','/admin/members','/assets/cover-3.webp']){const r=await call(p,'GET',null,true);assert.equal(r.status,200,p);assert.match(r.headers.get('cache-control'),/private, no-store/);}
-  for(const p of ['/admin.css','/content-admin.css','/admin.js','/content-admin.js','/creator-works.js','/media-frame.js','/upload-drop.js'])assert.equal((await call(p)).status,200,p);
+  for(const p of ['/admin','/admin/categories','/admin/creators','/admin/training','/admin/members','/assets/cover-3.webp']){const r=await call(p,'GET',null,true);assert.equal(r.status,200,p);assert.match(r.headers.get('cache-control'),/private, no-store/);}
+  for(const p of ['/admin.css','/category-admin.css','/category-admin.js','/content-admin.css','/admin.js','/content-admin.js','/creator-works.js','/media-frame.js','/upload-drop.js'])assert.equal((await call(p)).status,200,p);
   const work=await(await call('/api/admin/works','POST',{},true)).json();assert(work.id);
   const bytes=new Uint8Array(32);bytes.set([0,0,0,24,102,116,121,112]);
   const upload=await(await call('/api/admin/uploads','POST',{workId:work.id,kind:'video',type:'video/mp4',size:32},true)).json();
@@ -78,6 +78,19 @@ try{
  assert.equal((await call(work.video,'GET',null,false,{'If-None-Match':etag})).status,404);
  assert.equal((await call('/.media-cache/v1/private-file')).status,404);
  assert.equal((await call('/assets/mark.png')).status,200);
- console.log(`Cloudflare runtime passed: ${pages.length} public pages, real JWT verification, D1 create, R2 upload and private preview.`);
+ assert.equal((await call('/admin/categories','GET',null,true)).status,200);
+ const categorySettings=await(await call('/api/admin/categories','GET',null,true)).json();
+ const coverUpload=await call('/api/admin/categories/brand/cover','POST',png,true,{'Content-Type':'image/png','Content-Length':String(png.length)});assert.equal(coverUpload.status,201);const cover=(await coverUpload.json()).cover;
+ assert.equal((await call(cover)).status,404);assert.equal((await call(cover,'GET',null,true)).status,200);
+ const categoryBody={revision:categorySettings.revision,items:categorySettings.items.slice().reverse().map(c=>({id:c.id,cover:c.id==='brand'?cover:''}))};
+ const categorySave=await call('/api/admin/categories','PUT',categoryBody,true);assert.equal(categorySave.status,200);assert.equal((await call(cover)).status,200);
+ assert.equal((await call('/api/admin/categories','PUT',categoryBody,true)).status,409);
+ for(const prefix of ['/','/en/','/fr/']){const html=await(await call(prefix+'works.html')).text();assert.deepEqual([...html.matchAll(/<a class="category-card[^>]+href="works-([a-z]+)\.html"/g)].map(x=>x[1]),categoryBody.items.map(x=>x.id));assert(html.includes(cover));}
+ const another=await(await call('/api/admin/works','POST',{},true)).json(),batch=[{id:work.id,updatedAt:work.updatedAt},{id:another.id,updatedAt:another.updatedAt}];
+ assert.equal((await call('/api/admin/works/bulk-delete','POST',{items:[batch[0],{...batch[1],updatedAt:'2000-01-01T00:00:00Z'}]},true)).status,409);
+ assert.equal((await call(work.video,'GET',null,true)).status,200);
+ const deleted=await call('/api/admin/works/bulk-delete','POST',{items:batch},true);assert.equal(deleted.status,200);assert.deepEqual((await deleted.json()).ids,batch.map(x=>x.id));
+ assert.equal((await call(work.video,'GET',null,true)).status,404);assert(!(await(await call('/api/admin/works','GET',null,true)).json()).works.some(w=>batch.some(x=>x.id===w.id)));
+ console.log(`Cloudflare runtime passed: ${pages.length} pages, authenticated editing, category covers/order, atomic batch deletion, R2 upload and private playback.`);
  }
 }finally{await mf.dispose();}

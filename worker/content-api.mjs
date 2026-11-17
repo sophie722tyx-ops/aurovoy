@@ -33,7 +33,7 @@ export async function contentApi(request,env){
  return json({error:'请求不存在'},404);
 }
 export async function contentImage(request,env,id){
- const image=await db(env).prepare('SELECT * FROM content_images WHERE id=?').bind(id).first();if(!image)return new Response('Not found',{status:404});const [kind,entryId]=image.entry_key.split(':');const item=await entry(env,kind,entryId);
+ const image=await db(env).prepare('SELECT * FROM content_images WHERE id=?').bind(id).first();if(!image)return new Response('Not found',{status:404});const [kind,entryId]=image.entry_key.split(':');if(!['mentors','courses','creators'].includes(kind))return new Response('Not found',{status:404});const item=await entry(env,kind,entryId);
  if(!item||item.status==='deleted'||item.photo!==`/content-media/${id}`||(item.status!=='published'&&!isAdmin(request,env)))return new Response('Not found',{status:404});
  const object=await env.FILES.get(image.object_key);if(!object)return new Response('Not found',{status:404});return new Response(request.method==='HEAD'?null:object.body,{headers:{'Content-Type':image.content_type,'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Cross-Origin-Resource-Policy':'same-origin'}});
 }

@@ -1,4 +1,5 @@
-import {allWorks,categories,db} from './repository.mjs';
+import {allWorks,db} from './repository.mjs';
+import {orderedCategories} from './categories.mjs';
 import {entries,entry,failure} from './content-store.mjs';
 import {TEAM,TEAM_ID} from './creator-team.mjs';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
@@ -9,7 +10,7 @@ export async function creatorWorksApi(request,env,id,user){
  if(!creator||creator.status==='deleted')failure('创作者不存在或已移除',404);
  if(request.method==='GET'){
   const [works,creators]=await Promise.all([allWorks(env,true),entries(env,'creators',true)]);
-  return json({creator:{id,name:creator.name,status:creator.status,revision:creator.revision},creators:[TEAM,...creators].map(c=>({id:c.id,name:c.name,status:c.status})),works:works.map(summary),categories:categories.map(c=>({id:c.id,name:c.name[0]}))});
+  return json({creator:{id,name:creator.name,status:creator.status,revision:creator.revision},creators:[TEAM,...creators].map(c=>({id:c.id,name:c.name,status:c.status})),works:works.map(summary),categories:(await orderedCategories(env)).map(c=>({id:c.id,name:c.name[0]}))});
  }
  if(request.method!=='PUT')return json({error:'请求方法无效'},405);
  const raw=await request.text();if(raw.length>200000)failure('一次提交内容过多',413);

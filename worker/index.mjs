@@ -1,6 +1,8 @@
 import {MEDIA_CACHE_PREFIX} from './media-response.mjs';
 import {playback} from './playback.mjs';
 import {playbackPage} from './playback-page.mjs';
+import {categoryApi,categoryImage,categoryPresentation} from './categories.mjs';
+import {categoryAdminPage} from './category-admin.mjs';
 import {languageWelcome} from './language-welcome.mjs';
 import {maintenanceResponse,privateDuringPause,retiredWorldResponse} from './maintenance.mjs';
 import quality from '../video-quality.json' with {type:'json'};
@@ -25,19 +27,21 @@ const handler={async fetch(request,env,context){
   const showcase=Object.values(quality).find(q=>q.showcase&&p===q.video);
   if(showcase)return storedMedia(request,env,showcase.objectKey,'video/mp4',{size:showcase.size,published:true,context});
   if(p==='/api/admin/members')return await membersApi(request,env);
+  if(p==='/api/admin/categories'||p.startsWith('/api/admin/categories/'))return await categoryApi(request,env);
   if(p.startsWith('/api/admin/content/'))return await contentApi(request,env);
   if(p.startsWith('/api/admin/'))return await adminApi(request,env);
-  if(/^\/admin(?:\/(?:mentors|training|creators|members))?\/?$/.test(p)){
+  if(/^\/admin(?:\/(?:mentors|training|creators|members|categories))?\/?$/.test(p)){
    if(!env.ACCESS_TEAM_DOMAIN||!env.ACCESS_AUD||!env.ADMIN_EMAIL)return response('<h1>管理员登录尚未配置</h1><p>请先完成 Cloudflare Access 设置。</p>',503,{'X-Robots-Tag':'noindex'});
    if(!identity(request,env))return new Response(null,{status:302,headers:{Location:loginURL(request,env),'Cache-Control':'private, no-store','X-Robots-Tag':'noindex, nofollow'}});
    if(!isAdmin(request,env))return denied();
    const owner=isOwner(request,env);if(p.includes('/members')&&!owner)return denied();
-   const html=p.includes('/members')?membersPage():p.includes('/creators')?contentAdminPage('creators',owner):p.includes('/mentors')?contentAdminPage('mentors',owner):p.includes('/training')?contentAdminPage('courses',owner):adminNavigation(adminPage(), 'works',owner);
+   const html=p.includes('/categories')?categoryAdminPage(owner):p.includes('/members')?membersPage():p.includes('/creators')?contentAdminPage('creators',owner):p.includes('/mentors')?contentAdminPage('mentors',owner):p.includes('/training')?contentAdminPage('courses',owner):adminNavigation(adminPage(), 'works',owner);
    return response(html.replace('</head>','<link rel="stylesheet" href="/creators.css"></head>'),200,{'Cache-Control':'private, no-store','X-Robots-Tag':'noindex, nofollow','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob:; media-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"});
   }
   if(p.startsWith('/media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await media(request,env,p.slice(7),context);}
   if(p.startsWith('/playback/'))return await playback(request,env,context);
   if(p.startsWith('/content-media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await contentImage(request,env,p.slice(15));}
+  if(p.startsWith('/category-media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await categoryImage(request,env,p.slice(16));}
   if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});
   if(p==='/')return response(synchronizeEditorial(pages['en/index.html'].replace('<head>','<head><base href="/en/">'),await allWorks(env,true,true)));
   if(p==='/robots.txt')return new Response(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /cdn-cgi/\nSitemap: ${ORIGIN}/sitemap.xml\n`,{headers:{'Content-Type':'text/plain; charset=utf-8'}});
@@ -88,7 +92,7 @@ export default {async fetch(request,env,context){
   let publicOrigin;try{const u=new URL(configured);if(!['https:','http:'].includes(u.protocol)||u.username||u.password||u.search||u.hash)throw Error();publicOrigin=u.origin;}catch{return new Response('Invalid PUBLIC_ORIGIN configuration',{status:503});}
   const headers=new Headers(result.headers);headers.delete('content-length');
   let body=await result.text();
-  if(type.includes('text/html')&&result.status===200&&!new URL(request.url).pathname.startsWith('/admin')){const path=new URL(request.url).pathname;body=playbackPage(languageWelcome(await creatorExtras(body,path==='/'?'/en/':path,env)));}
+  if(type.includes('text/html')&&result.status===200&&!new URL(request.url).pathname.startsWith('/admin')){const path=new URL(request.url).pathname;body=playbackPage(languageWelcome(await creatorExtras(await categoryPresentation(body,path,env),path==='/'?'/en/':path,env)));}
   return new Response(request.method==='HEAD'?null:body.replaceAll(ORIGIN,publicOrigin),{status:result.status,headers});
  }
  return request.method==='HEAD'?new Response(null,{status:result.status,headers:result.headers}):result;

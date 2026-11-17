@@ -1,6 +1,7 @@
 import {storedMedia} from './media-response.mjs';
+import {orderedCategories} from './categories.mjs';
 export {storedMedia} from './media-response.mjs';
-import {allWorks,getWork,workFromRow,saveWork,reorderWorks,categories,db} from './repository.mjs';
+import {allWorks,getWork,workFromRow,saveWork,reorderWorks,deleteWorks,categories,db} from './repository.mjs';
 import {identity,isAdmin,assertWrite} from './auth.mjs';
 import {localize} from './localize.mjs';
 import {entry} from './content-store.mjs';
@@ -8,7 +9,7 @@ import {TEAM_ID} from './creator-team.mjs';
 export const CHUNK=8*1024*1024,MAX_VIDEO=500*1024*1024,MAX_IMAGE=10*1024*1024;
 export const json=(value,status=200)=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
 const fail=(message,status=400)=>{throw Object.assign(new Error(message),{status});};
-async function input(request){const s=await request.text();if(s.length>20000)fail('表单内容过长',413);try{return JSON.parse(s);}catch{fail('无法读取表单');}}
+async function input(request,maxLength=20000){const s=await request.text();if(s.length>maxLength)fail('表单内容过长',413);try{return JSON.parse(s);}catch{fail('无法读取表单');}}
 function strings(value,max,required=false){if(!Array.isArray(value)||value.length!==3||value.some(s=>typeof s!=='string'||s.length>max))fail('请检查三语文本长度');const out=value.map(s=>s.trim());if(required&&!out[0])fail('请填写中文标题');return out;}
 export function validateWork(data,current){
  const titles=strings(data.titles,160,true),descriptions=strings(data.descriptions,2500);
@@ -26,10 +27,15 @@ export async function adminApi(request,env){
  if(!isAdmin(request,env))return json({error:identity(request,env)?'此账号没有管理权限':'请先登录'},identity(request,env)?403:401);
  const user=identity(request,env),url=new URL(request.url),p=url.pathname;
  if(request.method!=='GET')assertWrite(request);
- if(p==='/api/admin/works'&&request.method==='GET')return json({works:await allWorks(env,true),categories:categories.map(c=>({id:c.id,name:c.name[0]})),email:user.email});
+ if(p==='/api/admin/works'&&request.method==='GET')return json({works:await allWorks(env,true),categories:(await orderedCategories(env)).map(c=>({id:c.id,name:c.name[0]})),email:user.email});
  if(p==='/api/admin/works'&&request.method==='POST'){
   const w={id:crypto.randomUUID(),titles:['未命名作品','',''],descriptions:['','',''],category:'brand',orientation:'landscape',video:'',poster:'',status:'draft',order:0};
   return json(await saveWork(env,w,user.id),201);
+ }
+ if(p==='/api/admin/works/bulk-delete'&&request.method==='POST'){
+  const data=await input(request,60000);
+  if(!data||!Array.isArray(data.items)||data.items.length<1||data.items.length>200||data.items.some(x=>!x||typeof x.id!=='string'||!/^[-a-z0-9]{1,150}$/.test(x.id)||typeof x.updatedAt!=='string'||x.updatedAt.length>64||!Number.isFinite(Date.parse(x.updatedAt)))||new Set(data.items.map(x=>x.id)).size!==data.items.length)fail('请选择 1 至 200 个不重复的作品，并刷新后重试');
+  return json({ok:true,ids:await deleteWorks(env,data.items,user.id)});
  }
  if(p==='/api/admin/works/reorder'&&request.method==='PUT'){
   const data=await input(request);

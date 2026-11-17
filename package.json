@@ -10,7 +10,7 @@
   "scripts": {
     "build": "node build-worker.mjs",
     "dev": "wrangler dev",
-    "test": "node build-worker.mjs && node --test backend.test.mjs auth.test.mjs migration.test.mjs upload-drop.test.mjs media-response.test.mjs playback.test.mjs adaptive-video.test.mjs prepare-playback.test.mjs",
+    "test": "node build-worker.mjs && node --test backend.test.mjs auth.test.mjs migration.test.mjs upload-drop.test.mjs media-response.test.mjs playback.test.mjs adaptive-video.test.mjs prepare-playback.test.mjs bulk-delete.test.mjs categories.test.mjs",
     "test:runtime": "node build-worker.mjs && node verify-bundle.mjs && node runtime-smoke.mjs",
     "deploy": "wrangler deploy",
     "db:local": "wrangler d1 migrations apply DB --local",

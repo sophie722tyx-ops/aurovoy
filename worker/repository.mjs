@@ -25,6 +25,31 @@ export async function saveWork(env,work,user,expected){
 }
 export const workPath=(w,lang='zh')=>`${lang==='zh'?'':`/${lang}`}/${w.id.startsWith('legacy-')?`work-${w.id.slice(7)}.html`:`work/${w.id}`}`;
 
+// Keep the whole deletion atomic, including bundled works that have no DB row yet.
+// Files stay in private storage; a tombstone revokes all public uses immediately.
+export async function deleteWorks(env,items,user){
+ const conflict=()=>{throw Object.assign(new Error('部分作品刚刚发生变化，尚未删除任何作品。请刷新列表后重新选择'),{status:409});};
+ const {results:snapshot}=await db(env).prepare('SELECT id,status,updated_at FROM works').all();
+ const works=await allWorks(env,true),byId=new Map(works.map(w=>[w.id,w]));
+ for(const item of items){
+  const work=byId.get(item.id);
+  if(!work)throw Object.assign(new Error('所选作品不存在或已删除，尚未删除任何作品。请刷新列表后重新选择'),{status:404});
+  if(work.updatedAt!==item.updatedAt)conflict();
+ }
+ const now=new Date(Math.max(Date.now(),...items.map(x=>Date.parse(x.updatedAt)+1))).toISOString();
+ const removed=items.map(x=>({...byId.get(x.id),status:'deleted',updatedAt:now,deletedAt:now,deletedBy:user}));
+ const snap=JSON.stringify(snapshot);
+ const result=await db(env).prepare(`INSERT INTO works(id,data,status,updated_at,updated_by)
+ SELECT json_extract(value,'$.id'),value,'deleted',?,? FROM json_each(?)
+ WHERE (SELECT COUNT(*) FROM works)=json_array_length(?) AND NOT EXISTS (
+ SELECT 1 FROM works w LEFT JOIN json_each(?) old ON json_extract(old.value,'$.id')=w.id
+ WHERE old.value IS NULL OR json_extract(old.value,'$.updated_at')<>w.updated_at OR json_extract(old.value,'$.status')<>w.status)
+ ON CONFLICT(id) DO UPDATE SET data=excluded.data,status=excluded.status,updated_at=excluded.updated_at,updated_by=excluded.updated_by`)
+ .bind(now,user,JSON.stringify(removed),snap,snap).run();
+ if((result.meta?.changes??result.changes)!==items.length)conflict();
+ return items.map(x=>x.id);
+}
+
 // One guarded statement commits the whole ordering, preserving concurrent content edits.
 export async function reorderWorks(env,{category,orientation,items},user){
  const conflict=()=>{throw Object.assign(new Error('分区内容已在其他窗口更新，请重新打开排序窗口后再试'),{status:409});};
