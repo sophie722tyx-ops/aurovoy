@@ -3,7 +3,7 @@
 for(const video of document.querySelectorAll('video')){
  video.controlsList?.add('nodownload');
  video.draggable=false;
- if(video.closest('.player-shell')&&!navigator.connection?.saveData&&!/2g/.test(navigator.connection?.effectiveType||''))video.preload='metadata';
+ if(!video.dataset.adaptiveVideo&&video.closest('.player-shell')&&!navigator.connection?.saveData&&!/2g/.test(navigator.connection?.effectiveType||''))video.preload='metadata';
 }
 for(const type of ['contextmenu','dragstart']){
  document.addEventListener(type,event=>{

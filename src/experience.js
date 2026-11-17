@@ -92,14 +92,15 @@
   const player=dialog.querySelector('video'),heading=dialog.querySelector('h2'),link=dialog.querySelector('[data-preview-link]');let opener;
   document.addEventListener('click',event=>{
    const trigger=event.target.closest('[data-preview]');if(!trigger)return;
-   opener=trigger;heading.textContent=trigger.dataset.title;player.poster=trigger.dataset.poster;player.src=trigger.dataset.src;
+   opener=trigger;heading.textContent=trigger.dataset.title;player.poster=trigger.dataset.poster;
+   if(globalThis.AurovoyVideo)globalThis.AurovoyVideo.prepare(player,trigger.dataset.src);else player.src=trigger.dataset.src;
    dialog.classList.toggle('preview-portrait',trigger.dataset.format==='portrait');link.closest('.preview-dialog-footer').hidden=!trigger.dataset.href;
    if(trigger.dataset.href)link.href=trigger.dataset.href;
-   dialog.showModal();root.classList.add('preview-open');player.play().catch(()=>{});
+   dialog.showModal();root.classList.add('preview-open');(globalThis.AurovoyVideo?globalThis.AurovoyVideo.play(player):player.play()).catch(()=>{});
   });
   dialog.querySelector('[data-preview-close]').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();});
-  dialog.addEventListener('close',()=>{player.pause();player.removeAttribute('src');player.load();root.classList.remove('preview-open');opener?.focus({preventScroll:true});});
+  dialog.addEventListener('close',()=>{globalThis.AurovoyVideo?.cleanup(player);player.pause();player.removeAttribute('src');player.load();root.classList.remove('preview-open');opener?.focus({preventScroll:true});});
   document.querySelectorAll('[data-preview]').forEach(button=>{button.hidden=false;});
  }
 
