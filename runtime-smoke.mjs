@@ -62,6 +62,21 @@ try{
  assert.equal((await call(`/api/admin/uploads/${upload.id}/1`,'PUT',png,true,{'Content-Length':String(png.length)})).status,200);
  work=await(await call(`/api/admin/uploads/${upload.id}/complete`,'POST',{},true)).json();assert(work.poster.startsWith('/media/'));
  assert.equal((await call(work.poster)).status,404);assert.equal((await call(work.poster,'GET',null,true)).status,200);
+ const mp4=new Uint8Array(32);mp4.set([0,0,0,24,102,116,121,112]);
+ upload=await(await call('/api/admin/uploads','POST',{workId:work.id,kind:'video',size:mp4.length,type:'video/mp4'},true)).json();
+ assert.equal((await call('/api/admin/uploads/'+upload.id+'/1','PUT',mp4,true,{'Content-Length':String(mp4.length)})).status,200);
+ work=await(await call('/api/admin/uploads/'+upload.id+'/complete','POST',{},true)).json();
+ work=await(await call('/api/admin/works/'+work.id,'PUT',{...work,status:'published'},true)).json();
+ let cached=false,etag;
+ for(let attempt=0;attempt<5;attempt++){
+  const media=await call(work.video,'GET',null,false,{Range:'bytes=0-15'});assert.equal(media.status,206);assert.equal(media.headers.get('content-range'),'bytes 0-15/32');assert.deepEqual(new Uint8Array(await media.arrayBuffer()),mp4.slice(0,16));etag=media.headers.get('etag');
+  if(media.headers.get('server-timing').includes('edge-hit')){cached=true;break;}await new Promise(resolve=>setTimeout(resolve,50));
+ }
+ assert(cached,'The actual Cloudflare cache must serve the second small range');
+ assert.equal((await call(work.video,'GET',null,false,{'If-None-Match':etag})).status,304);
+ work=await(await call('/api/admin/works/'+work.id+'/status','PATCH',{status:'draft',updatedAt:work.updatedAt},true)).json();
+ assert.equal((await call(work.video,'GET',null,false,{'If-None-Match':etag})).status,404);
+ assert.equal((await call('/.media-cache/v1/private-file')).status,404);
  assert.equal((await call('/assets/mark.png')).status,200);
  console.log(`Cloudflare runtime passed: ${pages.length} public pages, real JWT verification, D1 create, R2 upload and private preview.`);
  }

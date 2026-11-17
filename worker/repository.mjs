@@ -15,7 +15,8 @@ export async function allWorks(env,includeDrafts=false,includeDeleted=false){
  for(const r of results)records.set(JSON.parse(r.data).id,{...JSON.parse(r.data),status:r.status,updatedAt:r.updated_at});
  return [...records.values()].map(qualityWork).filter(w=>(includeDeleted||w.status!=='deleted')&&(includeDrafts||w.status==='published')).sort((a,b)=>a.order-b.order||b.updatedAt.localeCompare(a.updatedAt));
 }
-export async function getWork(env,id){const row=await db(env).prepare('SELECT data,status,updated_at FROM works WHERE id=?').bind(id).first();if(row?.status==='deleted')return undefined;return qualityWork(row?{...JSON.parse(row.data),status:row.status,updatedAt:row.updated_at}:baseline.find(w=>w.id===id));}
+export function workFromRow(row,id){if(row?.status==='deleted')return undefined;return qualityWork(row?{...JSON.parse(row.data),status:row.status,updatedAt:row.updated_at}:baseline.find(w=>w.id===id));}
+export async function getWork(env,id){return workFromRow(await db(env).prepare('SELECT data,status,updated_at FROM works WHERE id=?').bind(id).first(),id);}
 export async function saveWork(env,work,user,expected){
  const previous=Date.parse(work.updatedAt||''),now=new Date(Math.max(Date.now(),Number.isFinite(previous)?previous+1:0)).toISOString();
  const result=await db(env).prepare("INSERT INTO works(id,data,status,updated_at,updated_by) VALUES(?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data,status=excluded.status,updated_at=excluded.updated_at,updated_by=excluded.updated_by WHERE works.status<>'deleted' AND (? IS NULL OR works.updated_at=?)").bind(work.id,JSON.stringify(work),work.status,now,user,expected??null,expected??null).run();

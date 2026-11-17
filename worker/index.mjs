@@ -1,3 +1,4 @@
+import {MEDIA_CACHE_PREFIX} from './media-response.mjs';
 import {languageWelcome} from './language-welcome.mjs';
 import {maintenanceResponse,privateDuringPause,retiredWorldResponse} from './maintenance.mjs';
 import quality from '../video-quality.json' with {type:'json'};
@@ -14,13 +15,13 @@ import {membersApi,membersPage} from './members.mjs';
 import {creatorPublic,creatorExtras,creatorSitemap,workCreators} from './creators.mjs';
 const response=(html,status=200,extra={})=>new Response(html,{status,headers:{'Content-Type':'text/html; charset=utf-8','X-Content-Type-Options':'nosniff','Cache-Control':'no-store',...extra}});
 const denied=()=>response('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>管理权限 | AUROVOY</title><link rel="stylesheet" href="/admin.css"><main class="admin-main"><h1>此账号没有管理权限</h1><p>请使用已授权的管理员邮箱登录</p><a href="/cdn-cgi/access/logout">切换账号</a>　<a href="/">返回网站</a></main></html>',403);
-const handler={async fetch(request,env){
+const handler={async fetch(request,env,context){
  try{
   const url=new URL(request.url);let p=url.pathname;
   // Accept older clean URLs while retaining the established .html canonical links.
   if(/^\/(?:en\/|fr\/)?(?:works(?:-[a-z]+)?|work-\d+)\/?$/.test(p))p=p.replace(/\/$/,'')+'.html';
   const showcase=Object.values(quality).find(q=>q.showcase&&p===q.video);
-  if(showcase)return storedMedia(request,env,showcase.objectKey,'video/mp4');
+  if(showcase)return storedMedia(request,env,showcase.objectKey,'video/mp4',{size:showcase.size,published:true,context});
   if(p==='/api/admin/members')return await membersApi(request,env);
   if(p.startsWith('/api/admin/content/'))return await contentApi(request,env);
   if(p.startsWith('/api/admin/'))return await adminApi(request,env);
@@ -32,7 +33,7 @@ const handler={async fetch(request,env){
    const html=p.includes('/members')?membersPage():p.includes('/creators')?contentAdminPage('creators',owner):p.includes('/mentors')?contentAdminPage('mentors',owner):p.includes('/training')?contentAdminPage('courses',owner):adminNavigation(adminPage(), 'works',owner);
    return response(html.replace('</head>','<link rel="stylesheet" href="/creators.css"></head>'),200,{'Cache-Control':'private, no-store','X-Robots-Tag':'noindex, nofollow','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob:; media-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"});
   }
-  if(p.startsWith('/media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await media(request,env,p.slice(7));}
+  if(p.startsWith('/media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await media(request,env,p.slice(7),context);}
   if(p.startsWith('/content-media/')){if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});return await contentImage(request,env,p.slice(15));}
   if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405});
   if(p==='/')return response(synchronizeEditorial(pages['en/index.html'].replace('<head>','<head><base href="/en/">'),await allWorks(env,true,true)));
@@ -58,8 +59,8 @@ const handler={async fetch(request,env){
    return response(withCredits(detailPage(pages[`${lang==='zh'?'':lang+'/'}work-3.html`],work,lang)));
   }
   const gallery=p.match(/^\/(?:(en|fr)\/)?works(?:-([a-z]+))?\.html$/);
-  if(gallery){const original=pages[p.slice(1)];if(!original)return response('Not found',404);const works=await allWorks(env);const list=gallery[2]?works.filter(w=>w.category===gallery[2]):works;
-   return response(synchronizeEditorial(original.replace(/<!--portfolio-start-->[\s\S]*?<!--portfolio-end-->/g,filmGroups(list,gallery[1]||'zh')),await allWorks(env,true,true)));
+  if(gallery){const original=pages[p.slice(1)];if(!original)return response('Not found',404);const records=await allWorks(env,true,true),works=records.filter(w=>w.status==='published');const list=gallery[2]?works.filter(w=>w.category===gallery[2]):works;
+   return response(synchronizeEditorial(original.replace(/<!--portfolio-start-->[\s\S]*?<!--portfolio-end-->/g,filmGroups(list,gallery[1]||'zh')),records));
   }
   if(p.startsWith('/.openai')||p.startsWith('/server/'))return new Response('Not found',{status:404});
   const pageKey=p==='/'?'index.html':/^\/(en|fr)\/?$/.test(p)?p.slice(1).replace(/\/$/,'')+'/index.html':p.slice(1);
@@ -71,11 +72,13 @@ const handler={async fetch(request,env){
 
 
 // Identity is verified at the only Worker entry point. Never trust caller-supplied identity headers.
-export default {async fetch(request,env){
+export default {async fetch(request,env,context){
+ let path=new URL(request.url).pathname;try{path=decodeURIComponent(path);}catch{}
+ if(path.startsWith(MEDIA_CACHE_PREFIX))return new Response('Not found',{status:404,headers:{'Cache-Control':'no-store'}});
  const retired=retiredWorldResponse(request);if(retired)return retired;
  env=await authenticate(request,env);
  const maintenance=maintenanceResponse(request,env);if(maintenance)return maintenance;
- const result=privateDuringPause(await handler.fetch(request,env),env);
+ const result=privateDuringPause(await handler.fetch(request,env,context),env);
  const type=result.headers.get('content-type')||'';
  if(type.includes('text/html')||type.includes('application/xml')||new URL(request.url).pathname==='/robots.txt'){
   const configured=env.PUBLIC_ORIGIN||new URL(request.url).origin;

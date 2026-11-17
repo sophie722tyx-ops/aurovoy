@@ -3,6 +3,103 @@ import {translationJobs} from './worker/localize.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from 'node:sqlite';
 import worker from './worker/index.mjs';import {CHUNK} from './worker/api.mjs';
 const origin='https://aurovoy.invalid';
+
+async function uploadedMediaFixture(){
+ const fixture=setup(),{call}=fixture;let work=await(await call('/api/admin/works','POST',{})).json();
+ const video=Uint8Array.from({length:64},(_,i)=>i);video.set([0,0,0,24,102,116,121,112]);
+ const poster=new Uint8Array(32);poster.set([137,80,78,71,13,10,26,10]);
+ for(const [kind,type,bytes]of [['video','video/mp4',video],['poster','image/png',poster]]){
+  const upload=await(await call('/api/admin/uploads','POST',{workId:work.id,kind,type,size:bytes.length})).json();
+  assert.equal((await call('/api/admin/uploads/'+upload.id+'/1','PUT',bytes)).status,200);
+  work=await(await call('/api/admin/uploads/'+upload.id+'/complete','POST',{})).json();
+ }
+ work=await(await call('/api/admin/works/'+work.id,'PUT',{...work,status:'published'})).json();
+ return {...fixture,work,video,poster};
+}
+
+test('published media uses one authorization query without an R2 head and preserves HTTP ranges and validators',async()=>{
+ const {call,env,work,video}=await uploadedMediaFixture();
+ const prepare=env.DB.prepare.bind(env.DB),head=env.FILES.head.bind(env.FILES),get=env.FILES.get.bind(env.FILES);
+ let queries=0,heads=0,gets=0;
+ env.DB.prepare=q=>{queries++;return prepare(q);};env.FILES.head=async(...args)=>{heads++;return head(...args);};env.FILES.get=async(...args)=>{gets++;return get(...args);};
+ const read=async(method='GET',headers={})=>{const before=queries;const response=await call(work.video,method,null,null,headers);assert.equal(queries-before,1);return response;};
+ let response=await read('GET',{Range:'bytes=8-15'});assert.equal(response.status,206);assert.equal(response.headers.get('content-range'),'bytes 8-15/64');assert.equal(response.headers.get('content-length'),'8');assert.deepEqual(new Uint8Array(await response.arrayBuffer()),video.slice(8,16));
+ assert.equal(heads,0);assert.equal(gets,1);assert.equal(response.headers.get('cache-control'),'private, no-cache, must-revalidate');
+ const etag=response.headers.get('etag');assert.match(etag,/^"[a-f0-9]+"$/);
+ response=await read('HEAD');assert.equal(response.status,200);assert.equal(response.headers.get('content-length'),'64');assert.equal(await response.text(),'');assert.equal(heads,0);assert.equal(gets,1);
+ for(const method of ['GET','HEAD'])for(const validator of [etag,'"unrelated", W/'+etag,'*']){
+  response=await read(method,{'If-None-Match':validator});assert.equal(response.status,304);assert.equal(await response.text(),'');assert.equal(response.headers.get('etag'),etag);assert.equal(response.headers.get('content-length'),null);
+ }
+ assert.equal(heads,0);assert.equal(gets,1);
+ for(const [range,expected,bytes]of [['bytes=-8','bytes 56-63/64',video.slice(56)],['bytes=60-','bytes 60-63/64',video.slice(60)],['bytes=60-999','bytes 60-63/64',video.slice(60)]]){
+  response=await read('GET',{Range:range});assert.equal(response.status,206);assert.equal(response.headers.get('content-range'),expected);assert.deepEqual(new Uint8Array(await response.arrayBuffer()),bytes);
+ }
+ const beforeInvalid=gets;
+ for(const range of ['bytes=64-','bytes=15-8','bytes=-0','bytes=','bytes=0-1,4-5','bytes=9007199254740992-']){
+  response=await read('GET',{Range:range});assert.equal(response.status,416,range);assert.equal(response.headers.get('content-range'),'bytes */64');assert.equal(await response.text(),'');
+ }
+ assert.equal(gets,beforeInvalid);assert.equal(heads,0);
+ response=await read('GET',{Range:'bytes=8-15','If-Range':etag});assert.equal(response.status,206);assert.deepEqual(new Uint8Array(await response.arrayBuffer()),video.slice(8,16));
+ response=await read('GET',{Range:'bytes=8-15','If-Range':'"older-version"'});assert.equal(response.status,200);assert.equal(response.headers.get('content-range'),null);assert.deepEqual(new Uint8Array(await response.arrayBuffer()),video);
+ response=await read('GET',{'If-None-Match':'"unrelated"'});assert.equal(response.status,200);assert.deepEqual(new Uint8Array(await response.arrayBuffer()),video);
+ const beforeMissing=gets;response=await call('/media/missing-upload','HEAD',null,null,{'If-None-Match':'*'});assert.equal(response.status,404);assert.equal(await response.text(),'');assert.equal(gets,beforeMissing);assert.equal(heads,0);
+});
+
+test('cached media still checks live publication, replacement, deletion and site pause before returning bytes or 304',async t=>{
+ const {call,env,work:initial,video}=await uploadedMediaFixture();let work=initial;
+ const originalCaches=Object.getOwnPropertyDescriptor(globalThis,'caches'),entries=new Map(),pending=[];let cacheReads=0,storageReads=0;
+ const key=request=>typeof request==='string'?request:request.url;
+ Object.defineProperty(globalThis,'caches',{configurable:true,value:{default:{
+  async match(request){cacheReads++;return entries.get(key(request))?.clone();},
+  async put(request,response){assert.equal(response.status,200);assert.equal(response.headers.get('content-range'),null);const bytes=await response.arrayBuffer();assert.equal(bytes.byteLength,Number(response.headers.get('content-length')));entries.set(key(request),new Response(bytes,response));},
+ }}});
+ t.after(()=>{if(originalCaches)Object.defineProperty(globalThis,'caches',originalCaches);else delete globalThis.caches;});
+ const get=env.FILES.get.bind(env.FILES);env.FILES.get=async(...args)=>{storageReads++;return get(...args);};
+ async function read(path=work.video,headers={},auth=false,method='GET'){
+  const response=await worker.fetch(new Request(origin+path,{method,headers:{...headers,...(auth?{'cf-access-jwt-assertion':tokens.owner}:{})}}),env,{waitUntil:promise=>pending.push(promise)});
+  const bytes=await response.arrayBuffer();await Promise.all(pending.splice(0));return {response,bytes:new Uint8Array(bytes)};
+ }
+ const path=work.video,range={Range:'bytes=8-15'};
+ let result=await read(path,range);assert.equal(result.response.status,206);assert.deepEqual(result.bytes,video.slice(8,16));assert.equal(entries.size,1);assert.equal(storageReads,1);
+ const etag=result.response.headers.get('etag');
+ result=await read(path,range);assert.equal(result.response.status,206);assert.deepEqual(result.bytes,video.slice(8,16));assert.equal(storageReads,1);assert.match(result.response.headers.get('server-timing'),/edge-hit/);
+ const posterPath=work.poster;result=await read(posterPath);assert.equal(result.response.status,200);const afterPoster=storageReads;result=await read(posterPath);assert.equal(result.response.status,200);assert.equal(storageReads,afterPoster);
+ for(const internalUrl of entries.keys())for(const auth of [false,true]){const internal=new URL(internalUrl).pathname;result=await read(internal,{},auth);assert.equal(result.response.status,404);result=await read(internal.replace('/.media-cache/','/%2emedia-cache/'),{},auth);assert.equal(result.response.status,404);}
+ const route='/api/admin/works/'+work.id;
+ work=await(await call(route+'/status','PATCH',{status:'draft',updatedAt:work.updatedAt})).json();
+ let beforeCache=cacheReads,beforeStorage=storageReads;
+ for(const headers of [range,{'If-None-Match':etag}]){result=await read(path,headers);assert.equal(result.response.status,404);}
+ assert.equal(cacheReads,beforeCache);assert.equal(storageReads,beforeStorage);
+ result=await read(path,range,true);assert.equal(result.response.status,206);assert.match(result.response.headers.get('cache-control'),/no-store/);assert.equal(cacheReads,beforeCache);
+ result=await read(path,{'If-None-Match':etag},true);assert.equal(result.response.status,200);assert.match(result.response.headers.get('cache-control'),/no-store/);
+ const newVideo=video.slice();newVideo[16]=255;
+ const upload=await(await call('/api/admin/uploads','POST',{workId:work.id,kind:'video',type:'video/mp4',size:newVideo.length})).json();
+ assert.equal((await call('/api/admin/uploads/'+upload.id+'/1','PUT',newVideo)).status,200);work=await(await call('/api/admin/uploads/'+upload.id+'/complete','POST',{})).json();
+ work=await(await call(route+'/status','PATCH',{status:'published',updatedAt:work.updatedAt})).json();
+ beforeCache=cacheReads;beforeStorage=storageReads;
+ for(const auth of [false,true])for(const headers of [range,{'If-None-Match':etag}]){result=await read(path,headers,auth);assert.equal(result.response.status,404);}
+ assert.equal(cacheReads,beforeCache);assert.equal(storageReads,beforeStorage);
+ result=await read(work.video,range);assert.equal(result.response.status,206);assert.notEqual(result.response.headers.get('etag'),etag);
+ const currentPath=work.video,currentEtag=result.response.headers.get('etag');result=await read(currentPath,range);assert.match(result.response.headers.get('server-timing'),/edge-hit/);
+ env.PUBLIC_SITE_PAUSED='true';beforeCache=cacheReads;beforeStorage=storageReads;
+ result=await read(currentPath,{'If-None-Match':currentEtag});assert.equal(result.response.status,503);assert.match(result.response.headers.get('cache-control'),/no-store/);assert.equal(cacheReads,beforeCache);assert.equal(storageReads,beforeStorage);
+ env.PUBLIC_SITE_PAUSED='false';assert.equal((await call(route,'DELETE',{updatedAt:work.updatedAt})).status,200);
+ for(const auth of [false,true])for(const headers of [range,{'If-None-Match':currentEtag}]){result=await read(currentPath,headers,auth);assert.equal(result.response.status,404);}
+ assert.equal(cacheReads,beforeCache);assert.equal(storageReads,beforeStorage);assert(entries.size>=3);
+});
+
+test('joined media authorization retains baseline quality overrides and never revives a deleted baseline work',async()=>{
+ const {call,env,sql}=setup(),quality=(await import('./video-quality.json',{with:{type:'json'}})).default,q=quality['legacy-12'];
+ const bytes=new Uint8Array(64);bytes.set([0,0,0,24,102,116,121,112]);await env.FILES.put(q.objectKey,bytes);
+ sql.prepare('INSERT INTO uploads(id,work_id,kind,object_key,content_type,size,owner,state,created_at) VALUES(?,?,?,?,?,?,?,?,?)').run(q.video.split('/').pop(),'legacy-12','video',q.objectKey,'video/mp4',64,'owner','complete',new Date().toISOString());
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM works').get().n,0);
+ let response=await call(q.video,'GET',null,null,{Range:'bytes=0-7'});assert.equal(response.status,206);assert.deepEqual(new Uint8Array(await response.arrayBuffer()),bytes.slice(0,8));const etag=response.headers.get('etag');
+ const work=(await(await call('/api/admin/works')).json()).works.find(w=>w.id==='legacy-12');assert.equal(work.video,q.video);
+ assert.equal((await call('/api/admin/works/'+work.id,'DELETE',{updatedAt:work.updatedAt})).status,200);
+ for(const auth of [null,'owner'])for(const method of ['GET','HEAD']){response=await call(q.video,method,null,auth,{'If-None-Match':etag});assert.equal(response.status,404);}
+ assert.equal(sql.prepare('SELECT status FROM works WHERE id=?').get(work.id).status,'deleted');
+});
+
 test('parallel cover and video completion preserve both media fields and publishing requires a cover',async()=>{
  const {call}=setup(),w=await(await call('/api/admin/works','POST',{})).json(),png=new Uint8Array(32),mp4=new Uint8Array(32);png.set([137,80,78,71,13,10,26,10]);mp4.set([0,0,0,24,102,116,121,112]);
  const uploads=await Promise.all([['poster','image/png',png],['video','video/mp4',mp4]].map(async([kind,type,bytes])=>{const u=await(await call('/api/admin/uploads','POST',{workId:w.id,kind,type,size:bytes.length})).json();assert.equal((await call('/api/admin/uploads/'+u.id+'/1','PUT',bytes)).status,200);return u;}));
@@ -195,9 +292,9 @@ test('site pause blocks every public surface without changing content, and prese
  for(const p of ['/admin.css','/content-admin.css','/creators.css','/admin.js','/content-admin.js','/members.js','/creator-works.js','/media-frame.js','/upload-drop.js','/assets/mark.png','/assets/brand-sans.woff2'])assert.equal((await call(p,'GET',null,null)).status,200,p);
  assert.deepEqual(await(await call('/api/admin/works')).json(),original);assert.equal(sql.prepare('SELECT COUNT(*) n FROM works').get().n,0);
  await call('/api/admin/members','POST',{email:'outsider@example.test'});assert.equal((await call('/admin','GET',null,'outsider')).status,200);assert.equal((await call('/admin/members','GET',null,'outsider')).status,403);
- const q=Object.values((await import('./video-quality.json',{with:{type:'json'}})).default).find(x=>x.showcase);await env.FILES.put(q.objectKey,Buffer.alloc(64,7));
+ const q=Object.values((await import('./video-quality.json',{with:{type:'json'}})).default).find(x=>x.showcase);await env.FILES.put(q.objectKey,Buffer.alloc(q.size,7));
  const r=await call(q.video,'GET',null,'outsider',{Range:'bytes=8-15'});assert.equal(r.status,206);assert.equal((await r.arrayBuffer()).byteLength,8);assert.match(r.headers.get('cache-control'),/private, no-store/);
- assert.equal((await call(q.video,'HEAD',null,'outsider')).headers.get('content-length'),'64');assert.equal((await call(q.video,'GET',null,null)).status,503);
+ assert.equal((await call(q.video,'HEAD',null,'outsider')).headers.get('content-length'),String(q.size));assert.equal((await call(q.video,'GET',null,null)).status,503);
  let draft=await(await call('/api/admin/works','POST',{},'outsider')).json();assert(draft.id);draft=await(await call('/api/admin/works/'+draft.id,'PUT',{...draft,titles:['暂停期间编辑','','']},'outsider')).json();assert.equal(draft.titles[0],'暂停期间编辑');
  const asset=await call('/assets/cover-3.webp','GET',null,'owner');assert.equal(asset.status,200);assert.match(asset.headers.get('cache-control'),/private, no-store/);
  await call('/api/admin/members','DELETE',{email:'outsider@example.test'});assert.equal((await call(q.video,'GET',null,'outsider')).status,503);
@@ -324,9 +421,9 @@ test('full-quality media preserves full dimensions and duration while respecting
 
 test('international showcases use complete R2 videos and support byte ranges',async()=>{
  const {call,env}=setup();const {default:quality}=await import('./video-quality.json',{with:{type:'json'}});
- for(const id of ['global-en','global-pt']){const q=quality[id];await env.FILES.put(q.objectKey,Buffer.alloc(200,3),{httpMetadata:{contentType:'video/mp4'}});
+ for(const id of ['global-en','global-pt']){const q=quality[id];await env.FILES.put(q.objectKey,Buffer.alloc(q.size,3),{httpMetadata:{contentType:'video/mp4'}});
   for(const pre of ['','/en','/fr']){const html=await(await call(pre+'/production.html','GET',null,null)).text();assert(html.includes(q.video));assert(!html.includes(q.previousVideo));}
-  const r=await call(q.video,'GET',null,null,{Range:'bytes=-20'});assert.equal(r.status,206);assert.equal((await r.arrayBuffer()).byteLength,20);assert.equal((await call(q.video,'HEAD',null,null)).headers.get('content-length'),'200');assert.equal((await call(q.video,'GET',null,null,{Range:'bytes=201-'})).status,416);assert.equal((await call(q.video,'POST',{},null)).status,405);
+  const r=await call(q.video,'GET',null,null,{Range:'bytes=-20'});assert.equal(r.status,206);assert.equal((await r.arrayBuffer()).byteLength,20);assert.equal((await call(q.video,'HEAD',null,null)).headers.get('content-length'),String(q.size));assert.equal((await call(q.video,'GET',null,null,{Range:'bytes='+q.size+'-'})).status,416);assert.equal((await call(q.video,'POST',{},null)).status,405);
  }
  assert.equal((await call('/showcase-video/private.mp4','GET',null,null)).status,404);
 });
